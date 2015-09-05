@@ -4,14 +4,43 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <h2>
-        Welcome to ASP.NET!
-    </h2>
-    <p>
-        To learn more about ASP.NET visit <a href="http://www.asp.net" title="ASP.NET Website">www.asp.net</a>.
-    </p>
-    <p>
-        You can also find <a href="http://go.microsoft.com/fwlink/?LinkID=152368&amp;clcid=0x409"
-            title="MSDN ASP.NET Docs">documentation on ASP.NET at MSDN</a>.
-    </p>
+    <asp:MultiView ID="MultiView1" runat="server">
+        <asp:View ID="View1" runat="server">
+
+            <asp:Label ID="Label1" runat="server" Text="Aadhar id:"></asp:Label>
+            <asp:TextBox ID="TextBox1" TextMode="password" runat="server" style="margin-left: 30px"></asp:TextBox>
+            <br /><br />
+           
+            <%-- <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lnkTab2_Click">Next</asp:LinkButton>--%>
+            <asp:Button ID="Button2" runat="server" onclick="lnkTab2_Click" Text="Button" />
+        </asp:View>
+        <asp:View ID="View2" runat="server">
+            <asp:Label ID="Label2" runat="server" Text="OTP:"></asp:Label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox> <br />
+             <br /><br />
+            <asp:Button ID="Button1" runat="server" Text="Send OTP" />            
+            <br />
+            <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1">
+            </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </asp:View>
+
+    </asp:MultiView>
+<br /><br />
+<asp:TextBox ID="txtrollno" runat="server">  
+</asp:TextBox>  
+<br /><br />
+<asp:Image ID="Image1" runat="server" length="100px" Width="100px" />  
+<br />  
+<asp:Button ID="txtGetImage" runat="server"  
+Text="Convert" OnClick="txtGetImage_Click" />
+
+
+
 </asp:Content>
