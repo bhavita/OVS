@@ -12,6 +12,8 @@ using System.Net.Mail;
 
 public partial class _Default : System.Web.UI.Page
 {
+    SqlCommand cmd; string cs; SqlDataReader rdr; int j = 0; 
+    string email,name;
     protected void Page_Load(object sender, EventArgs e)
     {
         MultiView1.SetActiveView(View1);
@@ -23,15 +25,31 @@ public partial class _Default : System.Web.UI.Page
     protected void lnkTab2_Click(object sender, EventArgs e)
     {
         MultiView1.ActiveViewIndex = 1;
-        using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com", "riddhisoni1324@gmail.com"))
+        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con = new SqlConnection(cs);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("select * from voterinfo where vid=@vid", con);
+        cmd.Parameters.Add("@vid",aadhar_id.Text);
+        cmd.Connection = con;
+        rdr = cmd.ExecuteReader();
+        
+        if (rdr != null){
+            while (rdr.Read()){
+                j++;
+                email = rdr.GetString(4);
+                name = rdr.GetString(1);
+            }
+        }
+
+        
+        con.Close();
+        int OTP=OTPGenration.GenrateOTP();
+        Response.Write(email + " " + name+" "+OTP.ToString());
+
+        using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com",email))
         {
             mm.Subject = "OTP Mail";
-            mm.Body = "hello";
-            //if (fuAttachment.HasFile)
-            //{
-            //    string FileName = Path.GetFileName(fuAttachment.PostedFile.FileName);
-            //    mm.Attachments.Add(new Attachment(fuAttachment.PostedFile.InputStream, FileName));
-            //}
+            mm.Body = "Dear "+name+", Your OTP is : "+OTP;
             mm.IsBodyHtml = false;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
@@ -41,11 +59,9 @@ public partial class _Default : System.Web.UI.Page
             smtp.Credentials = NetworkCred;
             smtp.Port = 587;
             smtp.Send(mm);
-            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Email sent.');", true);
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP is sent to your email id.');", true);
         }
-        ScriptManager.RegisterClientScriptBlock(this, GetType(),
-            "alertMessage", @"alert('OTP is sent to your email id')", true);
-    }
+   }
 
 
 
@@ -55,4 +71,5 @@ public partial class _Default : System.Web.UI.Page
 
     }
 
+    
 }

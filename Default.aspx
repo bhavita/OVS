@@ -8,7 +8,7 @@
         <asp:View ID="View1" runat="server">
 
             <asp:Label ID="Label1" runat="server" Text="Aadhar id:"></asp:Label>
-            <asp:TextBox ID="TextBox1" TextMode="password" runat="server" style="margin-left: 30px"></asp:TextBox>
+            <asp:TextBox ID="aadhar_id" runat="server" style="margin-left: 30px"></asp:TextBox>
             <br /><br />
            
             <%-- <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lnkTab2_Click">Next</asp:LinkButton>--%>
@@ -21,9 +21,6 @@
              <br /><br />
             <asp:Button ID="Button1" runat="server" Text="Send OTP" />            
             <br />
-            <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1">
-            </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
             <br />
             <br />
             <br />

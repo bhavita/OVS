@@ -10,17 +10,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <p>
-    <asp:Label ID="Label1" runat="server" Text="Username"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input id="Text1" type="text" /><br />
+    <asp:Label ID="l_admin_username" runat="server" Text="Username"></asp:Label>
+    <asp:TextBox ID="t_admin_username" runat="server" style="margin-left: 22px" 
+            Width="149px"></asp:TextBox>
+    <br />
 </p>
 <p>
-    <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>
-    <input id="Password1" type="password" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:Label ID="l_admin_password" runat="server" Text="Password"></asp:Label>
+    <asp:TextBox ID="t_admin_password" TextMode="password" runat="server" 
+        style="margin-left: 24px" Width="149px" ></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 <p>
     <asp:Button ID="Button1" runat="server" style="margin-left: 67px" Text="Login" 
-        Width="104px" />
+        Width="104px" onclick="Button1_Click" />
 </p>
 <p>
 </p>
