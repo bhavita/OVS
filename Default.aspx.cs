@@ -93,7 +93,10 @@ public partial class _Default : System.Web.UI.Page
         }
         //Response.Write("otp from db is " + get_OTP + " " +"hiii"+get_user_otp);
         if (get_OTP == get_user_otp) {
-            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP matched.');", true);
+            MultiView1.ActiveViewIndex = 2;
+            BindListView();
+            //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP matched.');", true);
+           
         }
         else {
             ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP Must match.');", true);
@@ -131,9 +134,39 @@ public partial class _Default : System.Web.UI.Page
 
     }
 
+    private void BindListView()
+    {
+        string constr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(constr))
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = "SELECT * FROM voterinfo where vid=@vid";
+                cmd.Parameters.AddWithValue("@vid", aadhar_id.Text);
+                cmd.Connection = con;
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    lvCustomers.DataSource = dt;
+                    lvCustomers.DataBind();
+                }
+            }
+        }
+    }
+
     protected void txtGetImage_Click(object sender, EventArgs e)
     {
-        Image1.ImageUrl = "ImageHandler.ashx?roll_no=" + txtrollno.Text;
+      //  Image1.ImageUrl = "ImageHandler.ashx?roll_no=" + txtrollno.Text;
 
+    }
+
+    protected void setpass(object sender, EventArgs e)
+    {
+        Response.Write("You clicked me");
+        MultiView1.ActiveViewIndex = 3;
+       // string pa = TextBox1.Text;
+        //Response.Write("You clicked me  "+pa);
+        
     }
 }
