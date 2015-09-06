@@ -12,14 +12,16 @@
             <br /><br />
            
             <%-- <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lnkTab2_Click">Next</asp:LinkButton>--%>
-            <asp:Button ID="Button2" runat="server" onclick="lnkTab2_Click" Text="Button" />
+            <asp:Button ID="Button2" runat="server" onclick="lnkTab2_Click" 
+                Text="Submit AadharID" />
         </asp:View>
         <asp:View ID="View2" runat="server">
             <asp:Label ID="Label2" runat="server" Text="OTP:"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox> <br />
              <br /><br />
-            <asp:Button ID="Button1" runat="server" Text="Send OTP" />            
+            <asp:Button ID="Button1" runat="server" Text="Send OTP" 
+                onclick="Button1_Click" />            
             <br />
             <br />
             <br />

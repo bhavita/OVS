@@ -21,13 +21,13 @@
             <div class="clear hideSkiplink">
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
-                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
-                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                        <asp:MenuItem NavigateUrl="~/Home.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Register"/>
                         <asp:MenuItem NavigateUrl="~/Admin_Login.aspx" Text="Admin Login"/>
-                        <asp:MenuItem NavigateUrl="~/Add_Candidate.aspx" Text="Add Candidate"/>
                         <asp:MenuItem NavigateUrl="~/Help.aspx" Text="Help"/>
                         <asp:MenuItem NavigateUrl="~/Election_Detail.aspx" Text="Election detail"/>
                         <asp:MenuItem NavigateUrl="~/DataBase.aspx" Text="db"/>
+                        <asp:MenuItem NavigateUrl="~/Add_Candidate.aspx" Text="Add Candidate"/>
 
                     </Items>
                 </asp:Menu>

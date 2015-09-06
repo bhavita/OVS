@@ -19,4 +19,6 @@ public class OTPGenration
         Random r = new Random();
         return r.Next(1000,9999);
    }
+
+    public string getsetOTP { get; set; }
 }

@@ -12,7 +12,7 @@ using System.Net.Mail;
 
 public partial class _Default : System.Web.UI.Page
 {
-    SqlCommand cmd; string cs; SqlDataReader rdr; int j = 0; 
+    SqlCommand cmd, insert_otp_cmd; string cs; SqlDataReader rdr; int j = 0; int OTP; string get_OTP,set_OTP;
     string email,name;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,7 +28,7 @@ public partial class _Default : System.Web.UI.Page
         string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con = new SqlConnection(cs);
         con.Open();
-        SqlCommand cmd = new SqlCommand("select * from voterinfo where vid=@vid", con);
+        cmd = new SqlCommand("select * from voterinfo where vid=@vid", con);
         cmd.Parameters.Add("@vid",aadhar_id.Text);
         cmd.Connection = con;
         rdr = cmd.ExecuteReader();
@@ -40,12 +40,20 @@ public partial class _Default : System.Web.UI.Page
                 name = rdr.GetString(1);
             }
         }
-
-        
         con.Close();
-        int OTP=OTPGenration.GenrateOTP();
-        Response.Write(email + " " + name+" "+OTP.ToString());
+               
+        
+        //---generate OTP to send
+        OTP=OTPGenration.GenrateOTP();
+        set_OTP = OTP.ToString();
+        OTPGenration og = new OTPGenration();
+        og.getsetOTP = set_OTP;
+        Response.Write(email + " " + name+" "+set_OTP);
 
+        //--insert OTP into db
+        insert_otp();
+       
+        //--mail
         using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com",email))
         {
             mm.Subject = "OTP Mail";
@@ -63,13 +71,69 @@ public partial class _Default : System.Web.UI.Page
         }
    }
 
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string get_user_otp = TextBox2.Text.ToString();
+        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con = new SqlConnection(cs);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("select * from otpvoter where vid=@vid", con);
+        cmd.Parameters.Add("@vid", aadhar_id.Text);
+        cmd.Connection = con;
+        rdr = cmd.ExecuteReader();
 
+        if (rdr != null)
+        {
+            while (rdr.Read())
+            {
+                j++;
+                get_OTP = rdr.GetDecimal(1).ToString();
+                
+            }
+        }
+        //Response.Write("otp from db is " + get_OTP + " " +"hiii"+get_user_otp);
+        if (get_OTP == get_user_otp) {
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP matched.');", true);
+        }
+        else {
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP Must match.');", true);
+        }
+        
+        con.Close();
+
+    }
+
+    protected void insert_otp()
+    {
+        string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con1 = new SqlConnection(cs1);
+        con1.Open();
+        insert_otp_cmd = new SqlCommand("INSERT INTO OTPVOTER (vid,otp) VALUES(@vid,@otp)", con1);
+        insert_otp_cmd.Parameters.Add("@vid", aadhar_id.Text);
+        insert_otp_cmd.Parameters.Add("@otp", OTP);
+        if ((con1.State & ConnectionState.Open) > 0)
+        {
+            //Response.Write("Connection OK!");
+            int i = insert_otp_cmd.ExecuteNonQuery();
+            if (i != 0) {
+                //Response.Write(i);
+                //Response.Write("row inserted");
+            }
+            else {
+                //Response.Write("row not inserted");
+            }
+        }
+        else {
+            //Response.Write("not conncted");
+        }
+
+        con1.Close();
+
+    }
 
     protected void txtGetImage_Click(object sender, EventArgs e)
     {
         Image1.ImageUrl = "ImageHandler.ashx?roll_no=" + txtrollno.Text;
 
     }
-
-    
 }
