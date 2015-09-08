@@ -17,7 +17,7 @@ public partial class Admin_login : System.Web.UI.Page
         string admin_pass = t_admin_password.Text;
         if (admin_user == "admin" && admin_pass == "OVS@dmin")
         {
-            Response.Redirect("Admin_Screen.aspx");
+            Response.Redirect("~/Admin/Admin_Screen.aspx");
         }
         else
         {

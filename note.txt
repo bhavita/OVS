@@ -1,0 +1,3 @@
+select c_id,c_name,cons_id,pid from candidate where cons_id=(select cons_id from voterindo where vid=?)
+
+//--in one contituency no duplicate party id for candidate

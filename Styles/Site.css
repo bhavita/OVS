@@ -3,8 +3,9 @@
 
 body   
 {
-    background: #b6b7bc;
-    font-size: .80em;
+    background-image: url("../img/download.png");font-size: .80em;
+    background-repeat:no-repeat;
+    background-size:cover;
     font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
     margin: 0px;
     padding: 0px;
