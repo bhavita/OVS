@@ -3,14 +3,23 @@
 
 body   
 {
-    background-image: url("../img/download.png");font-size: .80em;
+    background-image: url("../img/d.jpg");font-size: .80em;
     background-repeat:no-repeat;
-    background-size:cover;
+ background-size: cover;
+    background-repeat: no-repeat;
     font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
     margin: 0px;
     padding: 0px;
     color: #696969;
 }
+.font_class
+{
+  text-align:center;
+  font-size:40px;
+  opacity:1;
+  text-color:black;
+
+  }
 
 a:link, a:visited
 {
@@ -30,7 +39,6 @@ a:active
 
 p
 {
-    margin-bottom: 10px;
     line-height: 1.6em;
     margin-left: 40px;
 }
@@ -90,10 +98,10 @@ first child of the left and right table columns */
 
 .page
 {
-    width: 960px;
+    width: 90%;
     background-color: #fff;
     margin: 20px auto 0px auto;
-    border: 1px solid #496077;
+    opacity:0.9;
 }
 
 .header
@@ -101,9 +109,19 @@ first child of the left and right table columns */
     position: relative;
     margin: 0px;
     padding: 0px;
-    background: #4b6c9e;
+    background:rgba(5, 5, 5, 0.631373);
+     /*background-image: url("../img/banner2.gif");*/
+     
     width: 100%;
 }
+
+.uperlab
+{
+    background-image: url("../img/banner2.gif");
+    border-radius: 25px;
+    width:100%;
+    
+    }
 
 .header h1
 {
@@ -146,7 +164,7 @@ first child of the left and right table columns */
 
 div.hideSkiplink
 {
-    background-color:#3a4f63;
+    background:rgba(155, 79, 79, 0.12);;
     width:100%;
 }
 
@@ -159,13 +177,14 @@ div.menu ul
 {
     list-style: none;
     margin: 0px;
-    padding: 0px;
-    width: auto;
+    padding: 5px;
+    width:90%;
+    
 }
 
 div.menu ul li a, div.menu ul li a:visited
 {
-    background-color: #465c71;
+    background-color: #141618;
     border: 1px #4e667d solid;
     color: #dde4ec;
     display: block;
@@ -173,6 +192,8 @@ div.menu ul li a, div.menu ul li a:visited
     padding: 4px 20px;
     text-decoration: none;
     white-space: nowrap;
+    width:100px;
+    text-align:center;
 }
 
 div.menu ul li a:hover
@@ -243,13 +264,14 @@ div.accountInfo
 
 .clear
 {
-    clear: both;
+    /*clear: both;*/
+    
 }
 
 .title
 {
     display: block;
-    float: left;
+    float: left;    
     text-align: left;
     width: auto;
 }

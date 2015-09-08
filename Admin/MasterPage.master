@@ -1,0 +1,50 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Admin_MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<link rel="stylesheet" type="text/css" href="../Styles/Site.css" />
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="page">
+        <div class="header">
+          <div class="title">
+                <%--<div class="font_class">
+                   <font color="black">Online Voting System</font> 
+                </div>--%>
+                <%--<img alt="" src="../img/banner2.gif" width="100%" height="50%"/>--%>
+            </div>
+            <div class="font_class">
+                   <font color="black">Online Voting System</font> 
+                </div>
+                <%--<h1>
+                    Online Voting System
+                </h1>
+            --%>
+    <div class="clear hideSkiplink">
+     <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                     
+                        <%--<asp:MenuItem NavigateUrl="~/Add_Candidate.aspx" Text="Add Candidate"/>--%>
+                        <asp:MenuItem NavigateUrl="~/Admin/AddConstituency.aspx" Text="AddConstituency"/>
+                        <asp:MenuItem NavigateUrl="~/Admin/AddParty.aspx" Text="AddParty"/>
+                        <asp:MenuItem NavigateUrl="~/Admin/Add_Candidate.aspx" Text="Add_Candidate"/>
+                
+                    </Items>
+                </asp:Menu>
+    <div>
+    </div></div></div>
+     <div class="main">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+</div>
+    </div>
+    </form>
+</body>
+</html>

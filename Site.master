@@ -11,12 +11,15 @@
 <body>
     <form runat="server">
     <div class="page">
+    
         <div class="header">
             <div class="title">
-                <h1>
-                    Online Voting System
-                </h1>
+                
+                <%--<img alt="" src="img/banner2.gif" width="100%" height="50%"/>--%>
             </div>
+            <div class="font_class">
+                   <font color="black">Online Voting System</font> 
+                </div>
            
             <div class="clear hideSkiplink">
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
