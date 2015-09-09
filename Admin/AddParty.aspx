@@ -22,14 +22,17 @@
         <br />
         <br /><br />
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-            DataSourceID="SqlDataSource1">
+            DataSourceID="SqlDataSource1" DataKeyNames="p_id">
             <Columns>
-                <asp:BoundField DataField="pname" HeaderText="PartyName" SortExpression="pname" />
+                <asp:BoundField DataField="p_id" HeaderText="p_id" SortExpression="p_id" 
+                    InsertVisible="False" ReadOnly="True" />
+                <asp:BoundField DataField="p_name" HeaderText="p_name" 
+                    SortExpression="p_name" />
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
             ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
-            SelectCommand="SELECT [pname] FROM [ovs_party]"></asp:SqlDataSource>
+            SelectCommand="SELECT * FROM [OVS_PARTY]"></asp:SqlDataSource>
         <br />
         <br />
     

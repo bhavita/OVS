@@ -3,7 +3,7 @@
 
 body   
 {
-    background-image: url("../img/d.jpg");font-size: .80em;
+    background-image: url("../img/r.png");font-size: .80em;
     background-repeat:no-repeat;
     background-size: cover;
     background-repeat: no-repeat;
@@ -319,9 +319,10 @@ div.accountInfo
 .text_size
 {
      border-radius:5px;
-   
-  
- }
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 16px;
+}
  
  .lab_size 
  {

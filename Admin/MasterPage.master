@@ -17,10 +17,10 @@
                 <%--<div class="font_class">
                    <font color="black">Online Voting System</font> 
                 </div>--%>
-                <%--<img alt="" src="../img/banner2.gif" width="100%" height="50%"/>--%>
+                <img alt="" src="../img/banner2.gif" width="100%" height="50%"/>
             </div>
             <div class="font_class">
-                   <font color="black">Online Voting System</font> 
+                   <%--<font color="black">Online Voting System</font> --%>
                 </div>
                 <%--<h1>
                     Online Voting System
@@ -33,7 +33,8 @@
                         <%--<asp:MenuItem NavigateUrl="~/Add_Candidate.aspx" Text="Add Candidate"/>--%>
                         <asp:MenuItem NavigateUrl="~/Admin/Constituency.aspx" Text="AddConstituency"/>
                         <asp:MenuItem NavigateUrl="~/Admin/Party.aspx" Text="AddParty"/>
-                        <asp:MenuItem NavigateUrl="~/Admin/Add_Candidate.aspx" Text="Add_Candidate"/>
+                        <asp:MenuItem NavigateUrl="~/Admin/Add_Candidate.aspx" Text="AddCandidate"/>
+                        <asp:MenuItem NavigateUrl="~/Admin/can_detail.aspx" Text="Candidatedetail"/>
                 
                     </Items>
                 </asp:Menu>
