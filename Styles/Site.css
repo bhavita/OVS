@@ -5,7 +5,7 @@ body
 {
     background-image: url("../img/d.jpg");font-size: .80em;
     background-repeat:no-repeat;
- background-size: cover;
+    background-size: cover;
     background-repeat: no-repeat;
     font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
     margin: 0px;
@@ -316,3 +316,14 @@ div.accountInfo
     text-align: right;
     padding-right: 10px;
 }
+.text_size
+{
+     border-radius:5px;
+   
+  
+ }
+ 
+ .lab_size 
+ {
+ float:left;
+ }
