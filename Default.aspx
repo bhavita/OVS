@@ -72,13 +72,13 @@
 
     </asp:MultiView>
 <br /><br />
-<%--<asp:TextBox ID="txtrollno" runat="server">  
+<asp:TextBox ID="txtrollno" runat="server">  
 </asp:TextBox>  
 <br /><br />
 <asp:Image ID="Image1" runat="server" length="100px" Width="100px" />  
 <br />  
 <asp:Button ID="txtGetImage" runat="server"  
-Text="Convert" OnClick="txtGetImage_Click" />--%>
+Text="Convert" OnClick="txtGetImage_Click" />
 
 
 

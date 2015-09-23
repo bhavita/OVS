@@ -19,8 +19,6 @@ public partial class Add_Candidate : System.Web.UI.Page
         SqlCommand cmd = new SqlCommand();
         cmd.CommandText = "Select * from ovs_candidate";
         cmd.Connection = con;
-
-
         try
         {
             

@@ -29,8 +29,8 @@
                         <asp:MenuItem NavigateUrl="~/Admin_Login.aspx" Text="Admin Login"/>
                         <asp:MenuItem NavigateUrl="~/Help.aspx" Text="Help"/>
                         <asp:MenuItem NavigateUrl="~/Election_Detail.aspx" Text="Election detail"/>
-                        <asp:MenuItem NavigateUrl="~/DataBase.aspx" Text="db"/>
-                      
+                       <%-- <asp:MenuItem NavigateUrl="~/DataBase.aspx" Text="db"/>
+                      --%>
 
                     </Items>
                 </asp:Menu>
