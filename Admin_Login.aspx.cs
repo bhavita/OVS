@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 public partial class Admin_login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+      
+       
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
@@ -17,7 +19,25 @@ public partial class Admin_login : System.Web.UI.Page
         string admin_pass = t_admin_password.Text;
         if (admin_user == "admin" && admin_pass == "OVS@dmin")
         {
-            Response.Redirect("~/Admin/Admin_Screen.aspx");
+            Session["admin_user"] = admin_user;
+            string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
+            using (StreamWriter outputFile = new StreamWriter(log, true))
+            {
+
+                outputFile.WriteLine(System.DateTime.Now.ToString()+" : Admin login succes");
+               
+            }
+            if (Session["admin_user"] != null)
+            {
+                Response.Redirect("~/Admin/Admin_Screen.aspx");
+                
+            }
+            else {
+                Response.Redirect("Admin_Login.aspx");
+            }
+            HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            HttpContext.Current.Response.AddHeader("Pragma", "no-cache");
+            HttpContext.Current.Response.AddHeader("Expires", "0");
         }
         else
         {
@@ -25,6 +45,7 @@ public partial class Admin_login : System.Web.UI.Page
             t_admin_username.Text = "";
             t_admin_password.Text = "";
         }
+        
        
     }
 }
