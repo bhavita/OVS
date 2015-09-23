@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeFile="Voting.aspx.cs" Inherits="Voting" %>
+﻿<%@ Page EnableEventValidation="false" Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
+    CodeFile="Voting.aspx.cs" Inherits="Voting"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
-    <asp:DataList ID="DataList2" runat="server" OnEditCommand="Edit_Command">
+    <asp:DataList ID="DataList2" runat="server">
         <AlternatingItemStyle BackColor="White" ForeColor="#284775" />
         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
         <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="white" />
@@ -13,6 +13,10 @@
         <ItemTemplate>
             <table style="padding: 4px; font-size: medium; width: 100%; overflow: auto">
                 <tr>
+                    <td style="width: 10%">
+                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# string.Format("img/candidate/{0}.png", Eval("c_id"))%>' />
+                    </td>
+                    
                     <td style="width: 10%">
                         &nbsp;<%# Eval("c_id") %>
                     </td>
@@ -26,7 +30,10 @@
                         &nbsp;<%# Eval("pid")%>
                     </td>
                     <td style="width: 10%">
-                        <asp:LinkButton ID="lnkEdit" runat="server" Text="vote" CommandName="Edit" CommandArgument='<%#Eval("c_id") %>'></asp:LinkButton>
+                    
+                     <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%# string.Format("img/party/{0}.png", Eval("pid"))%>' CommandArgument='<%#Eval("c_id") %>' OnCommand="sw1_Command"/>
+                       <%-- <asp:ImageButton ID="ImageButton1" runat="server" CommandArgument='<%#Eval("c_id") %>' OnCommand="sw1_Command"/>--%>
+                       <%-- <asp:LinkButton ID="lnkEdit" runat="server" Text="vote" CommandName="Edit" CommandArgument='<%#Eval("c_id") %>'></asp:LinkButton>--%>
                     </td>
                     
                 </tr>
@@ -58,4 +65,5 @@
             </tr>
         </table>
     </asp:Panel>
+   
 </asp:Content>

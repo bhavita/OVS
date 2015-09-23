@@ -15,7 +15,7 @@ public partial class Voting : System.Web.UI.Page
     int pos; SqlDataReader dr1; 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!Page.IsPostBack)
         {
             
 
@@ -43,6 +43,10 @@ public partial class Voting : System.Web.UI.Page
         btnnext.Enabled = !adsource.IsLastPage;
         DataList2.DataSource = adsource;
         DataList2.DataBind();
+    }
+    protected void sw1_Command(object sender, CommandEventArgs e)
+    {
+        Response.Write(e.CommandArgument.ToString());
     }
 
     protected void btnfirst_Click(object sender, EventArgs e)
