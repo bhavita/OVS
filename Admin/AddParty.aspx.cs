@@ -20,12 +20,12 @@ public partial class Admin_AddParty : System.Web.UI.Page
         string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(cs1);
         con1.Open();
-        insert_party = new SqlCommand("INSERT INTO ovs_party (p_name) VALUES(@pname)", con1);
+        insert_party = new SqlCommand("INSERT INTO ovs_party (pname) VALUES(@pname)", con1);
         insert_party.Parameters.Add("@pname", TextBox1.Text);
         if ((con1.State & ConnectionState.Open) > 0)
         {
             //Response.Write("Connection OK!");
-            comd = new SqlCommand("SELECT p_name FROM ovs_party WHERE p_name=(@pname)",con1);
+            comd = new SqlCommand("SELECT pname FROM ovs_party WHERE pname=(@pname)",con1);
             comd.Parameters.Add("@pname", TextBox1.Text);
             rdr = comd.ExecuteReader();
             if (rdr.HasRows)

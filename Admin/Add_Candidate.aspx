@@ -59,7 +59,7 @@
             </td>
             <td class="style9">
                 <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataSource2"
-                    DataTextField="p_name" DataValueField="p_id" Height="25px" Width="199px" CssClass="text_size"
+                    DataTextField="pname" DataValueField="pid" Height="25px" Width="199px" CssClass="text_size"
                     AppendDataBoundItems="true">
                     <asp:ListItem Text="select party" Value="" />
                 </asp:DropDownList>

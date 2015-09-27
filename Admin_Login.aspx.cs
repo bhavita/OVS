@@ -10,8 +10,24 @@ public partial class Admin_login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-      
+
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+        Response.Cache.SetNoStore();
+
+        if (Session["admin_user"] != null)
+        {
+            //Label1.Visible = true;
+            //Label1.Text = "Hii,Admin";
+            //Button1.Visible = true;
+            Response.Redirect("~/Admin/Admin_Screen.aspx");
+        }
+        else
+        {
+            
+        }
        
+
     }
     protected void Button1_Click(object sender, EventArgs e)
     {

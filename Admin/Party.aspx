@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
 <font style="align:center" size="40px">PARTY </font>  
-  <asp:ListView ID="ListView1" runat="server" DataKeyNames="p_id" 
+  <asp:ListView ID="ListView1" runat="server" DataKeyNames="pid" 
         DataSourceID="SqlDataSource1" InsertItemPosition="LastItem">
         <AlternatingItemTemplate>
             <tr style="">
@@ -13,10 +13,10 @@
                     <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
                 </td>
                 <td>
-                    <asp:Label ID="p_idLabel" runat="server" Text='<%# Eval("p_id") %>' />
+                    <asp:Label ID="pidLabel" runat="server" Text='<%# Eval("pid") %>' />
                 </td>
                 <td>
-                    <asp:Label ID="p_nameLabel" runat="server" Text='<%# Eval("p_name") %>' />
+                    <asp:Label ID="pnameLabel" runat="server" Text='<%# Eval("pname") %>' />
                 </td>
             </tr>
         </AlternatingItemTemplate>
@@ -29,10 +29,10 @@
                         Text="Cancel" />
                 </td>
                 <td>
-                    <asp:Label ID="p_idLabel1" runat="server" Text='<%# Eval("p_id") %>' />
+                    <asp:Label ID="pidLabel1" runat="server" Text='<%# Eval("pid") %>' />
                 </td>
                 <td>
-                    <asp:TextBox ID="p_nameTextBox" runat="server" Text='<%# Bind("p_name") %>' />
+                    <asp:TextBox ID="pnameTextBox" runat="server" Text='<%# Bind("pname") %>' />
                 </td>
             </tr>
         </EditItemTemplate>
@@ -55,7 +55,7 @@
                 <td>
                     &nbsp;</td>
                 <td>
-                    <asp:TextBox ID="p_nameTextBox" runat="server" Text='<%# Bind("p_name") %>' />
+                    <asp:TextBox ID="pnameTextBox" runat="server" Text='<%# Bind("pname") %>' />
                 </td>
             </tr>
         </InsertItemTemplate>
@@ -65,10 +65,10 @@
                     <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
                 </td>
                 <td>
-                    <asp:Label ID="p_idLabel" runat="server" Text='<%# Eval("p_id") %>' />
+                    <asp:Label ID="pidLabel" runat="server" Text='<%# Eval("pid") %>' />
                 </td>
                 <td>
-                    <asp:Label ID="p_nameLabel" runat="server" Text='<%# Eval("p_name") %>' />
+                    <asp:Label ID="pnameLabel" runat="server" Text='<%# Eval("pname") %>' />
                 </td>
             </tr>
         </ItemTemplate>
@@ -108,33 +108,33 @@
                     <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
                 </td>
                 <td>
-                    <asp:Label ID="p_idLabel" runat="server" Text='<%# Eval("p_id") %>' />
+                    <asp:Label ID="pidLabel" runat="server" Text='<%# Eval("pid") %>' />
                 </td>
                 <td>
-                    <asp:Label ID="p_nameLabel" runat="server" Text='<%# Eval("p_name") %>' />
+                    <asp:Label ID="pnameLabel" runat="server" Text='<%# Eval("pname") %>' />
                 </td>
             </tr>
         </SelectedItemTemplate>
     </asp:ListView>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
         ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
-        DeleteCommand="DELETE FROM [OVS_PARTY] WHERE [p_id] = @p_id" 
-        InsertCommand="INSERT INTO [OVS_PARTY] ([p_name]) VALUES (@p_name)" 
+        DeleteCommand="DELETE FROM [OVS_PARTY] WHERE [pid] = @pid" 
+        InsertCommand="INSERT INTO [OVS_PARTY] ([pname]) VALUES (@pname)" 
         SelectCommand="SELECT * FROM [OVS_PARTY]" 
-        UpdateCommand="UPDATE [OVS_PARTY] SET [p_name] = @p_name WHERE [p_id] = @p_id">
+        UpdateCommand="UPDATE [OVS_PARTY] SET [pname] = @pname WHERE [pid] = @pid">
         <DeleteParameters>
-            <asp:Parameter Name="p_id" Type="Int32" />
+            <asp:Parameter Name="pid" Type="Int32" />
         </DeleteParameters>
         <InsertParameters>
-            <asp:Parameter Name="p_name" Type="String" />
+            <asp:Parameter Name="pname" Type="String" />
         </InsertParameters>
         <UpdateParameters>
-            <asp:Parameter Name="p_name" Type="String" />
-            <asp:Parameter Name="p_id" Type="Int32" />
+            <asp:Parameter Name="pname" Type="String" />
+            <asp:Parameter Name="pid" Type="Int32" />
         </UpdateParameters>
     </asp:SqlDataSource>
     </h1>
-    <%--<asp:ListView ID="ListView1" runat="server" DataKeyNames="p_id" 
+    <%--<asp:ListView ID="ListView1" runat="server" DataKeyNames="pid" 
     DataSourceID="SqlDataSource1" InsertItemPosition="LastItem" 
     onselectedindexchanged="ListView1_SelectedIndexChanged">
     <AlternatingItemTemplate>
@@ -145,10 +145,10 @@
                 <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
             </td>
             <td>
-                <asp:Label ID="p_idLabel" runat="server" Text='<%# Eval("p_id") %>' />
+                <asp:Label ID="pidLabel" runat="server" Text='<%# Eval("pid") %>' />
             </td>
             <td>
-                <asp:Label ID="p_nameLabel" runat="server" Text='<%# Eval("p_name") %>' />
+                <asp:Label ID="pnameLabel" runat="server" Text='<%# Eval("pname") %>' />
             </td>
         </tr>
     </AlternatingItemTemplate>
@@ -161,10 +161,10 @@
                     Text="Cancel" />
             </td>
             <td>
-                <asp:Label ID="p_idLabel1" runat="server" Text='<%# Eval("p_id") %>' />
+                <asp:Label ID="pidLabel1" runat="server" Text='<%# Eval("pid") %>' />
             </td>
             <td>
-                <asp:TextBox ID="p_nameTextBox" runat="server" Text='<%# Bind("p_name") %>' />
+                <asp:TextBox ID="pnameTextBox" runat="server" Text='<%# Bind("pname") %>' />
             </td>
         </tr>
     </EditItemTemplate>
@@ -188,7 +188,7 @@
             <td>
                 &nbsp;</td>
             <td>
-                <asp:TextBox ID="p_nameTextBox" runat="server" Text='<%# Bind("p_name") %>' />
+                <asp:TextBox ID="pnameTextBox" runat="server" Text='<%# Bind("pname") %>' />
             </td>
         </tr>
     </InsertItemTemplate>
@@ -200,10 +200,10 @@
                 <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
             </td>
             <td>
-                <asp:Label ID="p_idLabel" runat="server" Text='<%# Eval("p_id") %>' />
+                <asp:Label ID="pidLabel" runat="server" Text='<%# Eval("pid") %>' />
             </td>
             <td>
-                <asp:Label ID="p_nameLabel" runat="server" Text='<%# Eval("p_name") %>' />
+                <asp:Label ID="pnameLabel" runat="server" Text='<%# Eval("pname") %>' />
             </td>
         </tr>
     </ItemTemplate>
@@ -217,9 +217,9 @@
                             <th runat="server">
                             </th>
                             <th runat="server">
-                                p_id</th>
+                                pid</th>
                             <th runat="server">
-                                p_name</th>
+                                pname</th>
                         </tr>
                         <tr ID="itemPlaceholder" runat="server">
                         </tr>
@@ -247,29 +247,29 @@
                 <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
             </td>
             <td>
-                <asp:Label ID="p_idLabel" runat="server" Text='<%# Eval("p_id") %>' />
+                <asp:Label ID="pidLabel" runat="server" Text='<%# Eval("pid") %>' />
             </td>
             <td>
-                <asp:Label ID="p_nameLabel" runat="server" Text='<%# Eval("p_name") %>' />
+                <asp:Label ID="pnameLabel" runat="server" Text='<%# Eval("pname") %>' />
             </td>
         </tr>
     </SelectedItemTemplate>
 </asp:ListView>
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
     ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
-    DeleteCommand="DELETE FROM [OVS_PARTY] WHERE [p_id] = @p_id" 
-    InsertCommand="INSERT INTO [OVS_PARTY] ([p_name]) VALUES (@p_name)" 
+    DeleteCommand="DELETE FROM [OVS_PARTY] WHERE [pid] = @pid" 
+    InsertCommand="INSERT INTO [OVS_PARTY] ([pname]) VALUES (@pname)" 
     SelectCommand="SELECT * FROM [OVS_PARTY]" 
-    UpdateCommand="UPDATE [OVS_PARTY] SET [p_name] = @p_name WHERE [p_id] = @p_id">
+    UpdateCommand="UPDATE [OVS_PARTY] SET [pname] = @pname WHERE [pid] = @pid">
     <DeleteParameters>
-        <asp:Parameter Name="p_id" Type="Int32" />
+        <asp:Parameter Name="pid" Type="Int32" />
     </DeleteParameters>
     <InsertParameters>
-        <asp:Parameter Name="p_name" Type="String" />
+        <asp:Parameter Name="pname" Type="String" />
     </InsertParameters>
     <UpdateParameters>
-        <asp:Parameter Name="p_name" Type="String" />
-        <asp:Parameter Name="p_id" Type="Int32" />
+        <asp:Parameter Name="pname" Type="String" />
+        <asp:Parameter Name="pid" Type="Int32" />
     </UpdateParameters>
 </asp:SqlDataSource>--%>
     <br />

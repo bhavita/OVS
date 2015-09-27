@@ -2,14 +2,28 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      <div>
-     <%--<script type="text/javascript">
-         history.pushState(null, null, 'Admin_Screen.aspx');
-         window.addEventListner('popstate', function (event) {
-             history.pushState(null, null, 'Admin_Screen.aspx');
-          });
+     <script type="text/javascript">
+//         alert('safas');
+//         history.pushState(null, null, 'Admin/Admin_Screen.aspx');
+//         window.addEventListner('popstate', function (event) {
+//             history.pushState(null, null, 'Admin/Admin_Screen.aspx');
+//          });
 
-     </script>--%>
-
+     </script>
+   <%-- <script language="JavaScript">
+        if (window.event) //Internet Explorer
+        {
+            alert("Browser back button is clicked on Internet Explorer...");
+        }
+        else //Other browsers e.g. Chrome
+        {
+            alert("Browser back button is clicked on other browser...");
+        }
+    alert('hii');
+//<!--
+        javascript: window.history.forward(1);
+//-->
+</script>--%>
      <h1>welcome to admin screen</h1>
          <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
          <asp:Button ID="Button1" runat="server" Text="Logout" visible="false" 

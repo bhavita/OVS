@@ -28,7 +28,7 @@ public partial class Add_Candidate : System.Web.UI.Page
                 while (dr1.Read())
                 {
                     //fill arraylist
-                    arrName.Add(dr1["p_id"]);
+                    arrName.Add(dr1["pid"]);
                     
                 }
         }

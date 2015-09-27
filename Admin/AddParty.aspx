@@ -22,12 +22,12 @@
         <br />
         <br /><br />
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-            DataSourceID="SqlDataSource1" DataKeyNames="p_id">
+            DataSourceID="SqlDataSource1" DataKeyNames="pid">
             <Columns>
-                <asp:BoundField DataField="p_id" HeaderText="p_id" SortExpression="p_id" 
+                <asp:BoundField DataField="pid" HeaderText="pid" SortExpression="pid" 
                     InsertVisible="False" ReadOnly="True" />
-                <asp:BoundField DataField="p_name" HeaderText="p_name" 
-                    SortExpression="p_name" />
+                <asp:BoundField DataField="pname" HeaderText="pname" 
+                    SortExpression="pname" />
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
