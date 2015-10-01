@@ -13,17 +13,34 @@ using System.Net.Mail;
 public partial class _Default : System.Web.UI.Page
 {
     SqlCommand cmd, insert_otp_cmd; string cs; SqlDataReader rdr; int j = 0; int OTP; string get_OTP,set_OTP;
-    string email,name;
+    string email, name; HttpCookie userInfo;
     protected void Page_Load(object sender, EventArgs e)
     {
         MultiView1.SetActiveView(View1);
+
+        if (!IsPostBack)
+        {
+            userInfo = new HttpCookie("userInfo");
+            userInfo["UserName"] = "Annathurai";
+            userInfo["UserColor"] = "Black";
+            userInfo.Expires = DateTime.Now.AddMinutes(1);
+            Response.Cookies.Add(userInfo);
+           // Response.Write("sdsad");
+        }
+        
     }
     protected void lnkTab1_Click(object sender, EventArgs e)
     {
+
         MultiView1.ActiveViewIndex = 0;
     }
     protected void lnkTab2_Click(object sender, EventArgs e)
     {
+        if (Request.Cookies["userInfo"] == null)
+        {
+            ///Response.Cookies["userInfo"].Expires = DateTime.Now.AddMinutes(2);
+            Response.Redirect("Default.aspx");  //to refresh the page
+        }
         MultiView1.ActiveViewIndex = 1;
         string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con = new SqlConnection(cs);
@@ -73,6 +90,14 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+       
+
+        if (Request.Cookies["userInfo"] == null)
+        {
+            Response.Redirect("Default.aspx");  //to refresh the page
+        }
+    
+        
         string get_user_otp = TextBox2.Text.ToString();
         string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con = new SqlConnection(cs);
@@ -108,6 +133,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void insert_otp()
     {
+
         string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(cs1);
         con1.Open();
@@ -165,8 +191,23 @@ public partial class _Default : System.Web.UI.Page
     {
         Response.Write("You clicked me");
         MultiView1.ActiveViewIndex = 3;
+        if (Request.Cookies["userInfo"] == null)
+        {
+            //Response.Cookies["userInfo"].Expires = DateTime.Now.AddMinutes(2);
+            Response.Redirect("Default.aspx");  //to refresh the page
+        }
+        //if (userInfo == null)
+        //{
+        //    Response.Redirect("pass.aspx");
+        //}
+        //else
+        //{
+        //    Response.Write("still is on 3");
+        //}
+    
        // string pa = TextBox1.Text;
         //Response.Write("You clicked me  "+pa);
         
     }
+  
 }

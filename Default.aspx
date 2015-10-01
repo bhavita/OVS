@@ -9,7 +9,8 @@
 
             <asp:Label ID="Label1" runat="server" Text="Aadhar id:"></asp:Label>
             <asp:TextBox ID="aadhar_id" runat="server" style="margin-left: 30px"></asp:TextBox>
-            <br /><br />
+            <br />
+            <br />
            
             <%-- <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lnkTab2_Click">Next</asp:LinkButton>--%>
             <asp:Button ID="Button2" runat="server" onclick="lnkTab2_Click" 
@@ -67,7 +68,8 @@
             <asp:Label ID="Label9" runat="server" Text="Conform Password"></asp:Label>
             <asp:TextBox ID="TextBox3" TextMode="password" runat="server"></asp:TextBox>
             <br /><br />
-            <asp:Button ID="Button3" runat="server" Text="Register"  />
+            <asp:Button ID="Button3" runat="server" Text="Register" 
+                 onclick="Button3_Click"  />
          </asp:View>
 
     </asp:MultiView>
