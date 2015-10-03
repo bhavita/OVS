@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="Admin_Screen.aspx.cs" Inherits="Admin_Admin_Screen" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-     <div>
      <script type="text/javascript">
 //         alert('safas');
 //         history.pushState(null, null, 'Admin/Admin_Screen.aspx');
@@ -10,6 +9,8 @@
 //          });
 
      </script>
+      <div>
+    
    <%-- <script language="JavaScript">
         if (window.event) //Internet Explorer
         {

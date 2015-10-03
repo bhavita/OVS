@@ -13,7 +13,7 @@ using System.Net.Mail;
 public partial class _Default : System.Web.UI.Page
 {
     SqlCommand cmd, insert_otp_cmd; string cs; SqlDataReader rdr; int j = 0; int OTP; string get_OTP,set_OTP;
-    string email, name; HttpCookie userInfo;
+    string email, name; HttpCookie userInfo; string new1;
     protected void Page_Load(object sender, EventArgs e)
     {
         MultiView1.SetActiveView(View1);
@@ -65,27 +65,43 @@ public partial class _Default : System.Web.UI.Page
         set_OTP = OTP.ToString();
         OTPGenration og = new OTPGenration();
         og.getsetOTP = set_OTP;
+        int len = (email.IndexOf('@')) / 2;
+        Response.Write("len is ssds" + len);
         Response.Write(email + " " + name+" "+set_OTP);
+        Response.Write("len is +" + email.IndexOf('@'));
+        email = email.Substring(0, email.IndexOf('@')/2);
+        Response.Write("enctpted email is " + email);
+        new1 = email.Substring(0,len);
+
+        for (int i = 0; i < len ; i++)
+        {
+            Response.Write("in loop");
+            
+            new1 = new1 + "*";
+            Response.Write("enctpted email is " + new1);
+        }
+        
+        Response.Write("enctpted email is " + new1);
 
         //--insert OTP into db
         insert_otp();
        
         //--mail
-        using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com",email))
-        {
-            mm.Subject = "OTP Mail";
-            mm.Body = "Dear "+name+", Your OTP is : "+OTP;
-            mm.IsBodyHtml = false;
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.EnableSsl = true;
-            NetworkCredential NetworkCred = new NetworkCredential("adharvotingsystem@gmail.com", "citybuzz");
-            smtp.UseDefaultCredentials = true;
-            smtp.Credentials = NetworkCred;
-            smtp.Port = 587;
-            smtp.Send(mm);
-            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP is sent to your email id.');", true);
-        }
+        //using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com",email))
+        //{
+        //    mm.Subject = "OTP Mail";
+        //    mm.Body = "Dear "+name+", Your OTP is : "+OTP;
+        //    mm.IsBodyHtml = false;
+        //    SmtpClient smtp = new SmtpClient();
+        //    smtp.Host = "smtp.gmail.com";
+        //    smtp.EnableSsl = true;
+        //    NetworkCredential NetworkCred = new NetworkCredential("adharvotingsystem@gmail.com", "citybuzz");
+        //    smtp.UseDefaultCredentials = true;
+        //    smtp.Credentials = NetworkCred;
+        //    smtp.Port = 587;
+        //    smtp.Send(mm);
+        //    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP is sent to your email id.');", true);
+        //}
    }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -209,5 +225,9 @@ public partial class _Default : System.Web.UI.Page
         //Response.Write("You clicked me  "+pa);
         
     }
-  
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+
+    }
 }
