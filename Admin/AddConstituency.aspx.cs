@@ -94,7 +94,14 @@ public partial class Admin_AddConstituency : System.Web.UI.Page
             ClientScript.RegisterStartupScript(GetType(), "alert", "alert('consid is already in used.');", true);
         }
         else {
-            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('cons id not in use.');", true);
+            rdr.Close();
+            SqlCommand cmd1 = new SqlCommand("Delete from ovs_constituency where cons_name=@cons_name", con1);
+            cmd1.Parameters.Add("@cons_name", cons_name);
+            int del = cmd1.ExecuteNonQuery();
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('consituency deleted sucssesfully.');", true);
+            
+           // Response.Write("del is " + del + " ");
+            databind();
         }
 
        
