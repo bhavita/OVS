@@ -18,7 +18,7 @@ public partial class Admin_AddParty : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         editingparty = false;
-       
+
         PanelAddNewParty.Visible = true;
         if (!Page.IsPostBack)
         {
@@ -39,7 +39,7 @@ public partial class Admin_AddParty : System.Web.UI.Page
         adsource = new PagedDataSource();
         dadapter.Fill(dset);
         adsource.DataSource = dset.Tables[0].DefaultView;
-        adsource.PageSize = 25;
+        adsource.PageSize = 5;
         adsource.AllowPaging = true;
         adsource.CurrentPageIndex = pos;
         btnfirst.Enabled = !adsource.IsFirstPage;
@@ -86,12 +86,12 @@ public partial class Admin_AddParty : System.Web.UI.Page
     protected void Edit_Command(object source, DataListCommandEventArgs e)
     {
         h_edit.Value = "EDIT";
-       
+
 
         editingparty = true;
-       
+
         ID = Convert.ToInt32(e.CommandArgument);
-        
+
         PanelAddNewParty.Visible = true;
         string cs2 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con2 = new SqlConnection(cs2);
@@ -102,7 +102,7 @@ public partial class Admin_AddParty : System.Web.UI.Page
 
         if ((con2.State & ConnectionState.Open) > 0)
         {
-            
+
             comd = new SqlCommand("SELECT pname from ovs_party where pid =(@pid)", con2);
             comd.Parameters.Add("@pid", ID.ToString());
             rdp = comd.ExecuteReader();
@@ -124,13 +124,12 @@ public partial class Admin_AddParty : System.Web.UI.Page
     }
     SqlCommand insert_party, comd, edit_party;
     SqlDataReader rdr;
-      protected void UploadButton_Click(object sender, EventArgs e)
+    protected void UploadButton_Click(object sender, EventArgs e)
     {
 
-        String FileName= " ";
+        String FileName = " ";
 
-        if (h_edit.Value !="EDIT")
-        
+        if (h_edit.Value != "EDIT")
         {
             SqlConnection con = new SqlConnection(connstring);
             con.Open();
@@ -143,9 +142,9 @@ public partial class Admin_AddParty : System.Web.UI.Page
             {
                 while (rdr.Read())
                 {
-                   
-                  FileName = rdr["pid"].ToString();
-                  FileName = FileName + ".png";
+
+                    FileName = rdr["pid"].ToString();
+                    FileName = FileName + ".png";
 
                 }
             }
@@ -156,25 +155,23 @@ public partial class Admin_AddParty : System.Web.UI.Page
         else
         {
             FileName = h_pid.Value + ".png";
-           
+
         }
 
-        
-      
+
+
         if (FileUploadControl.HasFile)
         {
             try
             {
-               // Response.Write("file name"+FileName);
-                
+               
+                FileUploadControl.SaveAs(Server.MapPath("~/img/party/") + FileName);
+                //      StatusLabel.Text += "Upload status: File uploaded!";
 
-                        FileUploadControl.SaveAs(Server.MapPath("~/img/party/") + FileName);
-                        StatusLabel.Text = "Upload status: File uploaded!";
-                
             }
             catch (Exception ex)
             {
-                StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
+                //StatusLabel.Text += "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
             }
         }
 
@@ -188,12 +185,12 @@ public partial class Admin_AddParty : System.Web.UI.Page
 
         if (h_edit.Value != "EDIT")
         {
-          
+
             insert_party = new SqlCommand("INSERT INTO ovs_party (pname) VALUES(@pname)", con1);
             insert_party.Parameters.Add("@pname", PartyName.Text);
             if ((con1.State & ConnectionState.Open) > 0)
             {
-                
+
                 comd = new SqlCommand("SELECT pname FROM ovs_party WHERE pname=(@pname)", con1);
                 comd.Parameters.Add("@pname", PartyName.Text);
                 rdr = comd.ExecuteReader();
@@ -240,7 +237,7 @@ public partial class Admin_AddParty : System.Web.UI.Page
 
         }
 
-        
+
     }
 
 
