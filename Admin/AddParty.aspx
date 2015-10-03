@@ -22,11 +22,9 @@
                                         <asp:Image ID="Image1" runat="server" ImageUrl='<%# string.Format("~/img/party/{0}.png", Eval("pid"))%>' />
                                     </td>
                                     <td style="width: 10%">
-                                        &nbsp;<%# Eval("pid") %>
-                                    </td>
+                                        &nbsp;<%# Eval("pid") %></td>
                                     <td style="width: 400px">
-                                        &nbsp;<%# Eval("pname")%>
-                                    </td>
+                                        &nbsp;<%# Eval("pname")%></td>
                                     <td style="width: 10%">
                                         <asp:LinkButton ID="lnkEdit" runat="server" Text="EDIT" CommandName="Edit" CommandArgument='<%#Eval("pid") %>'></asp:LinkButton>
                                     </td>
@@ -70,9 +68,9 @@
                 <td>
                     &nbsp;
                     <asp:Panel ID="PanelAddNewParty" runat="server" CssClass="addparty">
-                        <table>
+                        <table style="margin-left: 53px">
                             <tr>
-                                <td class="style6">
+                                <td class="style7">
                                     <asp:Label ID="Label1" runat="server" Text="PartyName"></asp:Label>
                                 </td>
                                 <td class="style6">
@@ -84,7 +82,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="style2">
+                                <td class="style8">
                                     <asp:Label ID="PartyImageUploadLabel" runat="server" Text="Upload Party Logo"></asp:Label>
                                 </td>
                                 <td class="style2">
@@ -92,14 +90,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="style9">
                                 </td>
                                 <td>
-                                    <%--<asp:Label runat="server" ID="StatusLabel" Text=" " />--%>
+                                    <asp:Label runat="server" ID="StatusLabel" Text=" " />
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="style9">
                                 </td>
                                 <td>
                                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add Party"
@@ -119,13 +117,23 @@
         {
             height: 56px;
         }
-        .style5
-        {
-            height: 32px;
-        }
         .style6
         {
             height: 18px;
+        }
+        .style7
+        {
+            height: 18px;
+            width: 181px;
+        }
+        .style8
+        {
+            height: 56px;
+            width: 181px;
+        }
+        .style9
+        {
+            width: 181px;
         }
     </style>
 </asp:Content>
