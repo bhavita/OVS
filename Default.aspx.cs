@@ -65,23 +65,34 @@ public partial class _Default : System.Web.UI.Page
         set_OTP = OTP.ToString();
         OTPGenration og = new OTPGenration();
         og.getsetOTP = set_OTP;
+        //string x = email.Substring((email.IndexOf('@')) / 2,email.Length);
+        Response.Write("<br> 1." + email.IndexOf('@') + "<br>2." + email.Length+"<br>");
+        int l = email.IndexOf('@');
+        int w = email.Length;
+        Response.Write("l ad w is"+l+"."+w);
+        string x = email.Substring(l,w-l);
+        Response.Write("mew one string after @:"+x);
+
         int len = (email.IndexOf('@')) / 2;
         Response.Write("len is ssds" + len);
         Response.Write(email + " " + name+" "+set_OTP);
         Response.Write("len is +" + email.IndexOf('@'));
         email = email.Substring(0, email.IndexOf('@')/2);
+       
         Response.Write("enctpted email is " + email);
         new1 = email.Substring(0,len);
 
         for (int i = 0; i < len ; i++)
         {
-            Response.Write("in loop");
+           // Response.Write("in loop");
             
             new1 = new1 + "*";
-            Response.Write("enctpted email is " + new1);
+           // Response.Write("enctpted email is " + new1);
         }
         //---hiii
-        Response.Write("enctpted email is " + new1);
+        Response.Write("<br>"+"enctpted email is " + new1);
+        new1 = new1 + x;
+        Response.Write("hello buddy"+new1);
 
         //--insert OTP into db
         insert_otp();
