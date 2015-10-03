@@ -25,7 +25,7 @@ public partial class _Default : System.Web.UI.Page
             userInfo["UserColor"] = "Black";
             userInfo.Expires = DateTime.Now.AddMinutes(1);
             Response.Cookies.Add(userInfo);
-           // Response.Write("sdsad");
+          
         }
         
     }
@@ -38,7 +38,6 @@ public partial class _Default : System.Web.UI.Page
     {
         if (Request.Cookies["userInfo"] == null)
         {
-            ///Response.Cookies["userInfo"].Expires = DateTime.Now.AddMinutes(2);
             Response.Redirect("Default.aspx");  //to refresh the page
         }
         MultiView1.ActiveViewIndex = 1;
@@ -52,7 +51,6 @@ public partial class _Default : System.Web.UI.Page
         
         if (rdr != null){
             while (rdr.Read()){
-                j++;
                 email = rdr.GetString(4);
                 main_email = email;
                 name = rdr.GetString(1);
@@ -67,30 +65,23 @@ public partial class _Default : System.Web.UI.Page
         OTPGenration og = new OTPGenration();
         og.getsetOTP = set_OTP;
        
-        
+        //---email show ****
         int l = email.IndexOf('@');
         int w = email.Length;
-        //Response.Write("l ad w is"+l+"."+w);
         string x = email.Substring(l,w-l);
-        //Response.Write("mew one string after @:"+x);
-
+        
         int len = (email.IndexOf('@')) / 2;
         Response.Write(email + " " + name+" "+set_OTP);
-
         email = email.Substring(0, email.IndexOf('@')/2);
        
-        //Response.Write("enctpted email is " + email);
         new1 = email.Substring(0,len);
 
         for (int i = 0; i < len ; i++)
         {
             new1 = new1 + "*";
          }
-        //---hiii
-        //Response.Write("<br>"+"enctpted email is " + new1);
         new1 = new1 + x;
-        // Response.Write("hello buddy"+new1);
-
+        
         //--insert OTP into db
         insert_otp();
        
@@ -109,7 +100,6 @@ public partial class _Default : System.Web.UI.Page
             smtp.Port = 587;
             smtp.Send(mm);
             string s = "OTP is sent to " + new1;
-            //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP is sent to your email id ');", true);
             ClientScript.RegisterStartupScript(GetType(), "alert", "alert('"+s+"');", true);
         }
    }
@@ -142,11 +132,9 @@ public partial class _Default : System.Web.UI.Page
                 
             }
         }
-        //Response.Write("otp from db is " + get_OTP + " " +"hiii"+get_user_otp);
         if (get_OTP == get_user_otp) {
             MultiView1.ActiveViewIndex = 2;
             BindListView();
-            //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP matched.');", true);
            
         }
         else {
@@ -168,20 +156,13 @@ public partial class _Default : System.Web.UI.Page
         insert_otp_cmd.Parameters.Add("@otp", OTP);
         if ((con1.State & ConnectionState.Open) > 0)
         {
-            //Response.Write("Connection OK!");
             int i = insert_otp_cmd.ExecuteNonQuery();
             if (i != 0) {
-                //Response.Write(i);
-                //Response.Write("row inserted");
             }
             else {
-                //Response.Write("row not inserted");
             }
         }
-        else {
-            //Response.Write("not conncted");
-        }
-
+        
         con1.Close();
 
     }
@@ -209,8 +190,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void txtGetImage_Click(object sender, EventArgs e)
     {
-      //  Image1.ImageUrl = "ImageHandler.ashx?roll_no=" + txtrollno.Text;
-
+     
     }
 
     protected void setpass(object sender, EventArgs e)
