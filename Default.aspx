@@ -63,10 +63,14 @@
 
          <asp:View ID="View4" runat="server">
             <asp:Label ID="Label8" runat="server" Text="Password"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TextBox1" TextMode="password" runat="server"></asp:TextBox>
+            <asp:TextBox ID="t_pass1" TextMode="password" runat="server"></asp:TextBox>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br /><br />
             <asp:Label ID="Label9" runat="server" Text="Conform Password"></asp:Label>
-            <asp:TextBox ID="TextBox3" TextMode="password" runat="server"></asp:TextBox>
+            <asp:TextBox ID="t_pass2" TextMode="password" runat="server"></asp:TextBox>
+             <asp:CompareValidator ID="CompareValidator1" runat="server" 
+                 ControlToCompare="t_pass1" ControlToValidate="t_pass2" 
+                 ErrorMessage="password must match" ForeColor="Red"></asp:CompareValidator>
             <br /><br />
             <asp:Button ID="Button3" runat="server" Text="Register" 
                  onclick="Button3_Click"  />
@@ -74,14 +78,6 @@
 
     </asp:MultiView>
 <br /><br />
-<%--<asp:TextBox ID="txtrollno" runat="server">  
-</asp:TextBox>  
-<br /><br />
-<asp:Image ID="Image1" runat="server" length="100px" Width="100px" />  
-<br />  
-<asp:Button ID="txtGetImage" runat="server"  
-Text="Convert" OnClick="txtGetImage_Click" />
-
---%>
+    <%# Eval("v_name") %>
 
 </asp:Content>

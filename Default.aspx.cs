@@ -13,7 +13,7 @@ using System.Net.Mail;
 public partial class _Default : System.Web.UI.Page
 {
     SqlCommand cmd, insert_otp_cmd; string cs; SqlDataReader rdr; int j = 0; int OTP; string get_OTP,set_OTP;
-    string email, name; HttpCookie userInfo; string new1;
+    string email, name; HttpCookie userInfo; string new1; string main_email;
     protected void Page_Load(object sender, EventArgs e)
     {
         MultiView1.SetActiveView(View1);
@@ -54,6 +54,7 @@ public partial class _Default : System.Web.UI.Page
             while (rdr.Read()){
                 j++;
                 email = rdr.GetString(4);
+                main_email = email;
                 name = rdr.GetString(1);
             }
         }
@@ -65,54 +66,52 @@ public partial class _Default : System.Web.UI.Page
         set_OTP = OTP.ToString();
         OTPGenration og = new OTPGenration();
         og.getsetOTP = set_OTP;
-        //string x = email.Substring((email.IndexOf('@')) / 2,email.Length);
-        Response.Write("<br> 1." + email.IndexOf('@') + "<br>2." + email.Length+"<br>");
+       
+        
         int l = email.IndexOf('@');
         int w = email.Length;
-        Response.Write("l ad w is"+l+"."+w);
+        //Response.Write("l ad w is"+l+"."+w);
         string x = email.Substring(l,w-l);
-        Response.Write("mew one string after @:"+x);
+        //Response.Write("mew one string after @:"+x);
 
         int len = (email.IndexOf('@')) / 2;
-        Response.Write("len is ssds" + len);
         Response.Write(email + " " + name+" "+set_OTP);
-        Response.Write("len is +" + email.IndexOf('@'));
+
         email = email.Substring(0, email.IndexOf('@')/2);
        
-        Response.Write("enctpted email is " + email);
+        //Response.Write("enctpted email is " + email);
         new1 = email.Substring(0,len);
 
         for (int i = 0; i < len ; i++)
         {
-           // Response.Write("in loop");
-            
             new1 = new1 + "*";
-           // Response.Write("enctpted email is " + new1);
-        }
+         }
         //---hiii
-        Response.Write("<br>"+"enctpted email is " + new1);
+        //Response.Write("<br>"+"enctpted email is " + new1);
         new1 = new1 + x;
-        Response.Write("hello buddy"+new1);
+        // Response.Write("hello buddy"+new1);
 
         //--insert OTP into db
         insert_otp();
        
         //--mail
-        //using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com",email))
-        //{
-        //    mm.Subject = "OTP Mail";
-        //    mm.Body = "Dear "+name+", Your OTP is : "+OTP;
-        //    mm.IsBodyHtml = false;
-        //    SmtpClient smtp = new SmtpClient();
-        //    smtp.Host = "smtp.gmail.com";
-        //    smtp.EnableSsl = true;
-        //    NetworkCredential NetworkCred = new NetworkCredential("adharvotingsystem@gmail.com", "citybuzz");
-        //    smtp.UseDefaultCredentials = true;
-        //    smtp.Credentials = NetworkCred;
-        //    smtp.Port = 587;
-        //    smtp.Send(mm);
-        //    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP is sent to your email id.');", true);
-        //}
+        using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com",main_email))
+        {
+            mm.Subject = "OTP Mail";
+            mm.Body = "Dear "+name+", Your OTP is : "+OTP;
+            mm.IsBodyHtml = false;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.EnableSsl = true;
+            NetworkCredential NetworkCred = new NetworkCredential("adharvotingsystem@gmail.com", "citybuzz");
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = NetworkCred;
+            smtp.Port = 587;
+            smtp.Send(mm);
+            string s = "OTP is sent to " + new1;
+            //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('OTP is sent to your email id ');", true);
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('"+s+"');", true);
+        }
    }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -216,29 +215,39 @@ public partial class _Default : System.Web.UI.Page
 
     protected void setpass(object sender, EventArgs e)
     {
-        Response.Write("You clicked me");
         MultiView1.ActiveViewIndex = 3;
         if (Request.Cookies["userInfo"] == null)
         {
-            //Response.Cookies["userInfo"].Expires = DateTime.Now.AddMinutes(2);
             Response.Redirect("Default.aspx");  //to refresh the page
         }
-        //if (userInfo == null)
-        //{
-        //    Response.Redirect("pass.aspx");
-        //}
-        //else
-        //{
-        //    Response.Write("still is on 3");
-        //}
-    
-       // string pa = TextBox1.Text;
-        //Response.Write("You clicked me  "+pa);
-        
+      
     }
 
     protected void Button3_Click(object sender, EventArgs e)
     {
+        string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con1 = new SqlConnection(cs1);
+        con1.Open();
+        insert_otp_cmd = new SqlCommand("update voterinfo set vpassword=@vpassword where vid=@vid", con1);
+        insert_otp_cmd.Parameters.Add("@vid", aadhar_id.Text);
+        insert_otp_cmd.Parameters.Add("@vpassword", t_pass2.Text);
+        if ((con1.State & ConnectionState.Open) > 0)
+        {
+            
+            int i = insert_otp_cmd.ExecuteNonQuery();
+            if (i != 0)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('password set sucssessfully ');", true);
 
+            }
+            else
+            {
+                //Response.Write("row not inserted");
+            }
+        }
+        else
+        {
+            //Response.Write("not conncted");
+        }
     }
 }
