@@ -6,6 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
+using System.Data;
+using System.Web.Security;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls.WebParts;
+using System.IO; // this is for the file upload
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging; 
 
 
 public partial class Admin_AddParty : System.Web.UI.Page
@@ -164,8 +173,35 @@ public partial class Admin_AddParty : System.Web.UI.Page
         {
             try
             {
-               
-                FileUploadControl.SaveAs(Server.MapPath("~/img/party/") + FileName);
+                string directory = Server.MapPath("~/img/party/");
+                // Create a bitmap of the content of the fileUpload control in memory
+                Bitmap originalBMP = new Bitmap(FileUploadControl.FileContent);
+
+                // Calculate the new image dimensions
+                int origWidth = originalBMP.Width;
+                int origHeight = originalBMP.Height;
+
+                int newWidth = 64;
+                int newHeight = 64;
+
+                // Create a new bitmap which will hold the previous resized bitmap
+                Bitmap newBMP = new Bitmap(originalBMP, newWidth, newHeight);
+                // Create a graphic based on the new bitmap
+                Graphics oGraphics = Graphics.FromImage(newBMP);
+
+                // Set the properties for the new graphic file
+                oGraphics.SmoothingMode = SmoothingMode.AntiAlias; oGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                // Draw the new graphic based on the resized bitmap
+                oGraphics.DrawImage(originalBMP, 0, 0, newWidth, newHeight);
+
+                // Save the new graphic file to the server
+                newBMP.Save(directory + FileName);
+
+                // Once finished with the bitmap objects, we deallocate them.
+                originalBMP.Dispose();
+                newBMP.Dispose();
+                oGraphics.Dispose();
+                
                 //      StatusLabel.Text += "Upload status: File uploaded!";
 
             }
