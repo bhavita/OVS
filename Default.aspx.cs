@@ -80,7 +80,7 @@ public partial class _Default : System.Web.UI.Page
             new1 = new1 + "*";
             Response.Write("enctpted email is " + new1);
         }
-        
+        //---hiii
         Response.Write("enctpted email is " + new1);
 
         //--insert OTP into db
