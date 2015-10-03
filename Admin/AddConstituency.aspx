@@ -6,7 +6,7 @@
         <tr>
             <td>
                 <asp:DataList ID="DataList2" runat="server" OnSelectedIndexChanged="DataList2_SelectedIndexChanged"
-                    OnEditCommand="Edit_Command">
+                    OnEditCommand="Edit_Command" OnDeleteCommand="Delete_Command">
                     <AlternatingItemStyle BackColor="White" ForeColor="#284775" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="white" />
@@ -23,6 +23,9 @@
                                 </td>
                                 <td style="width: 10%">
                                     <asp:LinkButton ID="lnkEdit" runat="server" Text="EDIT" CommandName="Edit" CommandArgument='<%#Eval("cons_id") %>'></asp:LinkButton>
+                                </td>
+                                <td>
+                                       <asp:LinkButton ID="lnkdelete" runat="server" Text="DELETE" CommandName="delete" CommandArgument='<%#Eval("cons_id") %>'></asp:LinkButton>
                                 </td>
                             </tr>
                         </table>

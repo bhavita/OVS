@@ -78,6 +78,28 @@ public partial class Admin_AddConstituency : System.Web.UI.Page
         databind();
     }
 
+    protected void Delete_Command(object source, DataListCommandEventArgs e)
+    {
+        Response.Write("delet click");
+        string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con1 = new SqlConnection(cs1);
+        con1.Open();
+        comd = new SqlCommand("select * from ovs_candidate where cons_id=(select cons_id from ovs_constituency where cons_name=@cons_name)", con1);
+        //comd = new SqlCommand("select * from ovs_candidate where cons_id=(select cons_id from ovs_constituency where cons_name=@cons_name)", con1);
+        comd.Parameters.Add("@cons_name", "Surat");
+        rdr = comd.ExecuteReader();
+        if (rdr.HasRows)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('consid is already in used.');", true);
+        }
+        else {
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('cons id not in use.');", true);
+        }
+
+       
+
+    }
+
 
     protected void Edit_Command(object source, DataListCommandEventArgs e)
     {
