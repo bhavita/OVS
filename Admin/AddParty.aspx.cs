@@ -82,6 +82,37 @@ public partial class Admin_AddParty : System.Web.UI.Page
         databind();
     }
 
+    protected void Delete_Command(object source, DataListCommandEventArgs e)
+    {
+        string pname = (e.CommandArgument).ToString();
+        // Response.Write("delet click" +cons_name);
+        string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con1 = new SqlConnection(cs1);
+        con1.Open();
+        comd = new SqlCommand("select * from ovs_candidate where pid=(select pid from ovs_party where pname=@pname)", con1);
+        //comd = new SqlCommand("select * from ovs_candidate where cons_id=(select cons_id from ovs_constituency where cons_name=@cons_name)", con1);
+        comd.Parameters.Add("@pname", pname);
+        rdr = comd.ExecuteReader();
+        if (rdr.HasRows)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('party is already in used.');", true);
+        }
+        else
+        {
+            rdr.Close();
+            SqlCommand cmd1 = new SqlCommand("Delete from ovs_party where pname=@pname", con1);
+            cmd1.Parameters.Add("@pname", pname);
+            int del = cmd1.ExecuteNonQuery();
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('party deleted sucssesfully.');", true);
+
+            // Response.Write("del is " + del + " ");
+            databind();
+        }
+
+
+
+    }
+
 
     protected void Edit_Command(object source, DataListCommandEventArgs e)
     {
