@@ -25,7 +25,7 @@
                                     <asp:LinkButton ID="lnkEdit" runat="server" Text="EDIT" CommandName="Edit" CommandArgument='<%#Eval("cons_id") %>'></asp:LinkButton>
                                 </td>
                                 <td>
-                                       <asp:LinkButton ID="lnkdelete" runat="server" Text="DELETE" CommandName="delete" CommandArgument='<%#Eval("cons_id") %>'></asp:LinkButton>
+                                       <asp:LinkButton ID="lnkdelete" runat="server" Text="DELETE" CommandName="delete" CommandArgument='<%#Eval("cons_name") %>'></asp:LinkButton>
                                 </td>
                             </tr>
                         </table>

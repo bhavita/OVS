@@ -80,13 +80,14 @@ public partial class Admin_AddConstituency : System.Web.UI.Page
 
     protected void Delete_Command(object source, DataListCommandEventArgs e)
     {
-        Response.Write("delet click");
+        string cons_name = (e.CommandArgument).ToString();
+       // Response.Write("delet click" +cons_name);
         string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(cs1);
         con1.Open();
         comd = new SqlCommand("select * from ovs_candidate where cons_id=(select cons_id from ovs_constituency where cons_name=@cons_name)", con1);
         //comd = new SqlCommand("select * from ovs_candidate where cons_id=(select cons_id from ovs_constituency where cons_name=@cons_name)", con1);
-        comd.Parameters.Add("@cons_name", "Surat");
+        comd.Parameters.Add("@cons_name", cons_name);
         rdr = comd.ExecuteReader();
         if (rdr.HasRows)
         {
