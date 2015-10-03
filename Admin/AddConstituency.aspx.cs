@@ -35,7 +35,7 @@ public partial class Admin_AddConstituency : System.Web.UI.Page
         adsource = new PagedDataSource();
         dadapter.Fill(dset);
         adsource.DataSource = dset.Tables[0].DefaultView;
-        adsource.PageSize = 25;
+        adsource.PageSize = 8;
         adsource.AllowPaging = true;
         adsource.CurrentPageIndex = pos;
         btnfirst.Enabled = !adsource.IsFirstPage;
