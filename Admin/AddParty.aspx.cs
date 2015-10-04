@@ -307,14 +307,19 @@ public partial class Admin_AddParty : System.Web.UI.Page
                 int i = edit_party.ExecuteNonQuery();
                 h_edit.Value = "EDIT";
                 UploadButton_Click(sender, e);
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Party is updated.');", true);
+                
+                Response.Redirect("~/Admin/AddParty.aspx");
+               
                 PartyName.Text = "";
                 con1.Close();
+                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Party is updated.');", true);
             }
+
             databind();
             PartyName.Text = " ";
             Button1.Text = "Add Party";
             h_edit.Value = "INSERT";
+            
 
 
         }

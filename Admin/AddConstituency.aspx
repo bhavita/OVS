@@ -6,7 +6,8 @@
     <div style="width: auto; position: absolute; right: 10%;">
         <asp:Label ID="Label2" runat="server" Text="Welcome,Admin" ForeColor="#FF9900"></asp:Label>
         &nbsp;
-        <asp:Button ID="Button4" runat="server" Text="Logout" Visible="true" OnClick="LogOut" />
+        <asp:Button ID="Button4" runat="server" Text="Logout" Visible="true" 
+            OnClick="LogOut" CssClass="text_size" />
     </div>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -24,11 +25,9 @@
                         <table style="padding: 4px; font-size: medium; width: 100%; overflow: auto">
                             <tr>
                                 <td style="width: 10%">
-                                    &nbsp;<%# Eval("cons_id") %>
-                                </td>
+                                    &nbsp;<%# Eval("cons_id") %></td>
                                 <td style="width: 400px">
-                                    &nbsp;<%# Eval("cons_name")%>
-                                </td>
+                                    &nbsp;<%# Eval("cons_name")%></td>
                                 <td style="width: 10%">
                                     <asp:LinkButton ID="lnkEdit" runat="server" Text="EDIT" CommandName="Edit" CommandArgument='<%#Eval("cons_id") %>'></asp:LinkButton>
                                 </td>
@@ -65,15 +64,17 @@
                 </asp:Panel>
             </td>
             <td>
+            <br /><br /><br /><br /><br />
                 <asp:Panel ID="PanelAddNewCons" runat="server" CssClass="addCons">
                     <asp:Label ID="Lcname" runat="server" Text="Constituency Name"></asp:Label>
-                    <asp:TextBox ID="TConsName" runat="server" Style="margin-left: 38px"></asp:TextBox>
+                    <asp:TextBox ID="TConsName" runat="server" Style="margin-left: 38px" 
+                        CssClass="text_size" Height="23px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This Field is required"
                         ForeColor="Red" ControlToValidate="TConsName" ValidationGroup="b"></asp:RequiredFieldValidator>
                     <br />
                     <br />
                     <asp:Button ID="ConsSubmit" runat="server" OnClick="Button1_Click" Text="Add New Constituency"
-                        Style="margin-left: 151px" ValidationGroup="b" />
+                        Style="margin-left: 151px" ValidationGroup="b" CssClass="text_size" />
                     <br />
                 </asp:Panel>
             </td>
