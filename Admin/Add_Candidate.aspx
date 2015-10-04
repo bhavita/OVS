@@ -1,7 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
     CodeFile="Add_Candidate.aspx.cs" Inherits="Add_Candidate" %>
 
+       
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+     <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $("[id$=TDOB]").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:+nn",
+                showOn: 'button',
+                buttonImageOnly: true,
+                buttonImage: "../img/calendar.gif"
+            });
+        });
+    </script>
+    
     <font style="align: center" size="40px">CANDIDATE 
     <br />
      <br />
@@ -93,7 +111,8 @@
                         Width="43px" OnClick="btnlast_Click" />
                 </td>
                 <td>
-                    <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Height="31px" Width="182px" 
+
+                 <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Height="31px" Width="182px" 
                         Text="ADD NEW CANDIDATE" />
                 </td>
             </tr>
@@ -112,10 +131,10 @@
     <asp:Label ID="Label6" runat="server" Text="Insert Candidate's Profile Picture" CssClass="lab_size" 
                  Width="220px"></asp:Label>
          </td>
-         <td>
+         <td class="style21">
              <asp:FileUpload ID="FileUploadControl" runat="server" Width="289px" />
          </td>
-            <td class="style12">
+            <td class="style24">
                 <asp:Image ID="Image1" runat="server"  />
             </td>
             
@@ -124,11 +143,11 @@
             <td class="style1">
                 <asp:Label ID="can_name" runat="server" Text="Candidate Name" CssClass="lab_size"></asp:Label>
             </td>
-            <td class="style9">
+            <td class="style23">
                 <br />
                 <asp:TextBox ID="C_Name" runat="server" CssClass="text_size" Width="200px"></asp:TextBox>
             </td>
-            <td class="style10">
+            <td class="style24">
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="C_Name"
                     ErrorMessage="This field is required" ForeColor="#FF3300" 
                     ValidationGroup="c"></asp:RequiredFieldValidator>
@@ -138,15 +157,15 @@
             <td class="style1">
                 <asp:Label ID="cons_id" runat="server" Text="Consituency Name" CssClass="lab_size"></asp:Label>
             </td>
-            <td class="style9">
+            <td class="style23">
                 <asp:DropDownList ID="C_Cons" runat="server" DataSourceID="SqlDataSource1"
                     DataTextField="cons_name" DataValueField="cons_id" CssClass="text_size" Height="25px"
-                    Width="200px" AppendDataBoundItems="true" 
+                    Width="200px" 
                     >
-                    <asp:ListItem Text="select constituency" Value="" />
+                    <%--<asp:ListItem Text="select constituency" Value="" />--%>
                 </asp:DropDownList>
             </td>
-            <td class="style12">
+            <td class="style24">
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="C_Name"
                     ErrorMessage="This field is required" ForeColor="#FF3300" 
                     ValidationGroup="c" Enabled="False"></asp:RequiredFieldValidator>
@@ -154,36 +173,50 @@
         </tr>
         <tr>
             <td class="style18">
-                <asp:Label ID="can_desc" runat="server" Text="Candidate Description" CssClass="lab_size"></asp:Label>
+                <asp:Label ID="DOB" runat="server" Text="BirthDate" CssClass="lab_size"></asp:Label>
             </td>
-            <td class="style9">
-                <asp:TextBox ID="C_Des" runat="server" CssClass="text_size" Width="200px"></asp:TextBox>
+            <td class="style23">
+                <asp:TextBox ID="TDOB" runat="server" CssClass="text_size" Width="200px"></asp:TextBox>
             </td>
-            <td class="style10">
+            <td class="style24">
+                <asp:Button ID="BDOB" runat="server" Text="EnterDOB" onclick="BDOB_Click" 
+                    CssClass="style25" />
             </td>
         </tr>
+
+        <tr>
+            <td class="style18">
+                <asp:Label ID="can_desc" runat="server" Text="Candidate Description" CssClass="lab_size"></asp:Label>
+            </td>
+            <td class="style23">
+                <asp:TextBox ID="C_Des" runat="server" CssClass="text_size" Width="200px"></asp:TextBox>
+            </td>
+            <td class="style24">
+            </td>
+        </tr>
+
         <tr>
             <td class="style18">
                 <asp:Label ID="can_qua" runat="server" Text="Candidate Qualification" CssClass="lab_size"></asp:Label>
             </td>
-            <td class="style9">
+            <td class="style23">
                 <asp:TextBox ID="C_qual" runat="server" CssClass="text_size" Width="200px"></asp:TextBox>
             </td>
-            <td class="style10">
+            <td class="style24">
             </td>
         </tr>
         <tr>
             <td class="style18">
                 <asp:Label ID="Labe10" runat="server" Text="Party-Name" CssClass="lab_size"></asp:Label>
             </td>
-            <td class="style9">
+            <td class="style23">
                 <asp:DropDownList ID="Pname" runat="server" DataSourceID="SqlDataSource2"
-                    DataTextField="pname" DataValueField="pid" Height="25px" Width="199px" CssClass="text_size"
-                    AppendDataBoundItems="true">
-                    <asp:ListItem Text="select party" Value="" />
+                    DataTextField="pname" DataValueField="pid" Height="25px" Width="199px" CssClass="text_size"  
+                   >
+                   <%-- <asp:ListItem Text="select party" Value="" />--%>
                 </asp:DropDownList>
             </td>
-            <td class="style10">
+            <td class="style24">
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="Pname"
                     ErrorMessage="This field is required" ForeColor="Red" ValidationGroup="c" 
                     Enabled="False"></asp:RequiredFieldValidator>
@@ -204,10 +237,10 @@
             <td class="style18">
                 <asp:Label ID="Label3" runat="server" Text="Email" CssClass="lab_size"></asp:Label>
             </td>
-            <td class="style9">
+            <td class="style23">
                 <asp:TextBox ID="Cemail" runat="server" Width="200px" CssClass="text_size"></asp:TextBox>
             </td>
-            <td class="style10">
+            <td class="style24">
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="Cemail"
                     ErrorMessage="Enter valid Email" ForeColor="#FF3300" 
                     ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
@@ -222,11 +255,11 @@
             <td class="style18">
                 <asp:Label ID="Label5" runat="server" Text="Phone Number" CssClass="lab_size"></asp:Label>
             </td>
-            <td class="style9">
+            <td class="style23">
                 <br />
                 <asp:TextBox ID="CPhno" runat="server" CssClass="text_size" Width="202px"></asp:TextBox>
             </td>
-            <td class="style12">
+            <td class="style24">
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="CPhno"
                     ErrorMessage="Enter Valid Phone no" ForeColor="#FF3300" 
                     ValidationExpression="(D-)?\d{10}" ValidationGroup="c"></asp:RegularExpressionValidator>
@@ -276,20 +309,6 @@
             width: 199px;
             height: 30px;
         }
-        .style9
-        {
-            width: 268px;
-            height: 50px;
-        }
-        .style10
-        {
-            width: 283px;
-            height: 50px;
-        }
-        .style12
-        {
-            height: 50px;
-        }
         .style13
         {
             height: 75px;
@@ -297,22 +316,23 @@
         }
         .style14
         {
-            width: 268px;
+            width: 187px;
             height: 75px;
         }
         .style15
         {
-            width: 283px;
+            width: 310px;
             height: 75px;
         }
         .style16
         {
             height: 49px;
+            width: 310px;
         }
         .style17
         {
             height: 49px;
-            width: 268px;
+            width: 187px;
         }
         .style18
         {
@@ -324,5 +344,23 @@
             height: 49px;
             width: 199px;
         }
-    </style>
+        .style21
+        {
+            width: 187px;
+        }
+        .style23
+        {
+            width: 187px;
+            height: 50px;
+        }
+        .style24
+        {
+            height: 50px;
+            width: 310px;
+        }
+        .style25
+        {
+            font-size: small;
+        }
+        </style>
 </asp:Content>

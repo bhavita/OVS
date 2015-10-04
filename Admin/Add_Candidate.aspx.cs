@@ -13,13 +13,13 @@ using System.Web.UI.WebControls.WebParts;
 using System.IO; // this is for the file upload
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging; 
+using System.Drawing.Imaging;
 
 
 
 public partial class Add_Candidate : System.Web.UI.Page
 {
-    SqlCommand insert_party,edit_can, get_party, comd; SqlDataReader rdr, dr1;
+    SqlCommand insert_party, edit_can, get_party, comd; SqlDataReader rdr, dr1;
     ArrayList arrName = new ArrayList();
     SqlDataAdapter dadapter; DataSet dset; PagedDataSource adsource; int ID;
     string connstring = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -31,10 +31,11 @@ public partial class Add_Candidate : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             MultiView1.ActiveViewIndex = 0;
+            //Calendar1.Visible = false;
             Act.Value = "Insert";
-                //            h_edit.Value = "INSERT";
+            //            h_edit.Value = "INSERT";
             this.ViewState["vs"] = 0;
-            
+
 
 
 
@@ -99,7 +100,7 @@ public partial class Add_Candidate : System.Web.UI.Page
         int pid = Convert.ToInt32(Pname.SelectedValue);//COMMENT THIS TO CHECK EDIT
         string can_desc = C_Des.Text;
         string can_qal = C_qual.Text;
-       
+
         string c_add = CAdd.Text;
         string email = Cemail.Text;
         long phno = Convert.ToInt64(CPhno.Text);
@@ -143,7 +144,7 @@ public partial class Add_Candidate : System.Web.UI.Page
             }
             if ((con1.State & ConnectionState.Open) > 0)
             {
-                if (arrName.Contains(1))
+                if (arrName.Contains(pid))
                 {
                     ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Same Party for candidate is not added for this constituency.');", true);
                 }
@@ -153,6 +154,7 @@ public partial class Add_Candidate : System.Web.UI.Page
                     UploadButton_Click(sender, e);
                     ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Candidate is  added.');", true);
                     con1.Close();
+                    MultiView1.ActiveViewIndex = 0;
 
                 }
 
@@ -168,7 +170,7 @@ public partial class Add_Candidate : System.Web.UI.Page
         else
         {
 
-          
+
             edit_can = new SqlCommand("UPDATE ovs_candidate  set C_NAME = @c_name ,c_description = @c_description,c_qualification=@c_qualification,email = @email,phone_no = @phone_no where c_id=@cid", con1);
             edit_can.Parameters.Add("@c_name", can_name);
             //edit_can.Parameters.Add("@cons_id", cons_id);
@@ -187,16 +189,16 @@ public partial class Add_Candidate : System.Web.UI.Page
                 Image1.Visible = true;
 
                 ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Can is updated.');", true);
-                
+
                 con1.Close();
             }
-           
+
 
             databind();
             Act.Value = "Insert";
             Button1.Text = "Add new Candidate";
 
-
+            MultiView1.ActiveViewIndex = 0;
 
 
         }
@@ -205,15 +207,17 @@ public partial class Add_Candidate : System.Web.UI.Page
 
     protected void Edit_Command(object source, DataListCommandEventArgs e)
     {
-        Response.Write("entered edit");
+
         MultiView1.ActiveViewIndex = 1;
         Act.Value = "EDIT";
+        C_Cons.ClearSelection();
+        Pname.ClearSelection();
 
         ID = Convert.ToInt32(e.CommandArgument);
+        //Response.Write("can id is "+ID);
         Hcid.Value = ID.ToString();
-       
-        Response.Write(ID.ToString());
-       
+
+
         string cs2 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con2 = new SqlConnection(cs2);
         SqlCommand pn, comd;
@@ -233,18 +237,40 @@ public partial class Add_Candidate : System.Web.UI.Page
                 if (rdp.Read())
                 {
                     C_Name.Text = rdp["C_NAME"].ToString();
-                   
 
-                   int i=rdp.GetInt32(rdp.GetOrdinal("Cons_Id"));
-                    Response.Write("id is "+i.ToString());
-                    //Plz set dropdown here. I have disabled them in edit command.
-                    //currently reqd field of cons and party dropdown is set false.
-                    //plz enable them, once u write the code.
-                    //C_Cons.Items.FindByValue(rdp["Cons_Name"].ToString()).Selected = true;
-                    //Pname.SelectedIndex = (int)rdp["PID"];
+
+                    int i = rdp.GetInt32(rdp.GetOrdinal("Cons_Id"));
+                    //Response.Write("id is " + i.ToString());
+
+                    foreach (ListItem li1 in C_Cons.Items)
+                    {
+                        if (li1.Text == rdp["cons_name"].ToString())
+                        {
+                            li1.Selected = true;
+                            //Response.Write("<br> " + "new selected item" + li1.Text);
+
+
+                        }
+                    }
+
+
+                    foreach (ListItem li2 in Pname.Items)
+                    {
+                        //Response.Write(li2.Text );
+                        //Response.Write("hhii" + rdp["pname"]+"<br>");
+                        if (li2.Text == rdp["pname"].ToString())
+                        {
+                            //li2.Selected = true;
+                            // Response.Write("<br> " + "new selected item" + li2.Text);
+                            li2.Selected = true;
+
+                        }
+                    }
+
+
+
                     C_Des.Text = rdp["C_DESCRIPTION"].ToString();
                     C_qual.Text = rdp["C_QUALIFICATION"].ToString();
-                  
                     Cemail.Text = rdp["EMAIL"].ToString();
                     CPhno.Text = rdp["PHONE_NO"].ToString();
                     C_Cons.Enabled = false;
@@ -293,6 +319,7 @@ public partial class Add_Candidate : System.Web.UI.Page
         else
         {
             FileName = Hcid.Value + ".png";
+            //  Response.Write("filename is"+FileName);
 
         }
 
@@ -342,11 +369,24 @@ public partial class Add_Candidate : System.Web.UI.Page
 
         databind();
         Image1.ImageUrl = String.Format("~/img/candidate/{0}.png", FileName);
+        MultiView1.ActiveViewIndex = 0;
+        //Response.Write("after file name"+FileName);
     }
 
     protected void Button2_Click(object sender, EventArgs e)
     {
         MultiView1.ActiveViewIndex = 1;
+        C_Name.Text = "";
+        C_Des.Text = "";
+        C_qual.Text = "";
+        Cemail.Text = "";
+        CPhno.Text = "";
+        CAdd.Text = "";
+        Image1.ImageUrl = "";
+        C_Cons.ClearSelection();
+        Pname.ClearSelection();
+        C_Cons.Enabled = true;
+        Pname.Enabled = true;
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
@@ -357,4 +397,18 @@ public partial class Add_Candidate : System.Web.UI.Page
 
     }
 
+    protected void BDOB_Click(object sender, EventArgs e)
+    {
+        string dt = Request.Form[TDOB.UniqueID];
+
+        //Calendar1.Visible = true;
+        //BDOB.Visible = false;
+       
+    }
+    //protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+    //{
+    //    //TDOB.Text = Calendar1.SelectedDate.ToShortDateString();
+    //    //Calendar1.Visible = false;
+    //    //BDOB.Visible = true;
+    //}
 }
