@@ -31,7 +31,7 @@ public partial class Add_Candidate : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             MultiView1.ActiveViewIndex = 0;
-            TDOB.Enabled = true;
+            tdob.Enabled = true;
             //Calendar1.Visible = false;
             Act.Value = "Insert";
             //            h_edit.Value = "INSERT";
@@ -96,8 +96,8 @@ public partial class Add_Candidate : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         string can_name = C_Name.Text;
-        TDOB.Enabled = true;
-        string dt = Request.Form[TDOB.UniqueID];
+        tdob.Enabled = true;
+        string dt = Request.Form[tdob.UniqueID];
         DateTime bday = DateTime.Parse(dt);
         DateTime today = DateTime.Today;
         int age = today.Year - bday.Year;
@@ -293,8 +293,8 @@ public partial class Add_Candidate : System.Web.UI.Page
                     C_qual.Text = rdp["C_QUALIFICATION"].ToString();
                     Cemail.Text = rdp["EMAIL"].ToString();
                     CPhno.Text = rdp["PHONE_NO"].ToString();
-                    TDOB.Text = rdp["birthdate"] == System.DBNull.Value ? null : Convert.ToDateTime(rdp["Birthdate"]).ToString("dd/MM/yyyy");
-                    TDOB.Enabled = false;
+                    tdob.Text = rdp["birthdate"] == System.DBNull.Value ? null : Convert.ToDateTime(rdp["Birthdate"]).ToString("dd/MM/yyyy");
+                    tdob.Enabled = false;
                     C_Cons.Enabled = false;
                     Pname.Enabled = false;
 
@@ -409,8 +409,8 @@ public partial class Add_Candidate : System.Web.UI.Page
         Pname.ClearSelection();
         C_Cons.Enabled = true;
         Pname.Enabled = true;
-        TDOB.Enabled = true;
-        TDOB.Text = " ";
+       tdob.Enabled = true;
+        tdob.Text = " ";
 
 
     }

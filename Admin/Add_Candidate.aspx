@@ -9,7 +9,7 @@
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
-            $("[id$=TDOB").datepicker({
+            $("[id$=tdob]").datepicker({
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "1900:+nn",
@@ -18,7 +18,21 @@
                 buttonImage: "../img/calendar.gif"
 
             });
+
+            // var d = $("[id$=tdob]").attr("enabled");
+            if (document.getElementById('tdob').disabled) {
+                alert("dis");
+                //  $("[id$=tdob]").datepicker("disable");
+            }
+            else {
+                // $("[id$=tdob]").datepicker("enable");
+                alert("en");
+            }
+
+
         });
+
+
     </script>
     
     <font style="align: center" size="40px">CANDIDATE 
@@ -177,7 +191,7 @@
                 <asp:Label ID="DOB" runat="server" Text="BirthDate" CssClass="lab_size"></asp:Label>
             </td>
             <td class="style23">
-                <asp:TextBox ID="TDOB" runat="server" CssClass="text_size" Width="200px"></asp:TextBox>
+                <asp:TextBox ID="tdob" runat="server" CssClass="text_size" Width="200px" ReadOnly=true></asp:TextBox>
             </td>
             <td class="style24">
                 &nbsp;</td>
