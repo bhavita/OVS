@@ -93,6 +93,8 @@
                         Width="43px" OnClick="btnlast_Click" />
                 </td>
                 <td>
+                    <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Height="31px" Width="182px" 
+                        Text="ADD NEW CANDIDATE" />
                 </td>
             </tr>
         </table>

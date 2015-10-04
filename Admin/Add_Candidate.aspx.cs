@@ -356,5 +356,5 @@ public partial class Add_Candidate : System.Web.UI.Page
     {
 
     }
-    
+
 }
