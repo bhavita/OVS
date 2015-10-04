@@ -31,6 +31,7 @@ public partial class Add_Candidate : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             MultiView1.ActiveViewIndex = 0;
+            TDOB.Enabled = true;
             //Calendar1.Visible = false;
             Act.Value = "Insert";
             //            h_edit.Value = "INSERT";
@@ -95,112 +96,130 @@ public partial class Add_Candidate : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         string can_name = C_Name.Text;
+        TDOB.Enabled = true;
+        string dt = Request.Form[TDOB.UniqueID];
+        DateTime bday = DateTime.Parse(dt);
+        DateTime today = DateTime.Today;
+        int age = today.Year - bday.Year;
+        if (bday > today.AddYears(-age)) age--;
 
-        int cons_id = Convert.ToInt32(C_Cons.SelectedValue); //COMMENT THIS TO CHECK EDIT
-        int pid = Convert.ToInt32(Pname.SelectedValue);//COMMENT THIS TO CHECK EDIT
-        string can_desc = C_Des.Text;
-        string can_qal = C_qual.Text;
-
-        string c_add = CAdd.Text;
-        string email = Cemail.Text;
-        long phno = Convert.ToInt64(CPhno.Text);
-        string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        SqlConnection con1 = new SqlConnection(cs1);
-        con1.Open();
-
-        if (Act.Value != "EDIT")
+        if (age < 28)
         {
-            insert_party = new SqlCommand("INSERT INTO ovs_candidate (C_NAME,cons_id,c_description,c_qualification,pid,email,phone_no) VALUES(@c_name,@cons_id,@c_description,@c_qualification,@pid,@email,@phone_no)", con1);
-            insert_party.Parameters.Add("@c_name", can_name);
-            insert_party.Parameters.Add("@cons_id", cons_id); //COMMENT THIS TO CHECK EDIT
-            insert_party.Parameters.Add("@c_description", can_desc);
-            insert_party.Parameters.Add("@c_qualification", can_qal);
-            insert_party.Parameters.Add("@pid", pid);//COMMENT THIS TO CHECK EDIT
-            insert_party.Parameters.Add("@email", email);
-            insert_party.Parameters.Add("@phone_no", phno);
-            string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(cs);
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "Select * from ovs_candidate";
-            cmd.Connection = con;
-            //COMMENT THIS TO CHECK EDIT
-            try
-            {
-
-                dr1 = cmd.ExecuteReader();
-
-                if (dr1 != null)
-                    while (dr1.Read())
-                    {
-                        //fill arraylist
-                        arrName.Add(dr1["pid"]);
-                        Response.Write(" " + dr1["pid"]);
-                    }
-            }
-            finally
-            {
-                con.Close();
-            }
-            if ((con1.State & ConnectionState.Open) > 0)
-            {
-                if (arrName.Contains(pid))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Same Party for candidate is not added for this constituency.');", true);
-                }
-                else
-                {
-                    int i = insert_party.ExecuteNonQuery();
-                    UploadButton_Click(sender, e);
-                    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Candidate is  added.');", true);
-                    con1.Close();
-                    MultiView1.ActiveViewIndex = 0;
-
-                }
-
-            }
-            else
-            {
-                //Response.Write("not conncted");
-            }
-
-
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Candidate should be atleast 28 years old .');", true);
         }
 
         else
         {
 
+            int cons_id = Convert.ToInt32(C_Cons.SelectedValue); //COMMENT THIS TO CHECK EDIT
+            int pid = Convert.ToInt32(Pname.SelectedValue);//COMMENT THIS TO CHECK EDIT
+            string can_desc = C_Des.Text;
+            string can_qal = C_qual.Text;
 
-            edit_can = new SqlCommand("UPDATE ovs_candidate  set C_NAME = @c_name ,c_description = @c_description,c_qualification=@c_qualification,email = @email,phone_no = @phone_no where c_id=@cid", con1);
-            edit_can.Parameters.Add("@c_name", can_name);
-            //edit_can.Parameters.Add("@cons_id", cons_id);
-            edit_can.Parameters.Add("@c_description", can_desc);
-            edit_can.Parameters.Add("@c_qualification", can_qal);
-            //edit_can.Parameters.Add("@pid", pid); //wont be der in edit
-            edit_can.Parameters.Add("@email", email);
-            edit_can.Parameters.Add("@phone_no", phno);
-            edit_can.Parameters.Add("@cid", Hcid.Value);
-            if ((con1.State & ConnectionState.Open) > 0)
+            string c_add = CAdd.Text;
+            string email = Cemail.Text;
+            long phno = Convert.ToInt64(CPhno.Text);
+            string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection con1 = new SqlConnection(cs1);
+            con1.Open();
+
+            if (Act.Value != "EDIT")
             {
-                int i = edit_can.ExecuteNonQuery();
-                Act.Value = "EDIT";
-                UploadButton_Click(sender, e);
-                Image1.ImageUrl = "~/img/candidate/" + Hcid.Value + ".png";
-                Image1.Visible = true;
+                insert_party = new SqlCommand("INSERT INTO ovs_candidate (C_NAME,cons_id,c_description,c_qualification,pid,email,phone_no,Birthdate,C_age) VALUES(@c_name,@cons_id,@c_description,@c_qualification,@pid,@email,@phone_no,@birthdate,@age)", con1);
+                insert_party.Parameters.Add("@c_name", can_name);
+                insert_party.Parameters.Add("@cons_id", cons_id); //COMMENT THIS TO CHECK EDIT
+                insert_party.Parameters.Add("@c_description", can_desc);
+                insert_party.Parameters.Add("@c_qualification", can_qal);
+                insert_party.Parameters.Add("@pid", pid);//COMMENT THIS TO CHECK EDIT
+                insert_party.Parameters.Add("@email", email);
+                insert_party.Parameters.Add("@phone_no", phno);
+                insert_party.Parameters.Add("@birthdate",bday);
+                insert_party.Parameters.Add("@age", age);
+                   
+                string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                SqlConnection con = new SqlConnection(cs);
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "Select * from ovs_candidate";
+                cmd.Connection = con;
+                //COMMENT THIS TO CHECK EDIT
+                try
+                {
 
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Can is updated.');", true);
+                    dr1 = cmd.ExecuteReader();
 
-                con1.Close();
+                    if (dr1 != null)
+                        while (dr1.Read())
+                        {
+                            //fill arraylist
+                            arrName.Add(dr1["pid"]);
+                            Response.Write(" " + dr1["pid"]);
+                        }
+                }
+                finally
+                {
+                    con.Close();
+                }
+                if ((con1.State & ConnectionState.Open) > 0)
+                {
+                    if (arrName.Contains(pid))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Same Party for candidate is not added for this constituency.');", true);
+                    }
+                    else
+                    {
+                        int i = insert_party.ExecuteNonQuery();
+                        UploadButton_Click(sender, e);
+                        ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Candidate is  added.');", true);
+                        con1.Close();
+                        MultiView1.ActiveViewIndex = 0;
+
+                    }
+
+                }
+                else
+                {
+                    //Response.Write("not conncted");
+                }
+
+
             }
 
-
-            databind();
-            Act.Value = "Insert";
-            Button1.Text = "Add new Candidate";
-
-            MultiView1.ActiveViewIndex = 0;
+            else
+            {
 
 
+                edit_can = new SqlCommand("UPDATE ovs_candidate  set C_NAME = @c_name ,c_description = @c_description,c_qualification=@c_qualification,email = @email,phone_no = @phone_no where c_id=@cid", con1);
+                edit_can.Parameters.Add("@c_name", can_name);
+                //edit_can.Parameters.Add("@cons_id", cons_id);
+                edit_can.Parameters.Add("@c_description", can_desc);
+                edit_can.Parameters.Add("@c_qualification", can_qal);
+                //edit_can.Parameters.Add("@pid", pid); //wont be der in edit
+                edit_can.Parameters.Add("@email", email);
+                edit_can.Parameters.Add("@phone_no", phno);
+                edit_can.Parameters.Add("@cid", Hcid.Value);
+                if ((con1.State & ConnectionState.Open) > 0)
+                {
+                    int i = edit_can.ExecuteNonQuery();
+                    Act.Value = "EDIT";
+                    UploadButton_Click(sender, e);
+                    Image1.ImageUrl = "~/img/candidate/" + Hcid.Value + ".png";
+                    Image1.Visible = true;
+
+                    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Can is updated.');", true);
+
+                    con1.Close();
+                }
+
+
+                databind();
+                Act.Value = "Insert";
+                Button1.Text = "Add new Candidate";
+
+                MultiView1.ActiveViewIndex = 0;
+
+
+            }
         }
 
     }
@@ -209,6 +228,7 @@ public partial class Add_Candidate : System.Web.UI.Page
     {
 
         MultiView1.ActiveViewIndex = 1;
+
         Act.Value = "EDIT";
         C_Cons.ClearSelection();
         Pname.ClearSelection();
@@ -273,6 +293,8 @@ public partial class Add_Candidate : System.Web.UI.Page
                     C_qual.Text = rdp["C_QUALIFICATION"].ToString();
                     Cemail.Text = rdp["EMAIL"].ToString();
                     CPhno.Text = rdp["PHONE_NO"].ToString();
+                    TDOB.Text = rdp["birthdate"] == System.DBNull.Value ? null : Convert.ToDateTime(rdp["Birthdate"]).ToString("dd/MM/yyyy");
+                    TDOB.Enabled = false;
                     C_Cons.Enabled = false;
                     Pname.Enabled = false;
 
@@ -387,6 +409,10 @@ public partial class Add_Candidate : System.Web.UI.Page
         Pname.ClearSelection();
         C_Cons.Enabled = true;
         Pname.Enabled = true;
+        TDOB.Enabled = true;
+        TDOB.Text = " ";
+
+
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
@@ -397,18 +423,5 @@ public partial class Add_Candidate : System.Web.UI.Page
 
     }
 
-    protected void BDOB_Click(object sender, EventArgs e)
-    {
-        string dt = Request.Form[TDOB.UniqueID];
-
-        //Calendar1.Visible = true;
-        //BDOB.Visible = false;
-       
-    }
-    //protected void Calendar1_SelectionChanged(object sender, EventArgs e)
-    //{
-    //    //TDOB.Text = Calendar1.SelectedDate.ToShortDateString();
-    //    //Calendar1.Visible = false;
-    //    //BDOB.Visible = true;
-    //}
+   
 }

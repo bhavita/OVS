@@ -9,13 +9,14 @@
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
-            $("[id$=TDOB]").datepicker({
+            $("[id$=TDOB").datepicker({
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "1900:+nn",
                 showOn: 'button',
                 buttonImageOnly: true,
                 buttonImage: "../img/calendar.gif"
+
             });
         });
     </script>
@@ -179,9 +180,7 @@
                 <asp:TextBox ID="TDOB" runat="server" CssClass="text_size" Width="200px"></asp:TextBox>
             </td>
             <td class="style24">
-                <asp:Button ID="BDOB" runat="server" Text="EnterDOB" onclick="BDOB_Click" 
-                    CssClass="style25" />
-            </td>
+                &nbsp;</td>
         </tr>
 
         <tr>
@@ -357,10 +356,6 @@
         {
             height: 50px;
             width: 310px;
-        }
-        .style25
-        {
-            font-size: small;
         }
         </style>
 </asp:Content>
