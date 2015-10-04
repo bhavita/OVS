@@ -153,6 +153,7 @@ public partial class Add_Candidate : System.Web.UI.Page
                     UploadButton_Click(sender, e);
                     ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Candidate is  added.');", true);
                     con1.Close();
+                    MultiView1.ActiveViewIndex = 0;
 
                 }
 
@@ -161,7 +162,7 @@ public partial class Add_Candidate : System.Web.UI.Page
             {
                 //Response.Write("not conncted");
             }
-
+           
 
         }
 
@@ -196,7 +197,7 @@ public partial class Add_Candidate : System.Web.UI.Page
             Act.Value = "Insert";
             Button1.Text = "Add new Candidate";
 
-
+            MultiView1.ActiveViewIndex = 0;
 
 
         }
@@ -205,40 +206,17 @@ public partial class Add_Candidate : System.Web.UI.Page
 
     protected void Edit_Command(object source, DataListCommandEventArgs e)
     {
-        //C_Cons.DataSourceID = string.Empty;
-        //string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        //SqlConnection con = new SqlConnection(cs);
-        //con.Open();
-        //SqlCommand cmd2;
-        //cmd2 = new SqlCommand("select * from ovs_constituency ", con);
-        //rdr = cmd2.ExecuteReader();
-        //C_Cons.DataSource = rdr;
-        //C_Cons.DataTextField = "cons_name";
-        //C_Cons.DataValueField = "cons_id";
-        //C_Cons.DataBind();
-        //con.Close();
-
-
-        Response.Write("entered edit");
+       
         MultiView1.ActiveViewIndex = 1;
         Act.Value = "EDIT";
         C_Cons.ClearSelection();
         Pname.ClearSelection();
 
         ID = Convert.ToInt32(e.CommandArgument);
-        Response.Write("can id is "+ID);
+        //Response.Write("can id is "+ID);
         Hcid.Value = ID.ToString();
 
-        //Response.Write(ID.ToString());
-
-
         
-       
-        foreach(var i in C_Cons.Items)
-        {
-            Response.Write("hello"+i.ToString());
-        }
-
         string cs2 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con2 = new SqlConnection(cs2);
         SqlCommand pn, comd;
@@ -261,18 +239,13 @@ public partial class Add_Candidate : System.Web.UI.Page
 
 
                     int i = rdp.GetInt32(rdp.GetOrdinal("Cons_Id"));
-                    Response.Write("id is " + i.ToString());
-                    //Plz set dropdown here. I have disabled them in edit command.
-                    //currently reqd field of cons and party dropdown is set false.
-                    //plz enable them, once u write the code.
-                    //C_Cons.Items.FindByValue(rdp["Cons_Name"].ToString()).Selected = true;
-                    //Pname.SelectedIndex = (int)rdp["PID"];
-
+                    //Response.Write("id is " + i.ToString());
+                    
                     foreach (ListItem li1 in C_Cons.Items)
                     {
                         if (li1.Text == rdp["cons_name"].ToString()) {
                             li1.Selected = true;
-                            Response.Write("<br> " + "new selected item" + li1.Text);
+                            //Response.Write("<br> " + "new selected item" + li1.Text);
                             
                    
                         }
@@ -286,7 +259,7 @@ public partial class Add_Candidate : System.Web.UI.Page
                         if (li2.Text == rdp["pname"].ToString())
                         {
                             //li2.Selected = true;
-                            Response.Write("<br> " + "new selected item" + li2.Text);
+                           // Response.Write("<br> " + "new selected item" + li2.Text);
                             li2.Selected = true;
 
                         }
@@ -296,18 +269,8 @@ public partial class Add_Candidate : System.Web.UI.Page
 
                     C_Des.Text = rdp["C_DESCRIPTION"].ToString();
                     C_qual.Text = rdp["C_QUALIFICATION"].ToString();
-                    //Response.Write("cons "+rdp["cons_name"]+"party "+rdp["pname"]);
-                    //C_Cons.SelectedIndex = 2;
-                    //C_Cons.SelectedItem = rdp["cons_name"];
-                   // string consname = rdp["cons_name"].ToString();
-                    //int index = C_Cons.Items.IndexOf(C_Cons.Items.FindByValue("Vapi"));
-                    //Response.Write("selected indesx is " + index);
-                   //// C_Cons.Items.FindByText("Nadiad").Selected = true;
-                    //C_Cons.SelectedIndex = C_Cons.Items.IndexOf(C_Cons.Items.FindByValue(consname));
-                   // Pname.SelectedIndex = 1;
                     Cemail.Text = rdp["EMAIL"].ToString();
                     CPhno.Text = rdp["PHONE_NO"].ToString();
-                    //C_Cons.SelectedValue="Vapi";
                     C_Cons.Enabled = false;
                     Pname.Enabled = false;
 
@@ -354,6 +317,7 @@ public partial class Add_Candidate : System.Web.UI.Page
         else
         {
             FileName = Hcid.Value + ".png";
+          //  Response.Write("filename is"+FileName);
 
         }
 
@@ -403,6 +367,8 @@ public partial class Add_Candidate : System.Web.UI.Page
 
         databind();
         Image1.ImageUrl = String.Format("~/img/candidate/{0}.png", FileName);
+        MultiView1.ActiveViewIndex = 0;
+        //Response.Write("after file name"+FileName);
     }
 
     protected void Button2_Click(object sender, EventArgs e)
@@ -413,8 +379,12 @@ public partial class Add_Candidate : System.Web.UI.Page
         C_qual.Text = "";
         Cemail.Text = "";
         CPhno.Text = "";
+        CAdd.Text = "";
+        Image1.ImageUrl = "";
         C_Cons.ClearSelection();
         Pname.ClearSelection();
+        C_Cons.Enabled = true;
+        Pname.Enabled = true;
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
