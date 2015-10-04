@@ -7,102 +7,353 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
+using System.Web.Security;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls.WebParts;
+using System.IO; // this is for the file upload
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging; 
+
+
+
 public partial class Add_Candidate : System.Web.UI.Page
 {
-    SqlCommand insert_party, get_party, comd; SqlDataReader rdr,dr1;
+    SqlCommand insert_party,edit_can, get_party, comd; SqlDataReader rdr, dr1;
     ArrayList arrName = new ArrayList();
+    SqlDataAdapter dadapter; DataSet dset; PagedDataSource adsource; int ID;
+    string connstring = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+    int pos;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        SqlConnection con = new SqlConnection(cs);
-        con.Open();
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "Select * from ovs_candidate";
-        cmd.Connection = con;
-        try
-        {
-            
-            dr1 = cmd.ExecuteReader();
 
-            if (dr1 != null)
-                while (dr1.Read())
-                {
-                    //fill arraylist
-                    arrName.Add(dr1["pid"]);
-                    
-                }
-        }
-        finally
+        if (!Page.IsPostBack)
         {
-            con.Close();
+            MultiView1.ActiveViewIndex = 0;
+            Act.Value = "Insert";
+                //            h_edit.Value = "INSERT";
+            this.ViewState["vs"] = 0;
+            
+
+
+
         }
-        
+        pos = (int)this.ViewState["vs"];
+        databind();
 
     }
+
+    public void databind()
+    {
+        dadapter = new SqlDataAdapter("SELECT * FROM ovs_candidate a  JOIN ovs_constituency b ON a.CONS_ID = b.cons_id JOIN ovs_party c ON a.PID = c.pid", connstring);
+        // dadapter = new SqlDataAdapter("select * from candidate", connstring);
+        dset = new DataSet();
+        adsource = new PagedDataSource();
+        dadapter.Fill(dset);
+        adsource.DataSource = dset.Tables[0].DefaultView;
+        adsource.PageSize = 5;
+        adsource.AllowPaging = true;
+        adsource.CurrentPageIndex = pos;
+        btnfirst.Enabled = !adsource.IsFirstPage;
+        btnprevious.Enabled = !adsource.IsFirstPage;
+        btnlast.Enabled = !adsource.IsLastPage;
+        btnnext.Enabled = !adsource.IsLastPage;
+        DataList2.DataSource = adsource;
+        DataList2.DataBind();
+    }
+    protected void btnfirst_Click(object sender, EventArgs e)
+    {
+        pos = 0;
+        databind();
+    }
+
+    protected void btnprevious_Click(object sender, EventArgs e)
+    {
+        pos = (int)this.ViewState["vs"];
+        pos -= 1;
+        this.ViewState["vs"] = pos;
+        databind();
+    }
+
+    protected void btnnext_Click(object sender, EventArgs e)
+    {
+        pos = (int)this.ViewState["vs"];
+        pos += 1;
+        this.ViewState["vs"] = pos;
+        databind();
+    }
+
+    protected void btnlast_Click(object sender, EventArgs e)
+    {
+        pos = adsource.PageCount - 1;
+        databind();
+    }
+
+
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string can_name = TextBox1.Text;
+        string can_name = C_Name.Text;
 
-        int cons_id = Convert.ToInt32(DropDownList3.SelectedValue);
-        string can_desc = TextBox3.Text;
-        string can_qal = TextBox4.Text;
-        int p_id = Convert.ToInt32(DropDownList4.SelectedValue);
-        string c_add = TextBox9.Text;
-        string email = TextBox7.Text;
-        long phno = Convert.ToInt64(TextBox8.Text);
-
-        Response.Write(can_name+" "+cons_id+" "+can_desc+""+can_qal+" "+p_id+" "+c_add+" "+email+" "+phno);
-
+        int cons_id = Convert.ToInt32(C_Cons.SelectedValue); //COMMENT THIS TO CHECK EDIT
+        int pid = Convert.ToInt32(Pname.SelectedValue);//COMMENT THIS TO CHECK EDIT
+        string can_desc = C_Des.Text;
+        string can_qal = C_qual.Text;
+       
+        string c_add = CAdd.Text;
+        string email = Cemail.Text;
+        long phno = Convert.ToInt64(CPhno.Text);
         string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(cs1);
         con1.Open();
-        insert_party = new SqlCommand("INSERT INTO ovs_candidate (C_NAME,cons_id,can_desc,can_qual,p_id,can_email,can_phno) VALUES(@c_name,@cons_id,@c_description,@c_qualification,@pid,@email,@phone_no)", con1);
-        insert_party.Parameters.Add("@c_name", can_name);
-        insert_party.Parameters.Add("@cons_id",cons_id);
-        insert_party.Parameters.Add("@c_description", can_desc);
-        insert_party.Parameters.Add("@c_qualification", can_qal);
-        insert_party.Parameters.Add("@pid", p_id);
-        insert_party.Parameters.Add("@email", email);
-        insert_party.Parameters.Add("@phone_no", phno);
-        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        SqlConnection con = new SqlConnection(cs);
-        con.Open();
-        SqlCommand cmd = new SqlCommand();
-         cmd.CommandText = "Select * from ovs_candidate";
-         cmd.Connection = con;
-       
-        try {
-           
-          dr1 = cmd.ExecuteReader();
 
-          if (dr1 != null)
-              while (dr1.Read())
-              {
-                  //fill arraylist
-                  arrName.Add(dr1["p_id"]);
-                  Response.Write(" " + dr1["p_id"]);
-              }
-        }
-        finally {
-            con.Close();
-        }
-        if ((con1.State & ConnectionState.Open) > 0) {
-            if (arrName.Contains(p_id))
+        if (Act.Value != "EDIT")
+        {
+            insert_party = new SqlCommand("INSERT INTO ovs_candidate (C_NAME,cons_id,c_description,c_qualification,pid,email,phone_no) VALUES(@c_name,@cons_id,@c_description,@c_qualification,@pid,@email,@phone_no)", con1);
+            insert_party.Parameters.Add("@c_name", can_name);
+            insert_party.Parameters.Add("@cons_id", cons_id); //COMMENT THIS TO CHECK EDIT
+            insert_party.Parameters.Add("@c_description", can_desc);
+            insert_party.Parameters.Add("@c_qualification", can_qal);
+            insert_party.Parameters.Add("@pid", pid);//COMMENT THIS TO CHECK EDIT
+            insert_party.Parameters.Add("@email", email);
+            insert_party.Parameters.Add("@phone_no", phno);
+            string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(cs);
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "Select * from ovs_candidate";
+            cmd.Connection = con;
+            //COMMENT THIS TO CHECK EDIT
+            try
             {
-                 ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Same Party for candidate is not added for this constituency.');", true);
+
+                dr1 = cmd.ExecuteReader();
+
+                if (dr1 != null)
+                    while (dr1.Read())
+                    {
+                        //fill arraylist
+                        arrName.Add(dr1["pid"]);
+                        Response.Write(" " + dr1["pid"]);
+                    }
             }
-            else{
-                int i = insert_party.ExecuteNonQuery();
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Candidate is  added.');", true);
-                con1.Close();
+            finally
+            {
+                con.Close();
+            }
+            if ((con1.State & ConnectionState.Open) > 0)
+            {
+                if (arrName.Contains(1))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Same Party for candidate is not added for this constituency.');", true);
+                }
+                else
+                {
+                    int i = insert_party.ExecuteNonQuery();
+                    UploadButton_Click(sender, e);
+                    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Candidate is  added.');", true);
+                    con1.Close();
+
+                }
 
             }
-                    
+            else
+            {
+                //Response.Write("not conncted");
+            }
+
+
         }
-        else {
-            //Response.Write("not conncted");
+
+        else
+        {
+
+          
+            edit_can = new SqlCommand("UPDATE ovs_candidate  set C_NAME = @c_name ,c_description = @c_description,c_qualification=@c_qualification,email = @email,phone_no = @phone_no where c_id=@cid", con1);
+            edit_can.Parameters.Add("@c_name", can_name);
+            //edit_can.Parameters.Add("@cons_id", cons_id);
+            edit_can.Parameters.Add("@c_description", can_desc);
+            edit_can.Parameters.Add("@c_qualification", can_qal);
+            //edit_can.Parameters.Add("@pid", pid); //wont be der in edit
+            edit_can.Parameters.Add("@email", email);
+            edit_can.Parameters.Add("@phone_no", phno);
+            edit_can.Parameters.Add("@cid", Hcid.Value);
+            if ((con1.State & ConnectionState.Open) > 0)
+            {
+                int i = edit_can.ExecuteNonQuery();
+                Act.Value = "EDIT";
+                UploadButton_Click(sender, e);
+                Image1.ImageUrl = "~/img/candidate/" + Hcid.Value + ".png";
+                Image1.Visible = true;
+
+                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Can is updated.');", true);
+                
+                con1.Close();
+            }
+           
+
+            databind();
+            Act.Value = "Insert";
+            Button1.Text = "Add new Candidate";
+
+
+
+
         }
+
+    }
+
+    protected void Edit_Command(object source, DataListCommandEventArgs e)
+    {
+        Response.Write("entered edit");
+        MultiView1.ActiveViewIndex = 1;
+        Act.Value = "EDIT";
+
+        ID = Convert.ToInt32(e.CommandArgument);
+        Hcid.Value = ID.ToString();
        
+        Response.Write(ID.ToString());
+       
+        string cs2 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con2 = new SqlConnection(cs2);
+        SqlCommand pn, comd;
+        con2.Open();
+        SqlDataReader rdp;
+        String pname = "random";
+
+        if ((con2.State & ConnectionState.Open) > 0)
+        {
+
+            comd = new SqlCommand("SELECT * from ovs_candidate  a  JOIN ovs_constituency b ON a.CONS_ID = b.cons_id JOIN ovs_party c ON a.PID = c.pid where a.c_id =(@c_id)", con2);
+            comd.Parameters.Add("@c_id", ID.ToString());
+            rdp = comd.ExecuteReader();
+
+            if (rdp != null)
+            {
+                if (rdp.Read())
+                {
+                    C_Name.Text = rdp["C_NAME"].ToString();
+                   
+
+                   int i=rdp.GetInt32(rdp.GetOrdinal("Cons_Id"));
+                    Response.Write("id is "+i.ToString());
+                    //Plz set dropdown here. I have disabled them in edit command.
+                    //currently reqd field of cons and party dropdown is set false.
+                    //plz enable them, once u write the code.
+                    //C_Cons.Items.FindByValue(rdp["Cons_Name"].ToString()).Selected = true;
+                    //Pname.SelectedIndex = (int)rdp["PID"];
+                    C_Des.Text = rdp["C_DESCRIPTION"].ToString();
+                    C_qual.Text = rdp["C_QUALIFICATION"].ToString();
+                  
+                    Cemail.Text = rdp["EMAIL"].ToString();
+                    CPhno.Text = rdp["PHONE_NO"].ToString();
+                    C_Cons.Enabled = false;
+                    Pname.Enabled = false;
+
+
+
+                }
+
+            }
+            Button1.Text = "Edit Candidate";
+            Image1.ImageUrl = "~/img/candidate/" + Hcid.Value + ".png";
+            Image1.Visible = true;
+
+        }
+    }
+
+    protected void UploadButton_Click(object sender, EventArgs e)
+    {
+
+        String FileName = " ";
+
+        if (Act.Value != "EDIT")
+        {
+            SqlConnection con = new SqlConnection(connstring);
+            con.Open();
+            SqlCommand cmd; SqlDataReader rdr;
+            cmd = new SqlCommand("select top 1 * from ovs_candidate order by c_id desc", con);
+
+            rdr = cmd.ExecuteReader();
+
+            if (rdr != null)
+            {
+                while (rdr.Read())
+                {
+
+                    FileName = rdr["c_id"].ToString();
+                    FileName = FileName + ".png";
+
+                }
+            }
+            con.Close();
+
+
+        }
+        else
+        {
+            FileName = Hcid.Value + ".png";
+
+        }
+
+
+
+        if (FileUploadControl.HasFile)
+        {
+            try
+            {
+                string directory = Server.MapPath("~/img/candidate/");
+                // Create a bitmap of the content of the fileUpload control in memory
+                Bitmap originalBMP = new Bitmap(FileUploadControl.FileContent);
+
+                // Calculate the new image dimensions
+                int origWidth = originalBMP.Width;
+                int origHeight = originalBMP.Height;
+
+                int newWidth = 128;
+                int newHeight = 128;
+
+                // Create a new bitmap which will hold the previous resized bitmap
+                Bitmap newBMP = new Bitmap(originalBMP, newWidth, newHeight);
+                // Create a graphic based on the new bitmap
+                Graphics oGraphics = Graphics.FromImage(newBMP);
+
+                // Set the properties for the new graphic file
+                oGraphics.SmoothingMode = SmoothingMode.AntiAlias; oGraphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                // Draw the new graphic based on the resized bitmap
+                oGraphics.DrawImage(originalBMP, 0, 0, newWidth, newHeight);
+
+                // Save the new graphic file to the server
+                newBMP.Save(directory + FileName);
+
+                // Once finished with the bitmap objects, we deallocate them.
+                originalBMP.Dispose();
+                newBMP.Dispose();
+                oGraphics.Dispose();
+
+                //      StatusLabel.Text += "Upload status: File uploaded!";
+
+            }
+            catch (Exception ex)
+            {
+                //StatusLabel.Text += "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
+            }
+        }
+
+        databind();
+        Image1.ImageUrl = String.Format("~/img/candidate/{0}.png", FileName);
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        MultiView1.ActiveViewIndex = 1;
+    }
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        MultiView1.ActiveViewIndex = 0;
+    }
+    protected void DataList2_SelectedIndexChanged(object sender, EventArgs e)
+    {
 
     }
     
