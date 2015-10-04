@@ -180,7 +180,7 @@
                 <asp:Label ID="DOB" runat="server" Text="BirthDate" CssClass="lab_size"></asp:Label>
             </td>
             <td class="style23">
-                <asp:TextBox ID="t_Date" runat="server"></asp:TextBox>
+                <asp:TextBox ID="t_Date" runat="server" Width="202px" CssClass="text_size"></asp:TextBox>
                 <asp:TextBox ID="tdob" runat="server" CssClass="text_size" Width="200px" ReadOnly=true></asp:TextBox>
             </td>
             <td class="style24">
@@ -277,7 +277,11 @@
             <td class="style17">
                 <asp:Button ID="Button1" runat="server" Style="margin-left: 4px" CssClass="text_size"
                     Text="Add Candidate" Width="129px" OnClick="Button1_Click" 
-                    ValidationGroup="c" />
+                    />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br />
+                <asp:Button ID="Button3" runat="server" onclick="Button3_Click" Text="Back" CssClass="text_size"
+                    Width="121px" />
             </td>
             <td class="style16">
                 &nbsp;
@@ -285,7 +289,6 @@
         </tr>
     </table>
     <p>
-        <asp:Button ID="Button3" runat="server" onclick="Button3_Click" Text="Back" />
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
             SelectCommand="SELECT * FROM [OVS_CONSTITUENCY]"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
