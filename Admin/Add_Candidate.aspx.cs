@@ -32,11 +32,7 @@ public partial class Add_Candidate : System.Web.UI.Page
         {
             MultiView1.ActiveViewIndex = 0;
             Act.Value = "Insert";
-            //            h_edit.Value = "INSERT";
             this.ViewState["vs"] = 0;
-
-
-
 
         }
         pos = (int)this.ViewState["vs"];
@@ -47,7 +43,6 @@ public partial class Add_Candidate : System.Web.UI.Page
     public void databind()
     {
         dadapter = new SqlDataAdapter("SELECT * FROM ovs_candidate a  JOIN ovs_constituency b ON a.CONS_ID = b.cons_id JOIN ovs_party c ON a.PID = c.pid", connstring);
-        // dadapter = new SqlDataAdapter("select * from candidate", connstring);
         dset = new DataSet();
         adsource = new PagedDataSource();
         dadapter.Fill(dset);
@@ -90,25 +85,13 @@ public partial class Add_Candidate : System.Web.UI.Page
         databind();
     }
 
-    protected void age()
-    {
-
-        string can_name = C_Name.Text;
-        //   tdob.Enabled = true;
-        string dt = Request.Form[tdob.UniqueID];
-        DateTime bday = DateTime.Parse(dt);
-        DateTime today = DateTime.Today;
-        int age = today.Year - bday.Year;
-        if (bday > today.AddYears(-age)) age--;
-
-
-    }
     protected void Button1_Click(object sender, EventArgs e)
     {
         if (Act.Value == "Insert")
         {
+            tdob.Visible = true;
+            tdob.Enabled = true;
             string can_name = C_Name.Text;
-            //   tdob.Enabled = true;
             string dt = Request.Form[tdob.UniqueID];
             DateTime bday = DateTime.Parse(dt);
             DateTime today = DateTime.Today;
@@ -151,9 +134,9 @@ public partial class Add_Candidate : System.Web.UI.Page
                     string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                     SqlConnection con = new SqlConnection(cs);
                     con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "Select * from ovs_candidate";
-                    cmd.Connection = con;
+                    SqlCommand cmd = new SqlCommand("Select * from ovs_candidate where cons_id=@cons_id",con);
+                    cmd.Parameters.Add("@cons_id", cons_id);
+                   
                     //COMMENT THIS TO CHECK EDIT
                     try
                     {
@@ -165,7 +148,7 @@ public partial class Add_Candidate : System.Web.UI.Page
                             {
                                 //fill arraylist
                                 arrName.Add(dr1["pid"]);
-                                Response.Write(" " + dr1["pid"]);
+                                //Response.Write(" " + dr1["pid"]);
                             }
                     }
                     finally
@@ -189,12 +172,7 @@ public partial class Add_Candidate : System.Web.UI.Page
                         }
 
                     }
-                    else
-                    {
-                        //Response.Write("not conncted");
-                    }
-
-
+                   
                 }
 
             }
@@ -283,37 +261,25 @@ public partial class Add_Candidate : System.Web.UI.Page
                 if (rdp.Read())
                 {
                     C_Name.Text = rdp["C_NAME"].ToString();
-
-
                     int i = rdp.GetInt32(rdp.GetOrdinal("Cons_Id"));
-                    //Response.Write("id is " + i.ToString());
-
                     foreach (ListItem li1 in C_Cons.Items)
                     {
                         if (li1.Text == rdp["cons_name"].ToString())
                         {
                             li1.Selected = true;
-                            //Response.Write("<br> " + "new selected item" + li1.Text);
-
-
+                    
                         }
                     }
 
 
                     foreach (ListItem li2 in Pname.Items)
                     {
-                        //Response.Write(li2.Text );
-                        //Response.Write("hhii" + rdp["pname"]+"<br>");
                         if (li2.Text == rdp["pname"].ToString())
                         {
-                            //li2.Selected = true;
-                            // Response.Write("<br> " + "new selected item" + li2.Text);
                             li2.Selected = true;
 
                         }
                     }
-
-
 
                     C_Des.Text = rdp["C_DESCRIPTION"].ToString();
                     C_qual.Text = rdp["C_QUALIFICATION"].ToString();
@@ -369,8 +335,7 @@ public partial class Add_Candidate : System.Web.UI.Page
         else
         {
             FileName = Hcid.Value + ".png";
-            //  Response.Write("filename is"+FileName);
-
+            
         }
 
 
