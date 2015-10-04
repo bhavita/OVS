@@ -50,7 +50,7 @@ public partial class Admin_AddParty : System.Web.UI.Page
         adsource = new PagedDataSource();
         dadapter.Fill(dset);
         adsource.DataSource = dset.Tables[0].DefaultView;
-        adsource.PageSize = 5;
+        adsource.PageSize = 10;
         adsource.AllowPaging = true;
         adsource.CurrentPageIndex = pos;
         btnfirst.Enabled = !adsource.IsFirstPage;

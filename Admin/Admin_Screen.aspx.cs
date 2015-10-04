@@ -15,7 +15,7 @@ public partial class Admin_Admin_Screen : System.Web.UI.Page
        
        
         if (Session["admin_user"] != null)
-        {
+        {   
             Label1.Visible = true;
             Label1.Text = "Hii,Admin";
             Button1.Visible = true;
@@ -25,8 +25,7 @@ public partial class Admin_Admin_Screen : System.Web.UI.Page
         {
             Response.Redirect("~/Admin_Login.aspx");
         }
-        //   BindData();
-
+       
     }
 
 

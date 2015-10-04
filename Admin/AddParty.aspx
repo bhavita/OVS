@@ -5,7 +5,8 @@
     <div style="width: auto; position: absolute; right: 10%;">
         <asp:Label ID="Label2" runat="server" Text="Welcome,Admin" ForeColor="#FF9900"></asp:Label>
         &nbsp;
-        <asp:Button ID="Button2" runat="server" Text="Logout" Visible="true" OnClick="LogOut" />
+        <asp:Button ID="Button2" runat="server" Text="Logout" Visible="true" 
+            OnClick="LogOut" CssClass="text_size" />
     </div>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -29,11 +30,9 @@
                                         <asp:Image ID="Image1" runat="server" ImageUrl='<%# string.Format("~/img/party/{0}.png", Eval("pid"))%>' />
                                     </td>
                                     <td style="width: 10%">
-                                        &nbsp;<%# Eval("pid") %>
-                                    </td>
+                                        &nbsp;<%# Eval("pid") %></td>
                                     <td style="width: 400px">
-                                        &nbsp;<%# Eval("pname")%>
-                                    </td>
+                                        &nbsp;<%# Eval("pname")%></td>
                                     <td style="width: 10%">
                                         <asp:LinkButton ID="lnkEdit" runat="server" Text="EDIT" CommandName="Edit" CommandArgument='<%#Eval("pid") %>'></asp:LinkButton>
                                     </td>
@@ -83,7 +82,8 @@
                                     <asp:Label ID="Label1" runat="server" Text="PartyName"></asp:Label>
                                 </td>
                                 <td class="style6">
-                                    <asp:TextBox ID="PartyName" runat="server" Style="margin-left: 38px"></asp:TextBox>
+                                    <asp:TextBox ID="PartyName" runat="server" Style="margin-left: 38px" 
+                                        CssClass="text_size" Height="22px"></asp:TextBox>
                                 </td>
                                 <td class="style6">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="PartyName"
@@ -99,18 +99,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="style9">
+                                <td class="style10">
                                 </td>
                                 <td>
-                                    <asp:Label runat="server" ID="StatusLabel" Text=" " />
+                                    <asp:Label runat="server" ID="StatusLabel" Text=" "  Style="margin-left: 36px"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="style9">
+                                <td class="style10">
                                 </td>
                                 <td>
+                                <br />
                                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add Party"
-                                        Style="margin-left: 42px" ValidationGroup="p" />
+                                        Style="margin-left: 42px" ValidationGroup="p" CssClass="text_size" />
                                 </td>
                             </tr>
                         </table>
@@ -133,16 +134,20 @@
         .style7
         {
             height: 18px;
-            width: 181px;
+            width: 166px;
         }
         .style8
         {
             height: 56px;
-            width: 181px;
+            width: 166px;
         }
         .style9
         {
             width: 181px;
+        }
+        .style10
+        {
+            width: 166px;
         }
     </style>
 </asp:Content>

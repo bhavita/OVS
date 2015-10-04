@@ -11,7 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <font style="align: center" size="40px">CANDIDATE 
     </font>
-   
+ 
     <asp:HiddenField ID="Act" runat="server"  />
     <asp:HiddenField ID="Hcid" runat="server"  />
     <asp:MultiView ID="MultiView1" runat="server">
