@@ -31,9 +31,9 @@
                     <Items>
                      
                         <%--<asp:MenuItem NavigateUrl="~/Add_Candidate.aspx" Text="Add Candidate"/>--%>
-                        <asp:MenuItem NavigateUrl="~/Admin/AddConstituency.aspx" Text="AddConstituency"/>
-                        <asp:MenuItem NavigateUrl="~/Admin/AddParty.aspx" Text="AddParty"/>
-                        <asp:MenuItem NavigateUrl="~/Admin/Add_Candidate.aspx" Text="AddCandidate"/>
+                        <asp:MenuItem NavigateUrl="~/Admin/AddConstituency.aspx" Text="Constituency"/>
+                        <asp:MenuItem NavigateUrl="~/Admin/AddParty.aspx" Text="Party"/>
+                        <asp:MenuItem NavigateUrl="~/Admin/Add_Candidate.aspx" Text="Candidate"/>
                         <asp:MenuItem NavigateUrl="~/Admin/can_detail.aspx" Text="Candidatedetail"/>
                 
                     </Items>

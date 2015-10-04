@@ -9,6 +9,22 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $("[id$=tdob]").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:+nn",
+                showOn: 'button',
+                buttonImageOnly: true,
+                buttonImage: "../img/calendar.gif"
+            });
+            
+        });
+    </script>
     <font style="align: center" size="40px">CANDIDATE 
     </font>
  
@@ -157,6 +173,17 @@
                     ErrorMessage="This field is required" ForeColor="#FF3300" 
                     ValidationGroup="c" Enabled="False"></asp:RequiredFieldValidator>
             </td>
+        </tr>
+
+        <tr>
+            <td class="style18">
+                <asp:Label ID="DOB" runat="server" Text="BirthDate" CssClass="lab_size"></asp:Label>
+            </td>
+            <td class="style23">
+                <asp:TextBox ID="tdob" runat="server" CssClass="text_size" Width="200px" ReadOnly=true></asp:TextBox>
+            </td>
+            <td class="style24">
+                &nbsp;</td>
         </tr>
         <tr>
             <td class="style18">
