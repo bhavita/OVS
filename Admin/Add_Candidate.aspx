@@ -19,15 +19,15 @@
 
             });
 
-            // var d = $("[id$=tdob]").attr("enabled");
-            if (document.getElementById('tdob').disabled) {
-                alert("dis");
-                //  $("[id$=tdob]").datepicker("disable");
-            }
-            else {
-                // $("[id$=tdob]").datepicker("enable");
-                alert("en");
-            }
+//            // var d = $("[id$=tdob]").attr("enabled");
+//            if (document.getElementById('tdob').disabled) {
+//                alert("dis");
+//                //  $("[id$=tdob]").datepicker("disable");
+//            }
+//            else {
+//                // $("[id$=tdob]").datepicker("enable");
+//                alert("en");
+//            }
 
 
         });
