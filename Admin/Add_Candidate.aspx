@@ -180,6 +180,7 @@
                 <asp:Label ID="DOB" runat="server" Text="BirthDate" CssClass="lab_size"></asp:Label>
             </td>
             <td class="style23">
+                <asp:TextBox ID="t_Date" runat="server"></asp:TextBox>
                 <asp:TextBox ID="tdob" runat="server" CssClass="text_size" Width="200px" ReadOnly=true></asp:TextBox>
             </td>
             <td class="style24">
