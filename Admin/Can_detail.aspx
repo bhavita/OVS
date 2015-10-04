@@ -1,9 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
     CodeFile="Can_detail.aspx.cs" Inherits="Admin_Can_detail" %>
 
+<asp:Content ID="con2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <div style="width: auto; position: absolute; right: 10%;">
+        <asp:Label ID="Label2" runat="server" Text="Welcome,Admin" ForeColor="#FF9900"></asp:Label>
+        &nbsp;
+        <asp:Button ID="Button2" runat="server" Text="Logout" Visible="true" OnClick="LogOut" />
+    </div>
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<br /><br />
+
     <asp:DataList ID="DataList2" runat="server">
         <AlternatingItemStyle BackColor="White" ForeColor="#284775" />
         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

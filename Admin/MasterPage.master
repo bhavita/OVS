@@ -37,10 +37,17 @@
                         <asp:MenuItem NavigateUrl="~/Admin/can_detail.aspx" Text="Candidatedetail"/>
                 
                     </Items>
+
+                   
                 </asp:Menu>
-    <div>
-    </div></div></div>
+       
+            </div></div>
      <div class="main">
+      <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+
+       
+
+        </asp:ContentPlaceHolder>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>

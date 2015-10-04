@@ -1,10 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
     CodeFile="Add_Candidate.aspx.cs" Inherits="Add_Candidate" %>
 
+<asp:Content ID="con2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <div style="width: auto; position: absolute; right: 10%;">
+        <asp:Label ID="Label2" runat="server" Text="Welcome,Admin" ForeColor="#FF9900"></asp:Label>
+        &nbsp;
+        <asp:Button ID="Button4" runat="server" Text="Logout" Visible="true" OnClick="LogOut" />
+    </div>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <font style="align: center" size="40px">CANDIDATE 
-    <br />
-     <br />
     </font>
    
     <asp:HiddenField ID="Act" runat="server"  />

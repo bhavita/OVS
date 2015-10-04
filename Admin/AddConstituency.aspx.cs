@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 
 public partial class Admin_AddConstituency : System.Web.UI.Page
 {
@@ -216,5 +217,33 @@ public partial class Admin_AddConstituency : System.Web.UI.Page
     protected void DataList2_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+    }
+    protected void LogOut(object sender, EventArgs e)
+    {
+        try
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Buffer = true;
+            Response.ExpiresAbsolute = DateTime.Now.AddDays(-1d);
+            Response.Expires = -1000;
+            Response.CacheControl = "no-cache";
+
+            string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
+            using (StreamWriter outputFile = new StreamWriter(log, true))
+            {
+
+                outputFile.WriteLine(System.DateTime.Now.ToString() + " : Admin Logout succes");
+
+            }
+            Response.Redirect("~/Admin_Login.aspx");
+
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.Message);
+
+        }
     }
 }

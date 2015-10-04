@@ -36,6 +36,7 @@ public partial class Admin_login : System.Web.UI.Page
         if (admin_user == "admin" && admin_pass == "OVS@dmin")
         {
             Session["admin_user"] = admin_user;
+            Button1.Visible = true;
             string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
             using (StreamWriter outputFile = new StreamWriter(log, true))
             {

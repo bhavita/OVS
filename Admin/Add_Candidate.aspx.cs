@@ -395,4 +395,32 @@ public partial class Add_Candidate : System.Web.UI.Page
 
     }
 
+    protected void LogOut(object sender, EventArgs e)
+    {
+        try
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Buffer = true;
+            Response.ExpiresAbsolute = DateTime.Now.AddDays(-1d);
+            Response.Expires = -1000;
+            Response.CacheControl = "no-cache";
+
+            string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
+            using (StreamWriter outputFile = new StreamWriter(log, true))
+            {
+
+                outputFile.WriteLine(System.DateTime.Now.ToString() + " : Admin Logout succes");
+
+            }
+            Response.Redirect("~/Admin_Login.aspx");
+
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.Message);
+
+        }
+    }
 }

@@ -1,6 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin/MasterPage.master"
     CodeFile="AddConstituency.aspx.cs" Inherits="Admin_AddConstituency" %>
 
+
+<asp:Content ID="con2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <div style="width: auto; position: absolute; right: 10%;">
+        <asp:Label ID="Label2" runat="server" Text="Welcome,Admin" ForeColor="#FF9900"></asp:Label>
+        &nbsp;
+        <asp:Button ID="Button4" runat="server" Text="Logout" Visible="true" OnClick="LogOut" />
+    </div>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <table>
         <tr>

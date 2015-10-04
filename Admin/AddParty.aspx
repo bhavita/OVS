@@ -1,11 +1,18 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin/MasterPage.master"
     CodeFile="AddParty.aspx.cs" Inherits="Admin_AddParty" %>
 
+<asp:Content ID="con2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <div style="width: auto; position: absolute; right: 10%;">
+        <asp:Label ID="Label2" runat="server" Text="Welcome,Admin" ForeColor="#FF9900"></asp:Label>
+        &nbsp;
+        <asp:Button ID="Button2" runat="server" Text="Logout" Visible="true" OnClick="LogOut" />
+    </div>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div>
         <asp:HiddenField ID="h_edit" runat="server" />
         <asp:HiddenField ID="h_pid" runat="server" />
-        <table style="width: 100%;">
+        &nbsp;<table style="width: 100%;">
             <tr>
                 <td>
                     <asp:DataList ID="DataList2" runat="server" OnSelectedIndexChanged="DataList2_SelectedIndexChanged"
@@ -22,15 +29,17 @@
                                         <asp:Image ID="Image1" runat="server" ImageUrl='<%# string.Format("~/img/party/{0}.png", Eval("pid"))%>' />
                                     </td>
                                     <td style="width: 10%">
-                                        &nbsp;<%# Eval("pid") %></td>
+                                        &nbsp;<%# Eval("pid") %>
+                                    </td>
                                     <td style="width: 400px">
-                                        &nbsp;<%# Eval("pname")%></td>
+                                        &nbsp;<%# Eval("pname")%>
+                                    </td>
                                     <td style="width: 10%">
                                         <asp:LinkButton ID="lnkEdit" runat="server" Text="EDIT" CommandName="Edit" CommandArgument='<%#Eval("pid") %>'></asp:LinkButton>
                                     </td>
-                                       <td>
-                                    <asp:LinkButton ID="lnkdelete" runat="server" Text="DELETE" CommandName="delete" CommandArgument='<%#Eval("pname") %>'></asp:LinkButton>
-                                    
+                                    <td>
+                                        <asp:LinkButton ID="lnkdelete" runat="server" Text="DELETE" CommandName="delete"
+                                            CommandArgument='<%#Eval("pname") %>'></asp:LinkButton>
                                     </td>
                                 </tr>
                             </table>

@@ -12,9 +12,7 @@ public partial class Admin_Admin_Screen : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.Cache.SetCacheability(HttpCacheability.NoCache);
-        Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
-        Response.Cache.SetNoStore();
+       
        
         if (Session["admin_user"] != null)
         {
