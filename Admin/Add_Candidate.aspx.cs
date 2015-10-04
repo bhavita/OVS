@@ -143,7 +143,7 @@ public partial class Add_Candidate : System.Web.UI.Page
             }
             if ((con1.State & ConnectionState.Open) > 0)
             {
-                if (arrName.Contains(1))
+                if (arrName.Contains(pid))
                 {
                     ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Same Party for candidate is not added for this constituency.');", true);
                 }
@@ -408,6 +408,13 @@ public partial class Add_Candidate : System.Web.UI.Page
     protected void Button2_Click(object sender, EventArgs e)
     {
         MultiView1.ActiveViewIndex = 1;
+        C_Name.Text = "";
+        C_Des.Text = "";
+        C_qual.Text = "";
+        Cemail.Text = "";
+        CPhno.Text = "";
+        C_Cons.ClearSelection();
+        Pname.ClearSelection();
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
