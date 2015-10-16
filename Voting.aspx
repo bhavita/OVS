@@ -18,17 +18,13 @@
                     </td>
                     
                     <td style="width: 10%">
-                        &nbsp;<%# Eval("c_id") %>
-                    </td>
+                        &nbsp;<%# Eval("c_id") %></td>
                     <td style="width: 400px">
-                        &nbsp;<%# Eval("c_name")%>
-                    </td>
+                        &nbsp;<%# Eval("c_name")%></td>
                      <td style="width: 400px">
-                        &nbsp;<%# Eval("cons_id")%>
-                    </td>
+                        &nbsp;<%# Eval("cons_id")%></td>
                     <td style="width: 400px">
-                        &nbsp;<%# Eval("pid")%>
-                    </td>
+                        &nbsp;<%# Eval("pid")%></td>
                     <td style="width: 10%">
                     
                      <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl='<%# string.Format("img/party/{0}.png", Eval("pid"))%>' CommandArgument='<%#Eval("c_id") %>' OnCommand="sw1_Command"/>
@@ -60,6 +56,7 @@
                         Width="43px" OnClick="btnlast_Click" />
                 </td>
                 <td>
+                    <asp:HiddenField ID="h_vid" runat="server" />
                 </td>
                 
             </tr>

@@ -13,7 +13,7 @@ using System.Net.Mail;
 public partial class _Default : System.Web.UI.Page
 {
     SqlCommand cmd, insert_otp_cmd; string cs; SqlDataReader rdr; int j = 0; int OTP; string get_OTP,set_OTP;
-    string email, name; HttpCookie userInfo; string new1; string main_email;
+    string email, name; HttpCookie userInfo; string new1; string main_email; string f_try1;
     protected void Page_Load(object sender, EventArgs e)
     {
         MultiView1.SetActiveView(View1);
@@ -23,7 +23,7 @@ public partial class _Default : System.Web.UI.Page
             userInfo = new HttpCookie("userInfo");
             userInfo["UserName"] = "Annathurai";
             userInfo["UserColor"] = "Black";
-            userInfo.Expires = DateTime.Now.AddMinutes(1);
+            userInfo.Expires = DateTime.Now.AddMinutes(5);
             Response.Cookies.Add(userInfo);
           
         }
@@ -36,11 +36,68 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void lnkTab2_Click(object sender, EventArgs e)
     {
+       
         if (Request.Cookies["userInfo"] == null)
         {
             Response.Redirect("Default.aspx");  //to refresh the page
         }
+        //--fetch attempt
+        string cs9 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con9 = new SqlConnection(cs9);
+        con9.Open();
+        cmd = new SqlCommand("select * from voterinfo where vid=@vid", con9);
+        cmd.Parameters.Add("@vid", aadhar_id.Text);
+        cmd.Connection = con9;
+        rdr = cmd.ExecuteReader();
+
+        if (rdr != null)
+        {
+            while (rdr.Read())
+            {
+                f_try1 = rdr["attempt"].ToString();
+                h_try.Value = f_try1;
+                h_cons.Value = rdr["cons_id"].ToString();
+                Response.Write("attem " + f_try1);
+
+            }
+        }
+        con9.Close();
+        //--start of update attempt
+        string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con1 = new SqlConnection(cs1);
+        con1.Open();
+        insert_otp_cmd = new SqlCommand("update voterinfo set attempt=@attempt where vid=@vid", con1);
+        insert_otp_cmd.Parameters.Add("@vid", aadhar_id.Text);
+        insert_otp_cmd.Parameters.Add("@attempt", Convert.ToInt32(h_try.Value)+1);
+        if ((con1.State & ConnectionState.Open) > 0)
+        {
+
+            int i = insert_otp_cmd.ExecuteNonQuery();
+            if (i != 0)
+            {
+               // ClientScript.RegisterStartupScript(GetType(), "alert", "alert('password set sucssessfully ');", true);
+
+            }
+        }
+        
+        //--end of update attempt
+        //--check for attempt 
+       
+
+        if (Convert.ToInt32(f_try1) < 2)
+        {
+        
         MultiView1.ActiveViewIndex = 1;
+        //  ClientScript.RegisterStartupScript(GetType(), "alert", "alert('password set sucssessfully ');", true);
+        }
+        else{
+            MultiView1.ActiveViewIndex = 0;
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('more than required time attempt is done.. ');", true);
+        }
+
+        //--end of check attempt
+
+        
         string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con = new SqlConnection(cs);
         con.Open();
@@ -58,7 +115,6 @@ public partial class _Default : System.Web.UI.Page
         }
         con.Close();
                
-        
         //---generate OTP to send
         OTP=OTPGenration.GenrateOTP();
         set_OTP = OTP.ToString();
@@ -84,24 +140,26 @@ public partial class _Default : System.Web.UI.Page
         
         //--insert OTP into db
         insert_otp();
+        string s = "OTP is sent to " + new1;
+        ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + s + "');", true);
        
         //--mail
-        using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com",main_email))
-        {
-            mm.Subject = "OTP Mail";
-            mm.Body = "Dear "+name+", Your OTP is : "+OTP;
-            mm.IsBodyHtml = false;
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.EnableSsl = true;
-            NetworkCredential NetworkCred = new NetworkCredential("adharvotingsystem@gmail.com", "citybuzz");
-            smtp.UseDefaultCredentials = true;
-            smtp.Credentials = NetworkCred;
-            smtp.Port = 587;
-            smtp.Send(mm);
-            string s = "OTP is sent to " + new1;
-            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('"+s+"');", true);
-        }
+        //using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com",main_email))
+        //{
+        //    mm.Subject = "OTP Mail";
+        //    mm.Body = "Dear "+name+", Your OTP is : "+OTP;
+        //    mm.IsBodyHtml = false;
+        //    SmtpClient smtp = new SmtpClient();
+        //    smtp.Host = "smtp.gmail.com";
+        //    smtp.EnableSsl = true;
+        //    NetworkCredential NetworkCred = new NetworkCredential("adharvotingsystem@gmail.com", "citybuzz");
+        //    smtp.UseDefaultCredentials = true;
+        //    smtp.Credentials = NetworkCred;
+        //    smtp.Port = 587;
+        //    smtp.Send(mm);
+        //    string s = "OTP is sent to " + new1;
+        //    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('"+s+"');", true);
+        //}
    }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -118,7 +176,7 @@ public partial class _Default : System.Web.UI.Page
         string cs = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con = new SqlConnection(cs);
         con.Open();
-        SqlCommand cmd = new SqlCommand("select * from otpvoter where vid=@vid", con);
+        SqlCommand cmd = new SqlCommand("select  * from otpvoter where vid=@vid", con);
         cmd.Parameters.Add("@vid", aadhar_id.Text);
         cmd.Connection = con;
         rdr = cmd.ExecuteReader();
@@ -129,9 +187,12 @@ public partial class _Default : System.Web.UI.Page
             {
                 j++;
                 get_OTP = rdr.GetDecimal(1).ToString();
+                Response.Write("get otp" + get_user_otp + ":" + rdr["otp"].ToString());
+
                 
             }
         }
+       
         if (get_OTP == get_user_otp) {
             MultiView1.ActiveViewIndex = 2;
             BindListView();
@@ -154,12 +215,16 @@ public partial class _Default : System.Web.UI.Page
         insert_otp_cmd = new SqlCommand("INSERT INTO OTPVOTER (vid,otp) VALUES(@vid,@otp)", con1);
         insert_otp_cmd.Parameters.Add("@vid", aadhar_id.Text);
         insert_otp_cmd.Parameters.Add("@otp", OTP);
+        Response.Write("otp insert is "+OTP);
         if ((con1.State & ConnectionState.Open) > 0)
         {
             int i = insert_otp_cmd.ExecuteNonQuery();
             if (i != 0) {
+               Response.Write("inserted succsesfuly");
             }
             else {
+
+                Response.Write("inserted not");
             }
         }
         
@@ -205,12 +270,13 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button3_Click(object sender, EventArgs e)
     {
+        
         string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(cs1);
         con1.Open();
         insert_otp_cmd = new SqlCommand("update voterinfo set vpassword=@vpassword where vid=@vid", con1);
         insert_otp_cmd.Parameters.Add("@vid", aadhar_id.Text);
-        insert_otp_cmd.Parameters.Add("@vpassword", t_pass2.Text);
+        insert_otp_cmd.Parameters.Add("@vpassword", Password.Encrypt(t_pass2.Text.Trim()));
         if ((con1.State & ConnectionState.Open) > 0)
         {
             
@@ -218,6 +284,9 @@ public partial class _Default : System.Web.UI.Page
             if (i != 0)
             {
                 ClientScript.RegisterStartupScript(GetType(), "alert", "alert('password set sucssessfully ');", true);
+                Session["vid"] = aadhar_id.Text;
+                Session["cons_id"] = h_cons.Value;
+                Response.Redirect("~/Voting.aspx");
 
             }
             else

@@ -18,8 +18,10 @@ public partial class Voting : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             
+           this.ViewState["vs"] = 0;
 
-            this.ViewState["vs"] = 0;
+           h_vid.Value = Session["vid"].ToString();
+           //Response.Write("sdddsd" + Session["cons_id"] + ":" + h_vid.Value);
         }
         pos = (int)this.ViewState["vs"];
         databind();
@@ -28,7 +30,9 @@ public partial class Voting : System.Web.UI.Page
 
     public void databind()
     {
-        dadapter = new SqlDataAdapter("select c_id,c_name,cons_id,pid from candidate where cons_id=(select cons_id from voterinfo where vid=200012367893)", connstring);
+        
+        dadapter = new SqlDataAdapter("select c_id,c_name,cons_id,pid from candidate where cons_id=(select cons_id from voterinfo where vid=@cons_id)", connstring);
+        dadapter.SelectCommand.Parameters.AddWithValue("@cons_id",h_vid.Value);
        // dadapter = new SqlDataAdapter("select * from candidate", connstring);
         dset = new DataSet();
         adsource = new PagedDataSource();

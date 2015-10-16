@@ -12,7 +12,7 @@
     <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         $(function () {
             $("[id$=tdob]").datepicker({
                 changeMonth: true,
@@ -24,7 +24,7 @@
             });
             
         });
-    </script>
+    </script>--%>
     <font style="align: center" size="40px">CANDIDATE 
     </font>
  
@@ -175,7 +175,7 @@
             </td>
         </tr>
 
-        <tr>
+       <%-- <tr>
             <td class="style18">
                 <asp:Label ID="DOB" runat="server" Text="BirthDate" CssClass="lab_size"></asp:Label>
             </td>
@@ -185,7 +185,7 @@
             </td>
             <td class="style24">
                 &nbsp;</td>
-        </tr>
+        </tr>--%>
         <tr>
             <td class="style18">
                 <asp:Label ID="can_desc" runat="server" Text="Candidate Description" CssClass="lab_size"></asp:Label>

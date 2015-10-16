@@ -15,6 +15,8 @@
             <%-- <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lnkTab2_Click">Next</asp:LinkButton>--%>
             <asp:Button ID="Button2" runat="server" onclick="lnkTab2_Click" 
                 Text="Submit AadharID" />
+            <asp:HiddenField ID="h_try" runat="server" />
+            <asp:HiddenField ID="h_cons" runat="server" />
         </asp:View>
         <asp:View ID="View2" runat="server">
             <asp:Label ID="Label2" runat="server" Text="OTP:"></asp:Label>
