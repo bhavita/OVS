@@ -4,6 +4,7 @@
 body   
 {
     background-image: url("../img/r.png");font-size: .80em;
+    background-attachment: fixed;
     background-repeat:no-repeat;
     background-size: cover;
     background-repeat: no-repeat;

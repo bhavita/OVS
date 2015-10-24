@@ -67,3 +67,40 @@
 05-Oct-15 9:59:27 AM : Admin Logout succes
 05-Oct-15 10:18:25 AM : Admin login succes
 15-Oct-15 1:45:38 PM : Admin Logout succes
+23-Oct-15 8:19:39 PM : Admin login succes
+23-Oct-15 8:20:40 PM : Admin Logout succes
+23-Oct-15 8:53:06 PM : Admin login succes
+23-Oct-15 8:53:28 PM : Admin Logout succes
+23-Oct-15 8:54:47 PM : Admin login succes
+23-Oct-15 8:55:02 PM : Admin Logout succes
+23-Oct-15 8:55:07 PM : Admin login succes
+23-Oct-15 8:55:12 PM : Admin Logout succes
+24-Oct-15 3:56:05 PM : Voter 200012367893 Voted succesfully
+24-Oct-15 3:56:21 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:01:43 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:03:12 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:04:48 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:05:33 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:05:41 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:09:00 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:13:35 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:13:40 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:13:46 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:16:22 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:16:30 PM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:29:10 PM : Voter 200015961235 Voted succesfully
+24-Oct-15 4:32:27 PM : Voter 200015961235 Voted succesfully
+24-Oct-15 4:38:43 PM : Voter 235696321239 Voted succesfully
+24-Oct-15 4:40:26 PM : Voter 235696321239 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:40:31 PM : Voter 235696321239 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:40:36 PM : Voter 235696321239 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:41:05 PM : Voter 235696321239 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:41:08 PM : Voter 235696321239 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 4:42:25 PM : Voter 203656963214 Voted succesfully
+24-Oct-15 4:44:16 PM : Voter 203656963214 Voted succesfully
+24-Oct-15 4:59:56 PM : Voter 203656963214 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 5:04:26 PM : Voter 203656963214 tried to Vote even though previously voted.RESTRICTED
+24-Oct-15 5:18:39 PM : Admin login succes
+24-Oct-15 5:18:56 PM : Admin Logout succes
+24-Oct-15 5:19:26 PM : Admin login succes
+24-Oct-15 5:19:49 PM : Admin Logout succes

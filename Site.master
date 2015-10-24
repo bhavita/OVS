@@ -25,11 +25,12 @@
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/Home.aspx" Text="Home"/>
-                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Register"/>
-                        <asp:MenuItem NavigateUrl="~/Admin_Login.aspx" Text="Admin Login"/>
+                       <%-- <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Register"/>--%>
+                        <asp:MenuItem NavigateUrl="~/Login.aspx" Text="Login" />
+                        <asp:MenuItem NavigateUrl="~/Admin_Login.aspx" Text="Admin"/>
                         <asp:MenuItem NavigateUrl="~/Help.aspx" Text="Help"/>
                         <asp:MenuItem NavigateUrl="~/Election_Detail.aspx" Text="Election detail"/>
-                        <asp:MenuItem NavigateUrl="~/Voting.aspx" Text="Voting"/>
+                        <%--<asp:MenuItem NavigateUrl="~/Voting.aspx" Text="Voting"/>--%>
                         
                        <%-- <asp:MenuItem NavigateUrl="~/DataBase.aspx" Text="db"/>
                       --%>
@@ -38,8 +39,16 @@
                 </asp:Menu>
             </div>
         </div>
+
+        <div id="google_translate_element"></div><script type="text/javascript">
+                                                     function googleTranslateElementInit() {
+                                                         new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                                                     }
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
         <div class="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+
         </div>
         <div class="clear">
         </div>

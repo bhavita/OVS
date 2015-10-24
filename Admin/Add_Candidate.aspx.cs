@@ -166,6 +166,13 @@ public partial class Add_Candidate : System.Web.UI.Page
                 {
                     if (arrName.Contains(pid))
                     {
+                        string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
+                        using (StreamWriter outputFile = new StreamWriter(log, true))
+                        {
+
+                            outputFile.WriteLine(System.DateTime.Now.ToString() + " : Admin  attempted to add"+ can_name +" more than 1 candidate for same party in same constituency-RESTRICTED");
+
+                        }
                         ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Same Party for candidate is not added for this constituency.');", true);
                     }
                     else
@@ -181,6 +188,14 @@ public partial class Add_Candidate : System.Web.UI.Page
                         //    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('try after some time.');", true);
 
                         //}
+
+                        string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
+                        using (StreamWriter outputFile = new StreamWriter(log, true))
+                        {
+
+                            outputFile.WriteLine(System.DateTime.Now.ToString() + " : Admin added new Candidate "+ can_name +" succesfully");
+
+                        }
                         ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Candidate is  added.');", true);
                         con1.Close();
                         MultiView1.ActiveViewIndex = 0;
@@ -217,6 +232,13 @@ public partial class Add_Candidate : System.Web.UI.Page
                     Image1.ImageUrl = "~/img/candidate/" + Hcid.Value + ".png";
                     Image1.Visible = true;
 
+                    string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
+                    using (StreamWriter outputFile = new StreamWriter(log, true))
+                    {
+
+                        outputFile.WriteLine(System.DateTime.Now.ToString() + " : Admin editted" + can_name + "  succesfully");
+
+                    }
                     ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Can is updated.');", true);
 
                     con14.Close();

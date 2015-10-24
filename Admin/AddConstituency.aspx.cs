@@ -99,6 +99,13 @@ public partial class Admin_AddConstituency : System.Web.UI.Page
             SqlCommand cmd1 = new SqlCommand("Delete from ovs_constituency where cons_name=@cons_name", con1);
             cmd1.Parameters.Add("@cons_name", cons_name);
             int del = cmd1.ExecuteNonQuery();
+            string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
+            using (StreamWriter outputFile = new StreamWriter(log, true))
+            {
+
+                outputFile.WriteLine(System.DateTime.Now.ToString() + " : Admin deleted " + cons_name + " succesfully");
+
+            }
             ClientScript.RegisterStartupScript(GetType(), "alert", "alert('consituency deleted sucssesfully.');", true);
             
            // Response.Write("del is " + del + " ");
