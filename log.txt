@@ -120,3 +120,17 @@
 27-Oct-15 6:13:14 PM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
 27-Oct-15 6:14:28 PM : Admin login succes
 27-Oct-15 6:19:16 PM : Admin Logout succes
+27-Oct-15 6:48:09 PM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
+27-Oct-15 6:50:57 PM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
+27-Oct-15 6:52:14 PM : Voter 200015961235 Voted succesfully
+27-Oct-15 6:57:34 PM : Admin login succes
+27-Oct-15 6:58:28 PM : Admin Logout succes
+27-Oct-15 6:59:43 PM : Admin login succes
+27-Oct-15 7:00:10 PM : Admin Logout succes
+27-Oct-15 7:00:12 PM : Admin login succes
+27-Oct-15 7:00:41 PM : Admin login succes
+27-Oct-15 7:01:58 PM : Admin Logout succes
+27-Oct-15 7:06:16 PM : Admin login succes
+27-Oct-15 7:07:31 PM : Admin Logout succes
+27-Oct-15 7:07:59 PM : Admin login succes
+27-Oct-15 8:18:41 PM : Voter 201345631228 Voted succesfully

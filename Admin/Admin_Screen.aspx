@@ -11,4 +11,16 @@
          <asp:Button ID="Button1" runat="server" Text="Logout" visible="false" 
              onclick="Button1_Click"/>
      </div>
+
+     <div>
+     <script id="_wauqgu">         var _wau = _wau || [];
+         _wau.push(["map", "2gwiux632byi", "qgu", "420", "210", "natural", "star-blue"]);
+         (function () {
+             var s = document.createElement("script"); s.async = true;
+             s.src = "http://widgets.amung.us/map.js";
+             document.getElementsByTagName("head")[0].appendChild(s);
+         })();</script>
+     
+     
+     </div>
 </asp:Content>
