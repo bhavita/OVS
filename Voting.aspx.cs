@@ -53,9 +53,9 @@ public partial class Voting : System.Web.UI.Page
  //"alert('Already Voted. Redirecting'); window.location='" +
  //Request.ApplicationPath + "/VoterDashboard.aspx';", true);
 
-
-                Response.Redirect("VoterDashboard.aspx");
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Already Voted');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "Show Modal Popup1", "showmodalpopup1();", true);
+                //Response.Redirect("VoterDashboard.aspx");
+                //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Already Voted');", true);
             }
             else
             {
@@ -132,7 +132,9 @@ public partial class Voting : System.Web.UI.Page
                 //string s = "window.open('" + url + "', 'popup_window', 'width=300,height=100,left=100,top=100,resizable=yes');";
                 //ClientScript.RegisterStartupScript(this.GetType(), "script", s, true);
                 //Response.Redirect("VoterDashboard.aspx");
-                Response.Redirect("Socialshare.aspx");
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "Show Modal Popup", "showmodalpopup();", true);
+              //  Response.Redirect("Socialshare.aspx");
 
  //               ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenWindow",
  //"alert('ThankYou. Vote has been Registered. Share to the world you voted'); window.open(Request.ApplicationPath+'/Socialshare.aspx','_newtab');", true);

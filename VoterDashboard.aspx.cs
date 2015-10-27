@@ -10,7 +10,7 @@ using System.IO;
 
 public partial class VoterDashboard : System.Web.UI.Page
 {
-    string vid;
+    
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -29,21 +29,16 @@ public partial class VoterDashboard : System.Web.UI.Page
             }
 
            menu.FindItem("Home").NavigateUrl = Request.ApplicationPath+"/VoterDashboard.aspx"; //should not go to register or default
-           menu.Items.Remove(menu.FindItem("Register"));
            menu.Items.Remove(menu.FindItem("Login"));
-           menu.Items.Remove(menu.FindItem("Admin Login"));
-
-           //menu.Items.Remove(menu.FindItem("Login"));
-
-
+         
 
         }
 
         if (!IsPostBack) {
             if (Session["vid"] != null)
             {
-                 vid = Session["vid"].ToString();
-               // Response.Write("vis is " + vid);
+               vid.Value = Session["vid"].ToString();
+               //Response.Write("vis is " + vid);
             }
             else {
                 Response.Redirect("Login.aspx");
@@ -64,7 +59,7 @@ public partial class VoterDashboard : System.Web.UI.Page
         con4.Open();
         SqlDataReader dr1c;
         SqlCommand ct = new SqlCommand("Select * from voted where vid=@vid", con4);
-        ct.Parameters.Add("@Vid",vid);
+        ct.Parameters.Add("@Vid", vid.Value.ToString());
 
         //COMMENT THIS TO CHECK EDIT
         try
@@ -80,7 +75,8 @@ public partial class VoterDashboard : System.Web.UI.Page
 
                 }
                
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Already Voted');", true);
+               // ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Already Voted');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "Show Modal Popup1", "showmodalpopup1();", true);
             }
             else
             {
