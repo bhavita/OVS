@@ -40,7 +40,23 @@ Decrypted Text:
 <br />
 <br />
 <asp:Button ID="btnDecrypt" OnClick="Decrypt" Text="Decrypt" runat="server" />
-    
+   <asp:DropDownList ID="ddlCountries" runat="server"
+onselectedindexchanged="ddlCountries_SelectedIndexChanged" AutoPostBack = "true">
+</asp:DropDownList><hr />
+<asp:Chart ID="Chart1" runat="server" Height="300px" Width="400px" Visible = "false">
+    <Titles>
+        <asp:Title ShadowOffset="3" Name="Items" />
+    </Titles>
+    <Legends>
+        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
+    </Legends>
+    <Series>
+        <asp:Series Name="Default" />
+    </Series>
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
+    </ChartAreas>
+</asp:Chart> 
     </div>
     <CR:CrystalReportViewer ID="rptviewer"  runat="server" AutoDataBind="True" 
         GroupTreeImagesFolderUrl="" Height="1202px" 

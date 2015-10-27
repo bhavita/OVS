@@ -49,20 +49,20 @@ public partial class pass : System.Web.UI.Page
         //    rptviewer.ReportSource = _rdStudents;
 
         //}
-        try
-        {
-            ReportDocument report = new ReportDocument();
+        //try
+        //{
+        //    ReportDocument report = new ReportDocument();
 
-            report.Load(Server.MapPath("~/CrystalReport.rpt"));
+        //    report.Load(Server.MapPath("~/CrystalReport.rpt"));
 
-            report.SetDatabaseLogon(@"govind\riddhi", "", @"govind\sqlexpress", "ovs");
+        //    report.SetDatabaseLogon(@"govind\riddhi", "", @"govind\sqlexpress", "ovs");
 
-            rptviewer.ReportSource = report;
-        }
-        catch (Exception q)
-        {
-            Response.Write(q);
-        }
+        //    rptviewer.ReportSource = report;
+        //}
+        //catch (Exception q)
+        //{
+        //    Response.Write(q);
+        //}
 
         //try
         //{
