@@ -63,8 +63,9 @@ public partial class _Default : System.Web.UI.Page
 
         if (find!=1)
         {
-        
-         ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Please enter valid aadhar id');", true);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "Show Modal Popup", "showmodalpopup();", true);
+         //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Please enter valid aadhar id');", true);
         
         }
         else{
