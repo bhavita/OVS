@@ -7,13 +7,97 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Text;
 using System.Security.Cryptography;
+using CrystalDecisions.CrystalReports;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+
 
 public partial class pass : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        //if (!IsPostBack)
+        //{
+        //    DataTable dt;
+        //    String SQL = "SELECT * FROM ovs_party";
+
+
+        //    string sConstr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        //    using (SqlConnection conn = new SqlConnection(sConstr))
+        //    {
+        //        using (SqlCommand comm = new SqlCommand(SQL, conn))
+        //        {
+        //            conn.Open();
+        //            using (SqlDataAdapter da = new SqlDataAdapter(comm))
+        //            {
+        //                dt = new DataTable("ovs_party");
+        //                da.Fill(dt);
+        //            }
+        //        }
+        //    }
+
+
+        //    ReportDocument _rdStudents = new ReportDocument();
+        //    string reportPath = Server.MapPath("CrystalReport.rpt");
+        //    _rdStudents.Load(reportPath);
+
+        //    _rdStudents.SetDataSource(dt);
+
+        //    rptviewer.ReportSource = _rdStudents;
+
+        //}
+        //try
+        //{
+        //    ReportDocument report = new ReportDocument();
+
+        //    report.Load(Server.MapPath("~/CrystalReport.rpt"));
+
+        //    report.SetDatabaseLogon(@"govind\riddhi", "", @"govind\sqlexpress", "ovs");
+
+        //    rptviewer.ReportSource = report;
+        //}
+        //catch (Exception q)
+        //{
+        //    Response.Write(q);
+        //}
+
+        //try
+        //{
+        //    ReportDocument crystalReport = new ReportDocument();
+        //    crystalReport.Load(Server.MapPath("~/CrystalReport.rpt"));
+        //    Customers dsCustomers = GetData();
+        //    crystalReport.SetDataSource(dsCustomers);
+        //    CrystalReportViewer1.ReportSource = crystalReport;
+        //    CrystalReportViewer1.DataBind();
+        //}
+        //catch (Exception r) {
+
+        //    Response.Write(r);
+        //}
 
     }
+    //private Customers GetData()
+    //{
+    //    string conString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+    //    SqlCommand cmd = new SqlCommand("Customers_GetCustomers");
+    //    using (SqlConnection con = new SqlConnection(conString))
+    //    {
+    //        using (SqlDataAdapter sda = new SqlDataAdapter())
+    //        {
+    //            cmd.Connection = con;
+    //            cmd.CommandType = CommandType.StoredProcedure;
+    //            sda.SelectCommand = cmd;
+    //            using (Customers dsCustomers = new Customers())
+    //            {
+    //                sda.Fill(dsCustomers, "ovs_party");
+    //                return dsCustomers;
+    //            }
+    //        }
+    //    }
+    //}
     protected void Encrypt(object sender, EventArgs e)
     {
         lblEncryptedText.Text = this.Encrypt(txtOriginalText.Text.Trim());
@@ -65,4 +149,22 @@ public partial class pass : System.Web.UI.Page
         }
         return cipherText;
     }
+    //protected override void OnPreRender(EventArgs e)
+    //{
+    //    try
+    //    {
+    //        ReportDocument report = new ReportDocument();
+
+    //        report.Load(Server.MapPath("~/CrystalReport.rpt"));
+
+    //        report.SetDatabaseLogon(@"govind\riddhi", "", @"govind\sqlexpress", "ovs");
+
+    //        rptviewer.ReportSource = report;
+    //    }
+    //    catch (Exception q)
+    //    {
+    //        Response.Write(q);
+    //    }
+
+    //}
 }

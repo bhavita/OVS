@@ -216,15 +216,14 @@
         <td height="5">
         </td>
     </tr>
-    </table></td>
-    <td width="24%" align="right" valign="top">
+    </table>
         <!--<a href="#" data-popupmenu="popmenu1_sveepgame"><img src="images/get-set-vote.gif" width="260" height="60"></a>-->
         <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-top: 8px;
             background: #eceaea">
             <tr>
                 <td align="center">
                     <a target="_blank" href="http://eci.nic.in/eci_main1/ecz.aspx">
-                        <img src="images/cec_nz.jpg" width="90" height="110" style="border: #CCCCCC 4px double"></a><br>
+                        <img src="images/cec_nz.jpg" width="100" height="110" style="border: #CCCCCC 4px double"></a><br>
                     <div style="display: block; text-align: center; margin-top: 6px; margin-bottom: 6px;">
                         <a target="_blank" href="http://eci.nic.in/eci_main1/ecz.aspx">Dr. Nasim Zaidi
                             <br />
@@ -234,7 +233,7 @@
 
                  <td align="center">
                     <a target="_blank" href="http://eci.nic.in/eci_main1/ecj.aspx">
-                        <img src="images/ec_akj.jpg" width="90" height="110" style="border: #CCCCCC 4px double"></a><br>
+                        <img src="images/ec_akj.jpg" width="100" height="110" style="border: #CCCCCC 4px double"></a><br>
                     <div style="display: block; text-align: center; margin-top: 6px; margin-bottom: 6px;">
                         <a target="_blank" href="http://eci.nic.in/eci_main1/ecj.aspx">Sh. A K Joti
                             <br />
@@ -244,7 +243,7 @@
 
                  <td align="center">
                     <a target="_blank" href="http://eci.nic.in/eci_main1/ecr.aspx">
-                        <img src="images/ec_opr.jpg" width="90" height="110" style="border: #CCCCCC 4px double"></a><br>
+                        <img src="images/ec_opr.jpg" width="100" height="110" style="border: #CCCCCC 4px double"></a><br>
                     <div style="display: block; text-align: center; margin-top: 6px; margin-bottom: 6px;">
                         <a target="_blank" href="http://eci.nic.in/eci_main1/ecr.aspx">Sh. Om Prakash Rawat
                             <br />
@@ -252,22 +251,8 @@
                     </div>
                 </td>
             </tr>
-            <!--<tr>
-		        <td align="center"><a href="#" >Dr. Nasim Zaidi<br>
-Chief Election Commissioner  </a></td>
-	          </tr>-->
-        </table>
-        <table width="95%" border="0" cellspacing="5" cellpadding="5" class="righttable table-bordered righttable-hover righttable-striped"
-            style="margin-top: 8px;">
-            <!--<tr>
-		        <td><a href="countingday.html" class="rightmenu" ><strong><font color="#FF0000">Counting Day - 2015</font></strong></a></td>
-		        </tr>-->
-            <!--<tr>
-		        <td><a href="#" data-popupmenu="popmenu1_sveepgame" class="rightmenu" >Get Set Vote</a></td>
-		        </tr>-->
-            <!--<tr>
-		        <td><a target="_blank" href="http://eci-citizenservices.nic.in/" class="rightmenu" >Citizen Charter & Complaints (PGRMS)</a></td>
-		        </tr>-->
+          </table>
+        <table width="95%" border="0" cellspacing="5" cellpadding="5" class="righttable table-bordered righttable-hover righttable-striped">
             <tr>
                 <td>
                     <a target="_blank" href="http://www.youtube.com/eci" class="rightmenu">Voter Education

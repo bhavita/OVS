@@ -4,9 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
     <title></title>
+    <script type ="text/javascript">
+
+        window.onload = window.history.forward(0);  //calling function on window onload
+    
+</script>  
     <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+
+    
     </asp:ContentPlaceHolder>
+
 </head>
 <body>
     <form runat="server">
@@ -53,9 +61,15 @@
         <div class="clear">
         </div>
     </div>
-    <div class="footer">
-        
-    </div>
+    <div >
+      <script id="_waucvs">          var _wau = _wau || [];
+          _wau.push(["tab", "zfzfydoet7si", "cvs", "bottom-right"]);
+          (function () {
+              var s = document.createElement("script"); s.async = true;
+              s.src = "http://widgets.amung.us/tab.js";
+              document.getElementsByTagName("head")[0].appendChild(s);
+          })();</script>
+          </div> 
     </form>
 </body>
 </html>

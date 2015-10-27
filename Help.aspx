@@ -1,6 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Help.aspx.cs" Inherits="Help" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+
+    <script type="text/javascript" language='javascript'>
+        //  alert('safas');
+        history.pushState(null, null, 'Help.aspx');
+        window.addEventListner('popstate', function (event) {
+            history.pushState(null, null, 'Help.aspx');
+        });
+
+     </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <br><font size="10" face="verdana" color="blue" align="center">FAQ'S</font>
