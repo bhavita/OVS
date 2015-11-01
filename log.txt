@@ -134,3 +134,7 @@
 27-Oct-15 7:07:31 PM : Admin Logout succes
 27-Oct-15 7:07:59 PM : Admin login succes
 27-Oct-15 8:18:41 PM : Voter 201345631228 Voted succesfully
+01-Nov-15 10:31:18 AM : Admin login succes
+01-Nov-15 12:22:23 PM : Admin login succes
+01-Nov-15 12:35:26 PM : Admin login succes
+01-Nov-15 1:01:27 PM : Admin login succes

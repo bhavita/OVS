@@ -10,8 +10,14 @@ using System.IO;
 
 public partial class Admin_Admin_Screen : System.Web.UI.Page
 {
+    int count = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        party1();
+        constituency();
+        candidate();
 
 
         if (Session["admin_user"] != null)
@@ -25,7 +31,60 @@ public partial class Admin_Admin_Screen : System.Web.UI.Page
         {
             Response.Redirect("~/Admin_Login.aspx");
         }
-       
+
+    }
+    protected void party1()
+    {
+
+        string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con1 = new SqlConnection(cs1);
+
+        string stmt_p = "SELECT COUNT(*) FROM ovs_party";
+
+        using (SqlConnection thisConnection = con1)
+        {
+            using (SqlCommand cmdCount = new SqlCommand(stmt_p, thisConnection))
+            {
+                thisConnection.Open();
+                count = (int)cmdCount.ExecuteScalar();
+                l_party.Text = count.ToString();
+            }
+        }
+
+    }
+    protected void constituency()
+    {
+        string cs12 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con12 = new SqlConnection(cs12);
+        string stmt_c = "SELECT COUNT(*) FROM ovs_constituency";
+
+        using (SqlConnection thisConnection = con12)
+        {
+            using (SqlCommand cmdCount = new SqlCommand(stmt_c, thisConnection))
+            {
+                thisConnection.Open();
+                count = (int)cmdCount.ExecuteScalar();
+                l_cons.Text = count.ToString();
+            }
+        }
+    }
+
+    protected void candidate() {
+        string cs12 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection con12 = new SqlConnection(cs12);
+        string stmt_c = "SELECT COUNT(*) FROM ovs_candidate";
+
+        using (SqlConnection thisConnection = con12)
+        {
+            using (SqlCommand cmdCount = new SqlCommand(stmt_c, thisConnection))
+            {
+                thisConnection.Open();
+                count = (int)cmdCount.ExecuteScalar();
+                l_can.Text = count.ToString();
+            }
+        }
+    
+    
     }
 
 
@@ -50,7 +109,7 @@ public partial class Admin_Admin_Screen : System.Web.UI.Page
 
             }
             Response.Redirect("~/Admin_Login.aspx");
-           
+
         }
         catch (Exception ex)
         {
@@ -58,5 +117,5 @@ public partial class Admin_Admin_Screen : System.Web.UI.Page
 
         }
     }
-    
+
 }
