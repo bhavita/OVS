@@ -28,15 +28,13 @@
             <div class="font_class">
                    <%--<font color="black">Online Voting System</font> --%>
                 </div>
-                <%--<h1>
-                    Online Voting System
-                </h1>
-            --%>
+                
     <div class="clear hideSkiplink">
      <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
                      
                         <%--<asp:MenuItem NavigateUrl="~/Add_Candidate.aspx" Text="Add Candidate"/>--%>
+                        <asp:MenuItem NavigateUrl="~/Admin/Admin_Screen.aspx" Text="Home"/>
                         <asp:MenuItem NavigateUrl="~/Admin/AddConstituency.aspx" Text="Constituency"/>
                         <asp:MenuItem NavigateUrl="~/Admin/AddParty.aspx" Text="Party"/>
                         <asp:MenuItem NavigateUrl="~/Admin/Add_Candidate.aspx" Text="Candidate"/>
@@ -67,6 +65,15 @@
         </asp:ContentPlaceHolder>
 </div>
     </div>
+    <div >
+      <script id="_waucvs">          var _wau = _wau || [];
+          _wau.push(["tab", "zfzfydoet7si", "cvs", "bottom-right"]);
+          (function () {
+              var s = document.createElement("script"); s.async = true;
+              s.src = "http://widgets.amung.us/tab.js";
+              document.getElementsByTagName("head")[0].appendChild(s);
+          })();</script>
+          </div> 
     </form>
 </body>
 </html>

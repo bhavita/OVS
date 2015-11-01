@@ -247,7 +247,7 @@ public partial class _Default : System.Web.UI.Page
         string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(cs1);
         con1.Open();
-        insert_otp_cmd = new SqlCommand("INSERT INTO OTPVOTER (vid,otp) VALUES(@vid,@otp)", con1);
+        insert_otp_cmd = new SqlCommand("UPDATE OTPVOTER set otp=@otp where vid=@vid", con1);
         insert_otp_cmd.Parameters.Add("@vid", aadhar_id.Text);
         insert_otp_cmd.Parameters.Add("@otp", OTP);
         Response.Write("otp insert is " + OTP);
@@ -257,6 +257,13 @@ public partial class _Default : System.Web.UI.Page
             if (i != 0)
             {
                 Response.Write("inserted succsesfuly");
+                string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
+                using (StreamWriter outputFile = new StreamWriter(log, true))
+                {
+
+                    outputFile.WriteLine(System.DateTime.Now.ToString() + " : OTP Generated for " + aadhar_id.Text + "OTP:   " + OTP.ToString());
+
+                }
             }
             else
             {

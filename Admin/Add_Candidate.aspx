@@ -2,6 +2,7 @@
     CodeFile="Add_Candidate.aspx.cs" Inherits="Add_Candidate" %>
 
 <asp:Content ID="con2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+
     <div style="width: auto; position: absolute; right: 10%;">
         <asp:Label ID="Label2" runat="server" Text="Welcome,Admin" ForeColor="#FF9900"></asp:Label>
         &nbsp;

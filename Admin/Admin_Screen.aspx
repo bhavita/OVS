@@ -7,6 +7,15 @@
         {
             width: 144px;
         }
+        .style2
+        {
+            width: 156px;
+            height: 250px;
+        }
+        .style3
+        {
+            width: 173px;
+        }
     </style>
  
 </asp:Content>
@@ -14,7 +23,11 @@
       <div>
     
      <h1>welcome to admin screen</h1>
-      
+     <br />
+    <asp:Button ID="Button2" runat="server" Text="Report" Height="50px" Width="320px" 
+              OnClientClick="window.open('../report.aspx')" BorderStyle="Solid" 
+              Font-Size="Larger" style="margin-left: 4px" />
+      <br />
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <div style="top:30%;position:absolute;right:10%;">
          <table >
@@ -26,12 +39,12 @@
             </table>
             </div>
 
-    <table style="width: 30%;" border="2px">
+    <table border="2px" class="style2" style="width:30%">
         <tr>
             <td class="style1">
                 &nbsp;<asp:Label ID="party" runat="server" Text="Party Count"></asp:Label>
             </td>
-            <td>
+            <td class="style3">
                 &nbsp;<asp:Label ID="l_party" runat="server" Text="Label"></asp:Label>
             </td>
            
@@ -40,7 +53,7 @@
             <td class="style1">
                 &nbsp;<asp:Label ID="cons" runat="server" Text="Constituency Count"></asp:Label>
             </td>
-            <td>
+            <td class="style3">
                 &nbsp;<asp:Label ID="l_cons" runat="server" Text="Label"></asp:Label>
             </td>
            
@@ -49,7 +62,7 @@
             <td class="style1">
                 &nbsp;<asp:Label ID="Label2" runat="server" Text="Candidate Count"></asp:Label>
             </td>
-            <td>
+            <td class="style3">
                 &nbsp;<asp:Label ID="l_can" runat="server" Text="Label"></asp:Label>
             </td>
            
@@ -58,9 +71,9 @@
     </table>
      </div>
 
-     <div style="position:absolute;right:10%;padding:2%;top:35%">
+     <div style="position:absolute;right:10%;padding:2%;top:35%;">
      <script id="_wauqgu">         var _wau = _wau || [];
-         _wau.push(["map", "2gwiux632byi", "qgu", "420", "210", "natural", "star-blue"]);
+         _wau.push(["map", "2gwiux632byi", "qgu", "640", "300", "natural", "star-blue"]);
          (function () {
              var s = document.createElement("script"); s.async = true;
              s.src = "http://widgets.amung.us/map.js";

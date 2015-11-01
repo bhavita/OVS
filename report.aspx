@@ -21,20 +21,11 @@
         ReportSourceID="CrystalReportSource1" 
         ToolPanelWidth="100%" Width="100%" />
     <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
-        <Report FileName="CrystalReport.rpt">
+        <Report FileName="CrystalReport4.rpt">
         </Report>
     </CR:CrystalReportSource>
     </div>
-    <div>    <CR:CrystalReportViewer ID="CrystalReportViewer2" runat="server" 
-        AutoDataBind="True"  Height="500px" 
-        ReportSourceID="CrystalReportSource1" 
-        ToolPanelWidth="100%" Width="100%" />
-    <CR:CrystalReportSource ID="CrystalReportSource2" runat="server">
-        <Report FileName="chart.rpt">
-        </Report>
-    </CR:CrystalReportSource>
-    
-    </div>
+   
     </form>
 </body>
 </html>
