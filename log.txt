@@ -147,3 +147,24 @@
 01-Nov-15 7:38:24 PM : Admin login succes
 01-Nov-15 11:55:11 PM : Admin login succes
 02-Nov-15 12:19:40 AM : Admin login succes
+02-Nov-15 12:48:43 AM : Admin Logout succes
+02-Nov-15 12:59:09 AM : OTP Generated for 200015961235OTP:   6215
+02-Nov-15 12:59:26 AM : OTP Generated for 200015961235OTP:   8759
+02-Nov-15 1:00:07 AM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
+02-Nov-15 1:00:27 AM : OTP Generated for 200015961235OTP:   4243
+02-Nov-15 1:01:47 AM : OTP Generated for 200015961235OTP:   6726
+02-Nov-15 1:02:22 AM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
+02-Nov-15 1:04:09 AM : Voter 200015961235 Voted succesfully
+02-Nov-15 1:06:00 AM : Admin login succes
+02-Nov-15 1:08:21 AM : Admin Logout succes
+02-Nov-15 1:14:29 AM : Voter 200012367893 Voted succesfully
+02-Nov-15 1:17:19 AM : OTP Generated for 200012367893OTP:   7690
+02-Nov-15 1:17:55 AM : OTP Generated for 200012367893OTP:   5506
+02-Nov-15 1:19:53 AM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+02-Nov-15 1:20:11 AM : Voter 200012367893 tried to Vote even though previously voted.RESTRICTED
+02-Nov-15 1:20:31 AM : Voter 200012367893 Voted succesfully
+02-Nov-15 1:21:44 AM : Admin login succes
+02-Nov-15 1:23:06 AM : Admin Logout succes
+02-Nov-15 1:23:32 AM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
+02-Nov-15 1:23:37 AM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
+02-Nov-15 1:25:02 AM : Admin login succes

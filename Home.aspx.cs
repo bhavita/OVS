@@ -9,6 +9,6 @@ public partial class Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        lblmsg.Text = "Election will on 22/10/2015";
+        lblmsg.Text = "Election is going on";
     }
 }

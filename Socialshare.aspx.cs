@@ -9,7 +9,14 @@ public partial class Default2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        var menu = Page.Master.FindControl("NavigationMenu") as Menu;
+        if (menu != null)
+        {
+            menu.Items.Remove(menu.FindItem("Admin"));
+            menu.Items.Remove(menu.FindItem("Login"));
+            menu.Items.Remove(menu.FindItem("Home"));
 
+        }
     }
 
 
@@ -20,4 +27,8 @@ public partial class Default2 : System.Web.UI.Page
     }
 
 
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("VoterDashboard.aspx");
+    }
 }

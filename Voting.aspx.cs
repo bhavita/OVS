@@ -16,12 +16,21 @@ public partial class Voting : System.Web.UI.Page
     int pos; SqlDataReader dr1;
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!Page.IsPostBack)
         {
             this.ViewState["vs"] = 0;
 
             h_vid.Value = Session["vid"].ToString();
             checkEnv();
+            var menu = Page.Master.FindControl("NavigationMenu") as Menu;
+            if (menu != null)
+            {
+                menu.Items.Remove(menu.FindItem("Admin"));
+                menu.Items.Remove(menu.FindItem("Login"));
+                menu.Items.Remove(menu.FindItem("Home"));
+
+            }
         }
         pos = (int)this.ViewState["vs"];
         databind();

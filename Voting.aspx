@@ -22,7 +22,7 @@
                     var url = "Socialshare.aspx";
                     $(location).attr('href', url);
                 },
-                Cancle: function () {
+                Cancel: function () {
                     $(this).dialog('close');
                     var url = "VoterDashboard.aspx";
                     $(location).attr('href', url);
@@ -55,7 +55,7 @@
 </div>
 
 <div id="popupdiv" title="Alert" style="display: none">
-<b> Voting is done succssefully..press ok to share it on facebook and cancle to go back</b>
+<b> Voting is done succssefully..press ok to share it on facebook and cancel to go back</b>
 </div>
     <asp:DataList ID="DataList2" runat="server">
         <AlternatingItemStyle BackColor="White" ForeColor="#284775" />

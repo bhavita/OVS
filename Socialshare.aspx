@@ -11,5 +11,15 @@
         ImageUrl="~/img/fbsharevote.png" Width="132px" />   
 
 
+
+    <br />
+    <br />
+    <asp:Button ID="Button2" runat="server" onclick="Button2_Click" 
+        Text="Go To Dashboard" />
+    <br />
+    <br />
+
+
+
 </asp:Content>
 

@@ -30,6 +30,8 @@ public partial class VoterDashboard : System.Web.UI.Page
 
            menu.FindItem("Home").NavigateUrl = Request.ApplicationPath+"/VoterDashboard.aspx"; //should not go to register or default
            menu.Items.Remove(menu.FindItem("Login"));
+           menu.Items.Remove(menu.FindItem("Admin"));
+           menu.Items.Remove(menu.FindItem("Voting"));
          
 
         }
