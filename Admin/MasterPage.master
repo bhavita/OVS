@@ -34,11 +34,12 @@
                     <Items>
                      
                         <%--<asp:MenuItem NavigateUrl="~/Add_Candidate.aspx" Text="Add Candidate"/>--%>
-                        <asp:MenuItem NavigateUrl="~/Admin/Admin_Screen.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/Admin/Admin_Screen.aspx" Text="Home" />
                         <asp:MenuItem NavigateUrl="~/Admin/AddConstituency.aspx" Text="Constituency"/>
                         <asp:MenuItem NavigateUrl="~/Admin/AddParty.aspx" Text="Party"/>
                         <asp:MenuItem NavigateUrl="~/Admin/Add_Candidate.aspx" Text="Candidate"/>
                         <asp:MenuItem NavigateUrl="~/Admin/can_detail.aspx" Text="Candidatedetail"/>
+                         <asp:MenuItem NavigateUrl="~/Mannual/adminmanual.pdf" Text="AdminMannual" Target="_blank"/>
                 
                     </Items>
 

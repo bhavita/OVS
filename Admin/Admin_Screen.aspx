@@ -25,7 +25,7 @@
      <h1>welcome to admin screen</h1>
      <br />
     <asp:Button ID="Button2" runat="server" Text="Report" Height="50px" Width="320px" 
-              OnClientClick="window.open('../report.aspx')" BorderStyle="Solid" 
+              OnClientClick="window.open('../Report_n.aspx')" BorderStyle="Solid" 
               Font-Size="Larger" style="margin-left: 4px" />
       <br />
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -71,9 +71,9 @@
     </table>
      </div>
 
-     <div style="position:absolute;right:10%;padding:2%;top:35%;">
+     <div style="position:absolute;right:10%;padding:2%;top:40%;">
      <script id="_wauqgu">         var _wau = _wau || [];
-         _wau.push(["map", "2gwiux632byi", "qgu", "540", "300", "natural", "star-blue"]);
+         _wau.push(["map", "2gwiux632byi", "qgu", "500", "300", "natural", "star-blue"]);
          (function () {
              var s = document.createElement("script"); s.async = true;
              s.src = "http://widgets.amung.us/map.js";
