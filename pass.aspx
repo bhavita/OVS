@@ -42,12 +42,26 @@ Decrypted Text:
 <asp:Button ID="btnDecrypt" OnClick="Decrypt" Text="Decrypt" runat="server" />
    
     </div>
-    <CR:CrystalReportViewer ID="rptviewer"  runat="server" AutoDataBind="True" 
+
+        <asp:Panel ID="Panel1" runat="server">
+
+         <CR:CrystalReportViewer ID="rptviewer"  runat="server" AutoDataBind="True" 
         GroupTreeImagesFolderUrl="" Height="1202px" 
         ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" 
         ToolPanelWidth="200px" Width="1104px" />
     <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
-        <Report FileName="CrystalReport13.rpt">
+        <Report FileName="CrystalReport.rpt">
+        </Report>
+    </CR:CrystalReportSource>
+        </asp:Panel>
+   
+
+     <CR:CrystalReportViewer ID="CrystalReportViewer1"  runat="server" AutoDataBind="True" 
+        GroupTreeImagesFolderUrl="" Height="1202px" 
+        ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" 
+        ToolPanelWidth="200px" Width="1104px" />
+    <CR:CrystalReportSource ID="CrystalReportSource2" runat="server">
+        <Report FileName="CrystalReport8.rpt">
         </Report>
     </CR:CrystalReportSource>
     </form>

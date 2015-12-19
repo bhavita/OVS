@@ -120,6 +120,7 @@ public partial class Add_Candidate : System.Web.UI.Page
             //string can_name = C_Name.Text;
             string c_add = CAdd.Text;
             string email = Cemail.Text;
+           // string gen = t_can_gen.Text;
             long phno = Convert.ToInt64(CPhno.Text);
             string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection con1 = new SqlConnection(cs1);
@@ -135,6 +136,7 @@ public partial class Add_Candidate : System.Web.UI.Page
                 insert_party.Parameters.Add("@pid", pid);//COMMENT THIS TO CHECK EDIT
                 insert_party.Parameters.Add("@email", email);
                 insert_party.Parameters.Add("@phone_no", phno);
+                //insert_party.Parameters.Add("@gender", gen);
                 // insert_party.Parameters.Add("@birthdate", bday);
                 // insert_party.Parameters.Add("@age", age);
 
@@ -224,6 +226,8 @@ public partial class Add_Candidate : System.Web.UI.Page
                 edit_can.Parameters.Add("@email", email);
                 edit_can.Parameters.Add("@phone_no", phno);
                 edit_can.Parameters.Add("@cid", Hcid.Value);
+                //edit_can.Parameters.Add("@gender", t_can_gen.Text);
+
                 if ((con14.State & ConnectionState.Open) > 0)
                 {
                     int i = edit_can.ExecuteNonQuery();
@@ -316,6 +320,7 @@ public partial class Add_Candidate : System.Web.UI.Page
                     C_qual.Text = rdp["C_QUALIFICATION"].ToString();
                     Cemail.Text = rdp["EMAIL"].ToString();
                     CPhno.Text = rdp["PHONE_NO"].ToString();
+                  //  t_can_gen.Text = rdr["Gender"].ToString();
                     //tdob.Text = rdp["birthdate"] == System.DBNull.Value ? null : Convert.ToDateTime(rdp["Birthdate"]).ToString("dd/MM/yyyy");
                     //t_Date.Text = rdp["birthdate"] == System.DBNull.Value ? null : Convert.ToDateTime(rdp["Birthdate"]).ToString("dd/MM/yyyy");
                     //tdob.Visible = false;

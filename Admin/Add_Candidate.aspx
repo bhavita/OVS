@@ -197,6 +197,16 @@
             <td class="style10">
             </td>
         </tr>
+        <%-- <tr>
+            <td class="style18">
+                <asp:Label ID="can_gen" runat="server" Text="Candidate Gender" CssClass="lab_size"></asp:Label>
+            </td>
+            <td class="style9">
+                <asp:TextBox ID="t_can_gen" runat="server" CssClass="text_size" Width="200px"></asp:TextBox>
+            </td>
+            <td class="style10">
+            </td>
+        </tr>--%>
         <tr>
             <td class="style18">
                 <asp:Label ID="can_qua" runat="server" Text="Candidate Qualification" CssClass="lab_size"></asp:Label>
