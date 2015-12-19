@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head   runat="server">
     <title></title>
     <script src="aspnet_client/system_web/4_0_30319/crystalreportviewers13/js/crviewer/crv.js"
         type="text/javascript"></script>
@@ -40,30 +40,14 @@ Decrypted Text:
 <br />
 <br />
 <asp:Button ID="btnDecrypt" OnClick="Decrypt" Text="Decrypt" runat="server" />
-   <asp:DropDownList ID="ddlCountries" runat="server"
-onselectedindexchanged="ddlCountries_SelectedIndexChanged" AutoPostBack = "true">
-</asp:DropDownList><hr />
-<asp:Chart ID="Chart1" runat="server" Height="300px" Width="400px" Visible = "false">
-    <Titles>
-        <asp:Title ShadowOffset="3" Name="Items" />
-    </Titles>
-    <Legends>
-        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
-    </Legends>
-    <Series>
-        <asp:Series Name="Default" />
-    </Series>
-    <ChartAreas>
-        <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
-    </ChartAreas>
-</asp:Chart> 
+   
     </div>
     <CR:CrystalReportViewer ID="rptviewer"  runat="server" AutoDataBind="True" 
         GroupTreeImagesFolderUrl="" Height="1202px" 
         ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" 
         ToolPanelWidth="200px" Width="1104px" />
     <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
-        <Report FileName="CrystalReport.rpt">
+        <Report FileName="CrystalReport13.rpt">
         </Report>
     </CR:CrystalReportSource>
     </form>

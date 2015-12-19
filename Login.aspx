@@ -9,13 +9,13 @@
             <asp:TextBox ID="aadhar_id" runat="server" style="margin-left: 50px" CssClass="text_size" ></asp:TextBox>
              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
     runat="server" ControlToValidate="aadhar_id" 
-    ErrorMessage="RequiredFieldValidator" ValidationGroup="v"></asp:RequiredFieldValidator>
+    ErrorMessage="*This field is required" ValidationGroup="v"></asp:RequiredFieldValidator>
              <br />
              <asp:Label ID="Label8" runat="server" Text="Password"></asp:Label>
             <asp:TextBox ID="t_pass1" TextMode="password" runat="server" style="margin-left: 50px" CssClass="text_size" ></asp:TextBox>
 
 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-    ControlToValidate="t_pass1" ErrorMessage="RequiredFieldValidator" 
+    ControlToValidate="t_pass1" ErrorMessage="*This field is required" 
     ValidationGroup="v"></asp:RequiredFieldValidator>
 <br />
 <br />

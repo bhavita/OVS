@@ -109,7 +109,7 @@ public partial class Voting : System.Web.UI.Page
 
         int ID = Convert.ToInt32(e.CommandArgument);
 
-        Response.Write("cid is " + ID);
+       // Response.Write("cid is " + ID);
         //t_type_id.Text = ID.ToString();
         string cs1 = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(cs1);

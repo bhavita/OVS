@@ -19,11 +19,11 @@ public partial class _Default : System.Web.UI.Page
 
         //so as to add later in voter dashboard
         var menu = Page.Master.FindControl("NavigationMenu") as Menu;
-        //if (menu != null)
-        //{
-        //    menu.Items.Remove(menu.FindItem("Voting"));
+        if (menu != null)
+        {
+            menu.Items.Remove(menu.FindItem("Admin"));
 
-        //}
+        }
         MultiView1.SetActiveView(View1);
 
         if (!IsPostBack)
@@ -85,7 +85,7 @@ public partial class _Default : System.Web.UI.Page
                 f_try1 = rdr["attempt"].ToString();
                 h_try.Value = f_try1;
                 h_cons.Value = rdr["cons_id"].ToString();
-                Response.Write("attem " + f_try1);
+           //     Response.Write("attem " + f_try1);
 
             }
         }
@@ -112,7 +112,7 @@ public partial class _Default : System.Web.UI.Page
         //--check for attempt 
 
 
-        if (Convert.ToInt32(f_try1) < 2)
+        if (Convert.ToInt32(f_try1) < 4)
         {
 
             MultiView1.ActiveViewIndex = 1;
@@ -158,7 +158,7 @@ public partial class _Default : System.Web.UI.Page
         string x = email.Substring(l, w - l);
 
         int len = (email.IndexOf('@')) / 2;
-        Response.Write(email + " " + name + " " + set_OTP);
+        //Response.Write(email + " " + name + " " + set_OTP);
         email = email.Substring(0, email.IndexOf('@') / 2);
 
         new1 = email.Substring(0, len);
@@ -175,22 +175,22 @@ public partial class _Default : System.Web.UI.Page
         ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + s + "');", true);
 
         //--mail
-        //using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com",main_email))
-        //{
-        //    mm.Subject = "OTP Mail";
-        //    mm.Body = "Dear "+name+", Your OTP is : "+OTP;
-        //    mm.IsBodyHtml = false;
-        //    SmtpClient smtp = new SmtpClient();
-        //    smtp.Host = "smtp.gmail.com";
-        //    smtp.EnableSsl = true;
-        //    NetworkCredential NetworkCred = new NetworkCredential("adharvotingsystem@gmail.com", "citybuzz");
-        //    smtp.UseDefaultCredentials = true;
-        //    smtp.Credentials = NetworkCred;
-        //    smtp.Port = 587;
-        //    smtp.Send(mm);
-        //    string s = "OTP is sent to " + new1;
-        //    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('"+s+"');", true);
-        //}
+        using (MailMessage mm = new MailMessage("adharvotingsystem@gmail.com", main_email))
+        {
+            mm.Subject = "OTP Mail";
+            mm.Body = "Dear " + name + ", Your OTP is : " + OTP;
+            mm.IsBodyHtml = false;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.EnableSsl = true;
+            NetworkCredential NetworkCred = new NetworkCredential("adharvotingsystem@gmail.com", "citybuzz");
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = NetworkCred;
+            smtp.Port = 587;
+            smtp.Send(mm);
+            string s1 = "OTP is sent to " + new1;
+            ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + s1 + "');", true);
+        }
             }
         }
     }
@@ -220,7 +220,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 j++;
                 get_OTP = rdr.GetDecimal(1).ToString();
-                Response.Write("get otp" + get_user_otp + ":" + rdr["otp"].ToString());
+                //Response.Write("get otp" + get_user_otp + ":" + rdr["otp"].ToString());
 
 
             }
@@ -250,13 +250,13 @@ public partial class _Default : System.Web.UI.Page
         insert_otp_cmd = new SqlCommand("UPDATE OTPVOTER set otp=@otp where vid=@vid", con1);
         insert_otp_cmd.Parameters.Add("@vid", aadhar_id.Text);
         insert_otp_cmd.Parameters.Add("@otp", OTP);
-        Response.Write("otp insert is " + OTP);
+       // Response.Write("otp is " + OTP);
         if ((con1.State & ConnectionState.Open) > 0)
         {
             int i = insert_otp_cmd.ExecuteNonQuery();
             if (i != 0)
             {
-                Response.Write("inserted succsesfuly");
+               // Response.Write("inserted succsesfuly");
                 string log = System.Configuration.ConfigurationManager.AppSettings["FilePath"].ToString();
                 using (StreamWriter outputFile = new StreamWriter(log, true))
                 {

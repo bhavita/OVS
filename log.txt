@@ -117,11 +117,8 @@
 27-Oct-15 6:02:50 PM : Voter  tried to Vote even though previously voted.RESTRICTED
 27-Oct-15 6:04:37 PM : Voter  tried to Vote even though previously voted.RESTRICTED
 27-Oct-15 6:13:06 PM : Voter 200015961235 Voted succesfully
-27-Oct-15 6:13:14 PM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
 27-Oct-15 6:14:28 PM : Admin login succes
 27-Oct-15 6:19:16 PM : Admin Logout succes
-27-Oct-15 6:48:09 PM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
-27-Oct-15 6:50:57 PM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
 27-Oct-15 6:52:14 PM : Voter 200015961235 Voted succesfully
 27-Oct-15 6:57:34 PM : Admin login succes
 27-Oct-15 6:58:28 PM : Admin Logout succes
@@ -165,6 +162,46 @@
 02-Nov-15 1:20:31 AM : Voter 200012367893 Voted succesfully
 02-Nov-15 1:21:44 AM : Admin login succes
 02-Nov-15 1:23:06 AM : Admin Logout succes
-02-Nov-15 1:23:32 AM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
-02-Nov-15 1:23:37 AM : Voter System.Web.UI.WebControls.HiddenField tried to Vote even though previously voted.RESTRICTED
 02-Nov-15 1:25:02 AM : Admin login succes
+02-Nov-15 10:28:06 AM : OTP Generated for 201315631236OTP:   3540
+02-Nov-15 10:28:47 AM : Admin login succes
+02-Nov-15 10:40:13 AM : Admin Logout succes
+02-Nov-15 10:40:24 AM : OTP Generated for 200015961235OTP:   1475
+02-Nov-15 10:40:44 AM : Voter 200015961235 Voted succesfully
+02-Nov-15 10:40:59 AM : Admin login succes
+02-Nov-15 10:41:28 AM : Admin Logout succes
+02-Nov-15 10:41:35 AM : OTP Generated for 201212121212OTP:   8236
+02-Nov-15 10:41:59 AM : Voter 201212121212 Voted succesfully
+02-Nov-15 10:44:48 AM : OTP Generated for 201325963251OTP:   9037
+02-Nov-15 10:45:13 AM : Voter 201325963251 Voted succesfully
+02-Nov-15 10:45:24 AM : Admin login succes
+02-Nov-15 10:51:44 AM : Admin login succes
+02-Nov-15 10:54:37 AM : Admin Logout succes
+02-Nov-15 11:02:03 AM : OTP Generated for 200012367893OTP:   8080
+02-Nov-15 11:06:37 AM : OTP Generated for 201212121212OTP:   1177
+02-Nov-15 12:10:43 PM : Admin login succes
+02-Nov-15 12:14:57 PM : OTP Generated for 200012367893OTP:   5443
+02-Nov-15 12:17:24 PM : OTP Generated for 200012367893OTP:   6689
+02-Nov-15 12:19:38 PM : Voter 200012367893 Voted succesfully
+19-Dec-15 11:33:39 AM : Admin login succes
+19-Dec-15 11:51:27 AM : Admin login succes
+19-Dec-15 11:59:37 AM : Admin Logout succes
+19-Dec-15 4:44:04 PM : OTP Generated for 200012367893OTP:   9986
+19-Dec-15 4:46:52 PM : OTP Generated for 200012367893OTP:   2333
+19-Dec-15 4:48:13 PM : OTP Generated for 200012367893OTP:   5475
+19-Dec-15 4:58:08 PM : OTP Generated for 200012367893OTP:   9231
+19-Dec-15 4:59:59 PM : OTP Generated for 200012367893OTP:   9334
+19-Dec-15 5:04:03 PM : OTP Generated for 200012367893OTP:   3153
+19-Dec-15 5:14:04 PM : OTP Generated for 200012367893OTP:   2907
+19-Dec-15 5:19:45 PM : Voter 200012367893 Voted succesfully
+19-Dec-15 5:22:02 PM : Voter 200012367893 Voted succesfully
+19-Dec-15 5:44:05 PM : Admin login succes
+19-Dec-15 5:51:00 PM : OTP Generated for 201315631236OTP:   2858
+19-Dec-15 5:51:54 PM : Voter 201315631236 Voted succesfully
+19-Dec-15 5:52:47 PM : OTP Generated for 203265981012OTP:   4677
+19-Dec-15 5:53:33 PM : OTP Generated for 203265981012OTP:   8658
+19-Dec-15 5:54:20 PM : Voter 203265981012 Voted succesfully
+19-Dec-15 6:03:05 PM : OTP Generated for 203654789616OTP:   3805
+19-Dec-15 6:03:51 PM : Voter 203654789616 Voted succesfully
+19-Dec-15 6:14:51 PM : OTP Generated for 200012367893OTP:   8479
+19-Dec-15 6:15:58 PM : OTP Generated for 200012367893OTP:   7143

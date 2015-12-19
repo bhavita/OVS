@@ -324,6 +324,11 @@ div.accountInfo
     margin-top: 5px;
     margin-bottom: 16px;
 }
+.btn_round
+{
+     border-radius:5px;
+    
+    }
  
  .lab_size 
  {

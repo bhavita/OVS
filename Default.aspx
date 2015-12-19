@@ -36,7 +36,8 @@
 <b> Please Enter Valid aadhar id</b>
 </div>
             <asp:Label ID="Label1" runat="server" Text="Aadhar id:"></asp:Label>
-            <asp:TextBox ID="aadhar_id" runat="server" style="margin-left: 30px"></asp:TextBox>
+            <asp:TextBox ID="aadhar_id" runat="server" style="margin-left: 30px" 
+                CssClass="btn_round"></asp:TextBox>
             &nbsp;&nbsp;
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
                 ControlToValidate="aadhar_id" ErrorMessage="*must be valid" ForeColor="#FF3300" 
@@ -58,7 +59,7 @@
         <asp:View ID="View2" runat="server">
             <asp:Label ID="Label2" runat="server" Text="OTP:"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox> <br />
+            <asp:TextBox ID="TextBox2" runat="server" CssClass="btn_round"></asp:TextBox> <br />
              <br /><br />
             <asp:Button ID="Button1" runat="server" Text="Send OTP" 
                 onclick="Button1_Click" />            
@@ -156,14 +157,16 @@
 
          <asp:View ID="View4" runat="server">
             <asp:Label ID="Label8" runat="server" Text="Password"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="t_pass1" TextMode="password" runat="server" ValidationGroup="x"></asp:TextBox>
+            <asp:TextBox ID="t_pass1" TextMode="password" runat="server" ValidationGroup="x" 
+                 CssClass="btn_round"></asp:TextBox>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                  ControlToValidate="t_pass1" ErrorMessage="RequiredFieldValidator" 
                  ValidationGroup="x"></asp:RequiredFieldValidator>
              &nbsp;&nbsp;&nbsp;&nbsp;
             <br /><br />
-            <asp:Label ID="Label9" runat="server" Text="Conform Password"></asp:Label>
-            <asp:TextBox ID="t_pass2" TextMode="password" runat="server" ValidationGroup="x"></asp:TextBox>
+            <asp:Label ID="Label9" runat="server" Text="Confirm Password"></asp:Label>
+            <asp:TextBox ID="t_pass2" TextMode="password" runat="server" ValidationGroup="x" 
+                 CssClass="btn_round"></asp:TextBox>
              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                  ControlToValidate="t_pass2" ErrorMessage="RequiredFieldValidator" 
                  ValidationGroup="x"></asp:RequiredFieldValidator>

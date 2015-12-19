@@ -73,7 +73,7 @@
 
      <div style="position:absolute;right:10%;padding:2%;top:35%;">
      <script id="_wauqgu">         var _wau = _wau || [];
-         _wau.push(["map", "2gwiux632byi", "qgu", "640", "300", "natural", "star-blue"]);
+         _wau.push(["map", "2gwiux632byi", "qgu", "540", "300", "natural", "star-blue"]);
          (function () {
              var s = document.createElement("script"); s.async = true;
              s.src = "http://widgets.amung.us/map.js";
